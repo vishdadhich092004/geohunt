@@ -14,53 +14,44 @@ datasource db {
 }
 
 model User {
-  id          String        @id @default(uuid())
-  username    String        @unique
-  email       String        @unique
-  password    String
-  games       Game[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  Leaderboard Leaderboard[]
-}
-
-model Game {
-  id String @id @default(uuid())
-
-  User       User?     @relation(fields: [userId], references: [id])
-  userId     String?
-  guesses    Guess[]
-  score      Int       @default(0)
-  startedAt  DateTime  @default(now())
-  finishedAt DateTime?
+  id        String   @id @default(uuid()) @db.Uuid
+  username  String   @unique
+  games     Game[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Guess     Guess[]
 }
 
 model Location {
-  id          String  @id @default(uuid())
-  lattitude   Float
+  id          String  @id @default(uuid()) @db.Uuid
+  latitude    Float
   longitude   Float
   name        String?
   description String?
-  Guess       Guess[]
+  gameId      String? @db.Uuid
+  Game        Game[]
+}
+
+model Game {
+  id                String    @id @default(uuid()) @db.Uuid
+  userId            String    @db.Uuid
+  user              User      @relation(fields: [userId], references: [id])
+  guesses           Guess[]
+  currentLocation   Location? @relation(fields: [currentLocationId], references: [id])
+  currentLocationId String?   @db.Uuid
+  score             Int
+  startedAt         DateTime
+  finishedAt        DateTime? // Nullable
 }
 
 model Guess {
-  id         String   @id @default(uuid())
-  game       Game     @relation(fields: [gameId], references: [id])
-  gameId     String
-  location   Location @relation(fields: [locationId], references: [id])
-  locationId String
-  lattitude  Float
-  longitude  Float
-  distance   Float
-  createdAt  DateTime @default(now())
-}
-
-model Leaderboard {
-  id         String   @id @default(uuid())
-  user       User     @relation(fields: [userId], references: [id])
-  userId     String
-  totalScore Int
-  rank       Int
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id])
+  gameId    String   @db.Uuid
+  game      Game     @relation(fields: [gameId], references: [id])
+  latitude  Float
+  longitude Float
+  distance  Float
+  createdAt DateTime @default(now())
 }
