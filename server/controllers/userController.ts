@@ -38,7 +38,7 @@ export const createUser = async (
   );
   res.cookie("auth_token", token, {
     httpOnly: true,
-    sameSite: "none",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     secure: process.env.NODE_ENV === "production",
     maxAge: 24 * 60 * 60 * 1000,
   });
@@ -48,13 +48,12 @@ export const createUser = async (
 export const validateToken = async (
   req: Request,
   res: Response
-): Promise<JWTUser | any> => {
+): Promise<any> => {
   try {
     const user = req.user;
     if (!user) {
       return res.status(404).json({ message: "User Not Found" });
     }
-    return res.status(200).json(user);
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: "Issue with validating Token" });

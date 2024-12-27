@@ -8,7 +8,7 @@ export interface JWTUser {
 declare global {
   namespace Express {
     interface Request {
-      user?: {
+      user: {
         userId: string;
         username: string;
       };
