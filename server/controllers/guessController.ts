@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import prisma from "../db/db.config";
 import { calculateDistance } from "../utils/calculateDistance";
-import { GameType } from "../shared/types";
-import { generateRandomLocation } from "../utils/generateRandomLocation";
+import generateRandomPopularLocation from "../utils/generateRandomLocation";
 
 export const createGuess = async (
   req: Request,
@@ -42,11 +41,11 @@ export const createGuess = async (
   const newScore =
     game.score + Math.max(0, 5000 - (Math.floor(distance) % 5000));
 
-  const nextLocation = await generateRandomLocation();
+  const nextLocation = await generateRandomPopularLocation();
   const newLocation = await prisma.location.create({
     data: {
-      longitude: nextLocation.randomLon,
-      latitude: nextLocation.randomLat,
+      longitude: nextLocation.lng,
+      latitude: nextLocation.lat,
     },
   });
 
@@ -57,6 +56,9 @@ export const createGuess = async (
         connect: { id: newLocation.id },
       },
       score: newScore,
+    },
+    include: {
+      currentLocation: true,
     },
   });
 

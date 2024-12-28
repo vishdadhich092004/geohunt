@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LoadScriptNext } from "@react-google-maps/api";
 
 interface StreetViewProps {
@@ -15,10 +15,11 @@ function StreetView({
   width = "400px",
 }: StreetViewProps) {
   const mapRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (mapRef.current && window.google) {
-      const panorama = new google.maps.StreetViewPanorama(mapRef.current, {
+    if (isLoaded && mapRef.current && window.google) {
+      new google.maps.StreetViewPanorama(mapRef.current, {
         position: { lat, lng },
         addressControlOptions: {
           position: google.maps.ControlPosition.BOTTOM_CENTER,
@@ -28,12 +29,14 @@ function StreetView({
         enableCloseButton: false,
       });
     }
-  }, [lat, lng]);
+  }, [lat, lng, isLoaded]);
 
   return (
     <div className="relative">
       <LoadScriptNext
-        googleMapsApiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY!}
+        googleMapsApiKey={import.meta.env.VITE_GOOGLE_STREET_VIEW_API_KEY!}
+        onLoad={() => setIsLoaded(true)}
+        onError={() => console.error("Failed to load Google Maps API")}
       >
         <div ref={mapRef} style={{ height, width }} />
       </LoadScriptNext>

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import prisma from "../db/db.config";
 import { GameType } from "../shared/types";
-import { generateRandomLocation } from "../utils/generateRandomLocation";
+import generateRandomPopularLocation from "../utils/generateRandomLocation";
 
 export const createGame = async (
   req: Request,
@@ -12,11 +12,11 @@ export const createGame = async (
     if (!userId) {
       return res.status(400).json({ message: "No User Found" });
     }
-    const randomLocation = await generateRandomLocation();
+    const randomLocation = await generateRandomPopularLocation();
     const firstLocation = await prisma.location.create({
       data: {
-        latitude: randomLocation.randomLat,
-        longitude: randomLocation.randomLon,
+        latitude: randomLocation?.lat,
+        longitude: randomLocation?.lng,
       },
     });
     const game = await prisma.game.create({

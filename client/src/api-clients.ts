@@ -1,3 +1,4 @@
+import { GameType } from "../../server/shared/types";
 import { NewUserFormData } from "./components/NewUser";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -34,7 +35,7 @@ export const newGuess = async (
   gameId: string,
   latitude: number,
   longitude: number
-) => {
+): Promise<GameType | null> => {
   const response = await fetch(`${API_BASE_URL}/api/guesses/${gameId}`, {
     method: "POST",
     credentials: "include",
