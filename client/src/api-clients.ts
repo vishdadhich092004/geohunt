@@ -30,11 +30,20 @@ export const newGame = async () => {
   return body;
 };
 
-export const newGuess = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/guesses`, {
+export const newGuess = async (
+  gameId: string,
+  latitude: number,
+  longitude: number
+) => {
+  const response = await fetch(`${API_BASE_URL}/api/guesses/${gameId}`, {
     method: "POST",
     credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ latitude, longitude }),
   });
+
   const body = await response.json();
   if (!response.ok) {
     throw new Error(body.error);
@@ -53,4 +62,16 @@ export const validateToken = async () => {
   }
   const data = await response.json();
   return data;
+};
+
+export const fetchGameByGameId = async (gameId: string) => {
+  const response = await fetch(`${API_BASE_URL}/api/games/${gameId}`, {
+    credentials: "include",
+    method: "GET",
+  });
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error(body.error);
+  }
+  return body;
 };

@@ -34,14 +34,14 @@ model Location {
 
 model Game {
   id                String    @id @default(uuid()) @db.Uuid
-  userId            String    @db.Uuid
-  user              User      @relation(fields: [userId], references: [id])
-  guesses           Guess[]
-  currentLocation   Location? @relation(fields: [currentLocationId], references: [id])
-  currentLocationId String?   @db.Uuid
   score             Int
   startedAt         DateTime
   finishedAt        DateTime? // Nullable
+  currentLocation   Location  @relation(fields: [currentLocationId], references: [id])
+  currentLocationId String    @db.Uuid
+  user              User      @relation(fields: [userId], references: [id])
+  userId            String    @db.Uuid
+  guesses           Guess[]
 }
 
 model Guess {

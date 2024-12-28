@@ -48,12 +48,19 @@ export const createUser = async (
 export const validateToken = async (
   req: Request,
   res: Response
-): Promise<any> => {
+): Promise<JWTUser | any> => {
   try {
-    const user = req.user;
+    const userId = req.user.userId;
+
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
     if (!user) {
       return res.status(404).json({ message: "User Not Found" });
     }
+    res.status(200).json({ user });
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: "Issue with validating Token" });

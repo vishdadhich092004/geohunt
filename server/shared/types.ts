@@ -22,7 +22,7 @@ export type GameType = {
   guesses: GuessType[];
   score: number;
   startedAt: Date;
-  currentLocation?: LocationType;
+  currentLocation: LocationType;
   finishedAt?: Date | null;
 };
 

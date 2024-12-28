@@ -40,3 +40,25 @@ export const createGame = async (
     res.status(500).json({ error: "Failed to create a game" });
   }
 };
+
+export const fetchGame = async (
+  req: Request,
+  res: Response
+): Promise<GameType | any> => {
+  const { gameId } = req.params;
+  if (!gameId) {
+    return res.status(400).json({ error: "Game Id is missing" });
+  }
+  const game = await prisma.game.findUnique({
+    where: {
+      id: gameId,
+    },
+    include: {
+      currentLocation: true,
+    },
+  });
+  if (!game) {
+    return res.status(404).json({ message: "No Game Found" });
+  }
+  return res.status(200).json(game);
+};
