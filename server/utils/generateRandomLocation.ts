@@ -13,14 +13,14 @@ interface StreetViewResponse {
   };
 }
 
-const MAX_RETRIES = 5;
+const MAX_RETRIES = 10;
 
 const generateRandomPopularLocation = async (
   retryCount = 0
-): Promise<RandomLocationOutput | any> => {
+): Promise<RandomLocationOutput | null> => {
   if (retryCount >= MAX_RETRIES) {
     console.warn("Max retries reached when generating location");
-    return null;
+    return null; // Explicitly return null
   }
 
   // Select a random area
@@ -45,33 +45,22 @@ const generateRandomPopularLocation = async (
     const body = (await response.json()) as StreetViewResponse;
 
     if (!response.ok) {
-      throw new Error(`API request failed with status ${response.status}`);
-    }
-
-    if (body.status !== "OK") {
-      // Location doesn't have Street View coverage, try again
+      console.warn(`API request failed with status ${response.status}`);
       return generateRandomPopularLocation(retryCount + 1);
     }
 
-    // If the API returns adjusted coordinates, use those instead
-    if (body.location) {
-      return {
-        lat: body.location.lat,
-        lng: body.location.lng,
-      };
+    if (body.status !== "OK") {
+      console.warn("No Street View coverage, retrying...");
+      return generateRandomPopularLocation(retryCount + 1);
     }
 
-    // Otherwise use our generated coordinates
     return {
-      lat: randomLat,
-      lng: randomLng,
+      lat: body.location?.lat ?? randomLat,
+      lng: body.location?.lng ?? randomLng,
     };
   } catch (error) {
-    console.error("Street View API error:", error);
-
-    // On network errors, we might want to retry
+    console.error("Error with Street View API:", error);
     return generateRandomPopularLocation(retryCount + 1);
   }
 };
-
 export default generateRandomPopularLocation;

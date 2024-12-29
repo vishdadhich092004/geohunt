@@ -13,12 +13,21 @@ export const createGame = async (
       return res.status(400).json({ message: "No User Found" });
     }
     const randomLocation = await generateRandomPopularLocation();
+
+    if (!randomLocation || !randomLocation.lat || !randomLocation.lng) {
+      console.error("Failed to generate a valid location");
+      return res
+        .status(500)
+        .json({ error: "Failed to generate a valid location" });
+    }
+
     const firstLocation = await prisma.location.create({
       data: {
-        latitude: randomLocation?.lat,
-        longitude: randomLocation?.lng,
+        latitude: randomLocation.lat,
+        longitude: randomLocation.lng,
       },
     });
+
     const game = await prisma.game.create({
       data: {
         userId,
