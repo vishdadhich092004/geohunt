@@ -49,8 +49,8 @@ export const createGuess = async (
   }
   const newLocation = await prisma.location.create({
     data: {
-      longitude: nextLocation?.lat,
-      latitude: nextLocation?.lng,
+      latitude: nextLocation?.lat,
+      longitude: nextLocation?.lng,
     },
   });
 
