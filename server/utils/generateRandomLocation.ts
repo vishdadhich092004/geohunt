@@ -1,66 +1,79 @@
 import { popularAreas } from "./IndiaPopularLocations";
 
+const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+
 interface RandomLocationOutput {
   lat: number;
   lng: number;
 }
 
-interface StreetViewResponse {
-  status: string;
-  location: {
-    lat: number;
-    lng: number;
-  };
-}
+const MAX_RETRIES = 50;
 
-const MAX_RETRIES = 10;
+const snapToRoads = async (
+  lat: number,
+  lng: number
+): Promise<RandomLocationOutput | null> => {
+  const roadsApiUrl = `https://roads.googleapis.com/v1/snapToRoads?path=${lat},${lng}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
+  try {
+    const response = await fetch(roadsApiUrl);
+    const data = await response.json();
+    if (data.snappedPoints && data.snappedPoints.length > 0) {
+      const location = data.snappedPoints[0].location;
+      return { lat: location.latitude, lng: location.longitude };
+    }
+    return null;
+  } catch (error) {
+    console.error("Error in Roads API:", error);
+    return null;
+  }
+};
+
+const validateStreetViewCoverage = async (
+  lat: number,
+  lng: number
+): Promise<boolean> => {
+  const streetViewApiUrl = `https://maps.googleapis.com/maps/api/streetview/metadata?location=${lat},${lng}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
+  try {
+    const response = await fetch(streetViewApiUrl);
+    const metadata = await response.json();
+    return metadata.status === "OK";
+  } catch (error) {
+    console.error("Error in Street View Metadata API:", error);
+    return false;
+  }
+};
 
 const generateRandomPopularLocation = async (
   retryCount = 0
 ): Promise<RandomLocationOutput | null> => {
   if (retryCount >= MAX_RETRIES) {
     console.warn("Max retries reached when generating location");
-    return null; // Explicitly return null
+    return null;
   }
 
   // Select a random area
   const area = popularAreas[Math.floor(Math.random() * popularAreas.length)];
-
-  // Generate a random lat/lng within the selected bounding box
   const randomLat = Math.random() * (area.maxLat - area.minLat) + area.minLat;
   const randomLng = Math.random() * (area.maxLon - area.minLon) + area.minLon;
 
-  const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-  if (!GOOGLE_MAPS_API_KEY) {
-    throw new Error("Google Maps API key is not configured");
-  }
-
-  // Validate using Street View API
-  const streetViewApiUrl = `https://maps.googleapis.com/maps/api/streetview/metadata?location=${randomLat},${randomLng}&key=${
-    process.env.GOOGLE_STREET_VIEW_API_KEY as string
-  }`;
-
-  try {
-    const response = await fetch(streetViewApiUrl);
-    const body = (await response.json()) as StreetViewResponse;
-
-    if (!response.ok) {
-      console.warn(`API request failed with status ${response.status}`);
-      return generateRandomPopularLocation(retryCount + 1);
-    }
-
-    if (body.status !== "OK") {
-      console.warn("No Street View coverage, retrying...");
-      return generateRandomPopularLocation(retryCount + 1);
-    }
-
-    return {
-      lat: body.location?.lat ?? randomLat,
-      lng: body.location?.lng ?? randomLng,
-    };
-  } catch (error) {
-    console.error("Error with Street View API:", error);
+  // Snap to nearest road
+  const snappedLocation = await snapToRoads(randomLat, randomLng);
+  if (!snappedLocation) {
+    console.warn("Failed to snap location to road, retrying...");
     return generateRandomPopularLocation(retryCount + 1);
   }
+
+  // Check for Street View coverage
+  const hasStreetView = await validateStreetViewCoverage(
+    snappedLocation.lat,
+    snappedLocation.lng
+  );
+  if (!hasStreetView) {
+    console.warn("No Street View coverage, retrying...");
+    return generateRandomPopularLocation(retryCount + 1);
+  }
+
+  return snappedLocation;
 };
+
 export default generateRandomPopularLocation;

@@ -42,10 +42,15 @@ export const createGuess = async (
     game.score + Math.max(0, 5000 - (Math.floor(distance) % 5000));
 
   const nextLocation = await generateRandomPopularLocation();
+  if (!nextLocation) {
+    return res
+      .status(404)
+      .json({ error: "Issue with random location generation" });
+  }
   const newLocation = await prisma.location.create({
     data: {
-      longitude: nextLocation.lng,
-      latitude: nextLocation.lat,
+      longitude: nextLocation?.lat,
+      latitude: nextLocation?.lng,
     },
   });
 
