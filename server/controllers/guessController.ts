@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import prisma from "../db/db.config";
-import { calculateDistance } from "../utils/calculateDistance";
 import generateRandomPopularLocation from "../utils/generateRandomLocation";
+import haversineDistance from "../utils/calculateDistance";
+import calculateScore from "../utils/calculateScore";
 
 export const createGuess = async (
   req: Request,
@@ -31,15 +32,14 @@ export const createGuess = async (
     return res.status(404).json({ error: "Game not found" });
   }
 
-  const distance = calculateDistance(
+  const distance = haversineDistance(
     latitude,
     longitude,
     game.currentLocation?.latitude!,
     game.currentLocation?.longitude!
   );
 
-  const newScore =
-    game.score + Math.max(0, 5000 - (Math.floor(distance) % 5000));
+  const newScore = game.score + calculateScore(distance);
 
   const nextLocation = await generateRandomPopularLocation();
   if (!nextLocation) {

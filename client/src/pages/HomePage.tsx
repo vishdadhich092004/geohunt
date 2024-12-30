@@ -1,11 +1,16 @@
-import NewUser from "../components/NewUser";
+import { CTA } from "./HomePage/CTA";
+import { Features } from "./HomePage/Features";
+import { Hero } from "./HomePage/Hero";
+import { Navbar } from "./HomePage/Navbar";
 
 function HomePage() {
   return (
-    <>
-      <div>HomePage</div>
-      <NewUser />
-    </>
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <Hero />
+      <Features />
+      <CTA />
+    </div>
   );
 }
 

@@ -102,7 +102,7 @@ function GamePage() {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
-      <div className="absolute top-4 left-4 z-10 bg-white/80 p-3 rounded-lg shadow-lg backdrop-blur">
+      <div className="absolute top-4 left-4 z-10 bg-green-700 p-3 rounded-lg shadow-lg backdrop-blur">
         <h3 className="font-bold text-lg">Score: {game.score}</h3>
       </div>
 
