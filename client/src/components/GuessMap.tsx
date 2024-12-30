@@ -16,7 +16,6 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
   } | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  console.log(selectedLocation);
   const mapContainerStyle = {
     width: isExpanded ? "600px" : "300px",
     height: isExpanded ? "400px" : "200px",

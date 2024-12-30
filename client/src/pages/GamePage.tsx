@@ -43,7 +43,6 @@ function GamePage() {
 
     fetchGameById();
   }, [gameId]);
-  console.log(currentRoundLocation);
 
   const [showingResults, setShowingResults] = useState(false);
   const [lastGuess, setLastGuess] = useState<{
