@@ -4,7 +4,7 @@ import StreetView from "../components/StreetView";
 import { useParams } from "react-router-dom";
 import { fetchGameByGameId, newGuess } from "../api-clients";
 import { GameType } from "../../../server/shared/types";
-import { GuessMap } from "../components/GuessMap";
+import GuessMap from "../components/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import ResultScreen from "./ResultScreen";
 
