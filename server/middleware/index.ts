@@ -5,6 +5,7 @@ export interface JWTUser {
   userId: string;
   username: string;
 }
+
 declare global {
   namespace Express {
     interface Request {
@@ -16,15 +17,17 @@ declare global {
   }
 }
 
-export const verifyToken = (
+export const verifyToken = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<void> => {
   const token = req.cookies["auth_token"];
   if (!token) {
     res.status(401).json({ message: "Unauthorized, No token" });
+    return;
   }
+
   try {
     const decoded = jwt.verify(
       token,
