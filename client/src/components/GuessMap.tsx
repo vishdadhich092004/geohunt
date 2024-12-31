@@ -9,7 +9,10 @@ interface GuessMapProps {
   isLoading?: boolean;
 }
 
-const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
+export const GuessMap = ({
+  onLocationSelect,
+  isLoading = false,
+}: GuessMapProps) => {
   const [selectedLocation, setSelectedLocation] = useState<{
     lat: number;
     lng: number;
@@ -108,5 +111,3 @@ const defaultCenter = {
   lat: 20,
   lng: 0,
 };
-
-export default GuessMap;

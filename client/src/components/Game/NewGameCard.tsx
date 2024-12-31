@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuthContext } from "@/contexts/AuthContext";
 import { MapPin } from "lucide-react";
 
 interface NewGameCardProps {
@@ -13,6 +14,8 @@ export function NewGameCard({
   isLoading,
   onStart,
 }: NewGameCardProps) {
+  const { refetchUser } = useAuthContext();
+  refetchUser();
   return (
     <Card className="w-full max-w-md animate-fade-in-up">
       <CardHeader>

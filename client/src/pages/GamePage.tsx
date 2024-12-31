@@ -4,7 +4,7 @@ import StreetView from "../components/StreetView";
 import { useParams } from "react-router-dom";
 import { fetchGameByGameId, newGuess } from "../api-clients";
 import { GameType } from "../../../server/shared/types";
-import GuessMap from "../components/GuessMap";
+import { GuessMap } from "../components/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import ResultScreen from "./ResultScreen";
 
@@ -17,6 +17,11 @@ function GamePage() {
   const [error, setError] = useState<string | null>(null);
   const [isGuessing, setIsGuessing] = useState(false);
   const [currentRoundLocation, setCurrentRoundLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
+  const [showingResults, setShowingResults] = useState(false);
+  const [lastGuess, setLastGuess] = useState<{
     latitude: number;
     longitude: number;
   } | null>(null);
@@ -43,12 +48,6 @@ function GamePage() {
 
     fetchGameById();
   }, [gameId]);
-
-  const [showingResults, setShowingResults] = useState(false);
-  const [lastGuess, setLastGuess] = useState<{
-    latitude: number;
-    longitude: number;
-  } | null>(null);
 
   const handleLocationSelect = async (latitude: number, longitude: number) => {
     if (!gameId) {
@@ -98,6 +97,8 @@ function GamePage() {
       </div>
     );
   }
+  console.log("Actual Location: ", currentRoundLocation);
+  console.log("Last Guess: ", lastGuess);
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">

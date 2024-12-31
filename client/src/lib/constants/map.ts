@@ -1,6 +1,6 @@
 export const defaultCenter = {
-  lat: 20,
-  lng: 0,
+  lat: 20.5,
+  lng: 78.9,
 };
 
 export const defaultMapOptions = {
