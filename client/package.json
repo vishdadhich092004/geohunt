@@ -15,6 +15,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.4",
     "@react-google-maps/api": "^2.20.5",
+    "@vercel/analytics": "^1.4.1",
     "@vercel/node": "^4.0.0",
     "@vis.gl/react-google-maps": "^1.4.2",
     "class-variance-authority": "^0.7.1",
