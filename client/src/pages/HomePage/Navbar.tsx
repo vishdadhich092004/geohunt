@@ -23,7 +23,7 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center space-x-6">
             <a
-              href="#"
+              href="/how-to-play"
               className="text-foreground/80 hover:text-primary transition-colors"
             >
               How to Play
