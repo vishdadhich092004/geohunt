@@ -16,9 +16,23 @@ export const createUser = async (
     },
   });
   if (findUser) {
-    return res
-      .status(500)
-      .json({ message: "User With this name already exsist" });
+    const token = jwt.sign(
+      {
+        userId: findUser.id,
+        username: findUser.username,
+      },
+      process.env.JWT_SECRET_KEY as string,
+      {
+        expiresIn: "1d",
+      }
+    );
+    res.cookie("auth_token", token, {
+      httpOnly: true,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+    return res.status(200).json(findUser);
   }
   const newUser = await prisma.user.create({
     data: {

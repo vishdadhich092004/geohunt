@@ -76,3 +76,13 @@ export const fetchGameByGameId = async (gameId: string) => {
   }
   return body;
 };
+
+export const fetchLeaderboard = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/leaderboard`, {
+    credentials: "include",
+    method: "GET",
+  });
+  const body = await response.json();
+  if (!response.ok) throw new ErrorEvent(body.error);
+  return body;
+};

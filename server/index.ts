@@ -6,6 +6,7 @@ import locationRoutes from "./routes/locationRoutes";
 import gameRoutes from "./routes/gameRoutes";
 import guessRoutes from "./routes/guessRoutes";
 import userRoutes from "./routes/userRoutes";
+import leaderboardRoutes from "./routes/leaderboardRoutes";
 const app = express();
 
 app.use(
@@ -22,6 +23,7 @@ app.use("/api/locations", locationRoutes);
 app.use("/api/games", gameRoutes);
 app.use("/api/guesses", guessRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/leaderboard", leaderboardRoutes);
 app.get("/", (req, res) => {
   res.send("Hey from GeoHunt Backend");
 });

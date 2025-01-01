@@ -29,7 +29,7 @@ export function Navbar() {
               How to Play
             </a>
             <a
-              href="#"
+              href="/leaderboard"
               className="text-foreground/80 hover:text-primary transition-colors"
             >
               Leaderboard

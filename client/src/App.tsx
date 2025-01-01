@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import NewGame from "./components/Game/NewGame";
 import GamePage from "./pages/GamePage";
 import NewUser from "./pages/NewUser";
+import LeaderboardPage from "./pages/LeaderboardPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/new-user" element={<NewUser />} />
         <Route path="/games" element={<NewGame />} />
         <Route path="/guesses/:gameId" element={<GamePage />} />
+        <Route path="/leaderboard" element={<LeaderboardPage />} />
       </Routes>
     </BrowserRouter>
   );
