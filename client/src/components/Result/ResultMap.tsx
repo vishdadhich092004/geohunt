@@ -77,10 +77,10 @@ export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
             url:
               "data:image/svg+xml," +
               encodeURIComponent(`
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="hsl(142.1 70.6% 45.3%)" width="32" height="32">
-                <circle cx="12" cy="12" r="10" fill="currentColor"/>
-                <circle cx="12" cy="12" r="4" fill="white"/>
-              </svg>
+              <svg fill="#008800" width="32" height="32" viewBox="0 0 24 24" id="pin" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
+  <path id="secondary" d="M9,6a3,3,0,0,1,3-3h0a3,3,0,0,1,3,3h0a3,3,0,0,1-3,3h0A3,3,0,0,1,9,6Z" style="fill: #008800; stroke-width: 2;"></path>
+  <path id="primary" d="M9,6a3,3,0,0,1,3-3h0a3,3,0,0,1,3,3h0a3,3,0,0,1-3,3h0A3,3,0,0,1,9,6Zm3,3V21" style="fill: none; stroke: #008800; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+</svg>
             `),
             anchor: new google.maps.Point(16, 16),
           }}
@@ -94,10 +94,10 @@ export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
             url:
               "data:image/svg+xml," +
               encodeURIComponent(`
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="hsl(0 72.2% 50.6%)" width="32" height="32">
-                <circle cx="12" cy="12" r="10" fill="currentColor"/>
-                <circle cx="12" cy="12" r="4" fill="white"/>
-              </svg>
+              <svg fill="#D2042D" width="36" height="36" viewBox="0 0 24 24" id="pin" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
+  <path id="secondary" d="M9,6a3,3,0,0,1,3-3h0a3,3,0,0,1,3,3h0a3,3,0,0,1-3,3h0A3,3,0,0,1,9,6Z" style="fill: #D2042D; stroke-width: 2;"></path>
+  <path id="primary" d="M9,6a3,3,0,0,1,3-3h0a3,3,0,0,1,3,3h0a3,3,0,0,1-3,3h0A3,3,0,0,1,9,6Zm3,3V21" style="fill: none; stroke: #D2042D; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
+</svg>
             `),
             anchor: new google.maps.Point(16, 16),
           }}
@@ -105,7 +105,7 @@ export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
         <Polyline
           path={pathCoordinates}
           options={{
-            strokeColor: "hsl(0 72.2% 50.6%)",
+            strokeColor: "blue",
             strokeWeight: 3,
             strokeOpacity: 0.8,
           }}

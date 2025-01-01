@@ -1,4 +1,3 @@
-// GuessMap.tsx
 import { useState, useCallback } from "react";
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import { Maximize2, Minimize2 } from "lucide-react";
@@ -17,8 +16,8 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const mapContainerStyle = {
-    width: isExpanded ? "600px" : "300px",
-    height: isExpanded ? "400px" : "200px",
+    width: isExpanded ? "90vw" : "240px",
+    height: isExpanded ? "70vh" : "160px",
     transition: "all 0.3s ease-in-out",
   };
 
@@ -43,7 +42,7 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 p-2 bg-white/80 backdrop-blur rounded-lg">
       <div className="rounded-lg overflow-hidden shadow-lg relative">
         <GoogleMap
           mapContainerStyle={mapContainerStyle}
@@ -82,9 +81,9 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
           title={isExpanded ? "Minimize map" : "Maximize map"}
         >
           {isExpanded ? (
-            <Minimize2 className="w-5 h-5 text-gray-600" />
+            <Minimize2 className="w-4 h-4 text-gray-600" />
           ) : (
-            <Maximize2 className="w-5 h-5 text-gray-600" />
+            <Maximize2 className="w-4 h-4 text-gray-600" />
           )}
         </button>
       </div>
@@ -92,9 +91,9 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
       <button
         onClick={handleSubmit}
         disabled={!selectedLocation || isLoading}
-        className={`w-full py-2 px-4 rounded-lg shadow-lg font-medium transition-colors ${
+        className={`py-2 px-4 rounded-lg shadow-lg font-medium transition-colors ${
           selectedLocation && !isLoading
-            ? "bg-blue-500 hover:bg-blue-600 text-white"
+            ? "bg-green-500 hover:bg-green-600 text-white"
             : "bg-gray-300 text-gray-500 cursor-not-allowed"
         }`}
       >

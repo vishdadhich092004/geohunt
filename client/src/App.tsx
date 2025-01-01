@@ -16,6 +16,7 @@ function App() {
         <Route path="/guesses/:gameId" element={<GamePage />} />
         <Route path="/leaderboard" element={<LeaderboardPage />} />
         <Route path="/how-to-play" element={<HowToPlayPage />} />
+        <Route path="*" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );
