@@ -1,4 +1,4 @@
-import { popularAreas } from "./IndiaPopularLocations";
+import { popularAreas } from "./India-popular-locations";
 
 interface RandomLocationOutput {
   lat: number;

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import prisma from "../db/db.config";
 import { GameType } from "../shared/types";
-import generateRandomPopularLocation from "../utils/generateRandomLocation";
+import generateRandomPopularLocation from "../utils/generate-random-location";
 
 export const createGame = async (
   req: Request,

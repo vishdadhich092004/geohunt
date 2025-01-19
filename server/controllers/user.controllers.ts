@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import prisma from "../db/db.config";
 import jwt from "jsonwebtoken";
 import { UserType } from "../shared/types";
-import { JWTUser } from "../middleware";
+import { JWTUser } from "../middleware/auth.middleware";
 
 export const createUser = async (
   req: Request,

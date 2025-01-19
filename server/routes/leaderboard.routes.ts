@@ -1,5 +1,5 @@
 import express from "express";
-import { fetchLeaderboard } from "../controllers/leaderboardController";
+import { fetchLeaderboard } from "../controllers/leaderboard.controllers";
 const router = express.Router();
 
 router.get("/", fetchLeaderboard);

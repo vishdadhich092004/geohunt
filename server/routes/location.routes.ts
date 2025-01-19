@@ -2,8 +2,8 @@ import express from "express";
 import {
   // generateRandomLocation,
   fetchLocations,
-} from "../controllers/locationController";
-import { verifyToken } from "../middleware";
+} from "../controllers/location.controllers";
+import { verifyToken } from "../middleware/auth.middleware";
 const router = express.Router();
 
 // router.get("/random", verifyToken, generateRandomLocation);

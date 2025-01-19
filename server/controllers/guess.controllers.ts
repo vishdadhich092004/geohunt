@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import prisma from "../db/db.config";
-import generateRandomPopularLocation from "../utils/generateRandomLocation";
-import haversineDistance from "../utils/calculateDistance";
-import calculateScore from "../utils/calculateScore";
+import generateRandomPopularLocation from "../utils/generate-random-location";
+import haversineDistance from "../utils/calculate-distance";
+import calculateScore from "../utils/calculate-score";
 
 export const createGuess = async (
   req: Request,

@@ -1,6 +1,6 @@
 import express from "express";
-import { createGuess } from "../controllers/guessController";
-import { verifyToken } from "../middleware";
+import { createGuess } from "../controllers/guess.controllers";
+import { verifyToken } from "../middleware/auth.middleware";
 
 const router = express.Router();
 
