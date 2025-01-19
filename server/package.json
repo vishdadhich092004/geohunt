@@ -19,6 +19,7 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@prisma/client": "^6.1.0",
     "@types/cookie-parser": "^1.4.8",
     "@vercel/node": "^4.0.0",

@@ -35,3 +35,11 @@ export type GuessType = {
   distance: number;
   createdAt: Date;
 };
+
+export interface APIResponse<T> {
+  success: boolean;
+  error?: string;
+  data?: T;
+}
+
+export type HintType = string;

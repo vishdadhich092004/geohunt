@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import cookieParser from "cookie-parser";
 import routes from "./routes/routes";
+import { generateHint } from "./utils/gemini-services";
 const app = express();
 
 app.use(
@@ -21,6 +22,9 @@ app.use("/api", routes);
 app.get("/", (req, res) => {
   res.send("Hola from GeoHunt Backend");
 });
+
+//hint
+// generateHint();
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
