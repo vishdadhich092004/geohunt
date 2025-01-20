@@ -7,6 +7,7 @@ import { GameType } from "../../../server/shared/types";
 import GuessMap from "../components/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import ResultScreen from "./ResultScreen";
+import HintButton from "@/components/HintButton";
 
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
@@ -97,13 +98,17 @@ function GamePage() {
       </div>
     );
   }
-  console.log("Actual Location: ", currentRoundLocation);
-  console.log("Last Guess: ", lastGuess);
+  // console.log("Actual Location: ", currentRoundLocation);
+  // console.log("Last Guess: ", lastGuess);
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
       <div className="absolute top-4 left-4 z-10 bg-green-700 p-3 rounded-lg shadow-lg backdrop-blur">
         <h3 className="font-bold text-lg">Score: {game.score}</h3>
+        <HintButton
+          lat={currentRoundLocation?.latitude}
+          lng={currentRoundLocation?.longitude}
+        />
       </div>
 
       {showingResults && lastGuess && currentRoundLocation && (

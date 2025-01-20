@@ -86,3 +86,18 @@ export const fetchLeaderboard = async () => {
   if (!response.ok) throw new ErrorEvent(body.error);
   return body;
 };
+
+export const fetchHints = async (lat?: number, lng?: number) => {
+  const response = await fetch(
+    `${API_BASE_URL}/api/hints?lat=${lat}&lng=${lng}`,
+    {
+      credentials: "include",
+      method: "POST",
+    }
+  );
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error(body.error);
+  }
+  return body;
+};
