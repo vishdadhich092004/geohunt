@@ -1,9 +1,10 @@
 import { useState, useCallback } from "react";
-import { GoogleMap, Marker } from "@react-google-maps/api";
 import { Maximize2, Minimize2 } from "lucide-react";
+import { AdvancedMarker, Map, MapMouseEvent } from "@vis.gl/react-google-maps";
+
+const mapId = import.meta.env.VITE_JS_MAP_API_KEY as string;
 
 interface GuessMapProps {
-  apiKey: string;
   onLocationSelect?: (lat: number, lng: number) => void;
   isLoading?: boolean;
 }
@@ -21,11 +22,11 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
     transition: "all 0.3s ease-in-out",
   };
 
-  const handleMapClick = useCallback((event: google.maps.MapMouseEvent) => {
-    if (event.latLng) {
+  const handleMapClick = useCallback((event: MapMouseEvent) => {
+    if (event.detail.latLng) {
       const newLocation = {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
+        lat: event.detail.latLng.lat,
+        lng: event.detail.latLng.lng,
       };
       setSelectedLocation(newLocation);
     }
@@ -44,36 +45,16 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
   return (
     <div className="flex flex-col gap-2 p-2 bg-white/80 backdrop-blur rounded-lg">
       <div className="rounded-lg overflow-hidden shadow-lg relative">
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          zoom={2}
-          center={defaultCenter}
+        <Map
+          style={mapContainerStyle}
+          defaultCenter={defaultCenter}
+          defaultZoom={2}
+          gestureHandling={"greedy"}
+          mapId={mapId}
           onClick={handleMapClick}
-          options={{
-            zoomControl: true,
-            streetViewControl: false,
-            mapTypeControl: false,
-            fullscreenControl: false,
-            minZoom: 2,
-            maxZoom: 24,
-            restriction: {
-              latLngBounds: {
-                north: 85,
-                south: -85,
-                west: -180,
-                east: 180,
-              },
-              strictBounds: true,
-            },
-          }}
         >
-          {selectedLocation && (
-            <Marker
-              position={selectedLocation}
-              animation={google.maps.Animation.DROP}
-            />
-          )}
-        </GoogleMap>
+          {selectedLocation && <AdvancedMarker position={selectedLocation} />}
+        </Map>
 
         <button
           onClick={toggleSize}

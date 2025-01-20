@@ -8,7 +8,9 @@ import GuessMap from "../components/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import ResultScreen from "./ResultScreen";
 import HintButton from "@/components/HintButton";
-
+import { APIProvider } from "@vis.gl/react-google-maps";
+import { GameScore } from "@/components/Game/GameScore";
+import { HashLoader } from "react-spinners";
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
 
@@ -94,48 +96,49 @@ function GamePage() {
   if (!isLoaded || !game) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <div className="animate-pulse text-lg">Loading...</div>
+        <HashLoader color="#228B22" />
       </div>
     );
   }
-  // console.log("Actual Location: ", currentRoundLocation);
-  // console.log("Last Guess: ", lastGuess);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
-      <div className="absolute top-4 left-4 z-10 bg-green-700 p-3 rounded-lg shadow-lg backdrop-blur">
-        <h3 className="font-bold text-lg">Score: {game.score}</h3>
-        <HintButton
-          lat={currentRoundLocation?.latitude}
-          lng={currentRoundLocation?.longitude}
-        />
+    <APIProvider apiKey={GOOGLE_API_KEY}>
+      <div className="relative h-screen w-screen overflow-hidden">
+        <div className="absolute top-4 z-10 left-1 rounded-lg shadow-lg backdrop-blur">
+          <GameScore score={game.score} />
+        </div>
+        <div className="absolute right-2 top-4 z-10 rounded-lg shadow-lg backdrop-blur">
+          <HintButton
+            lat={currentRoundLocation?.latitude}
+            lng={currentRoundLocation?.longitude}
+          />
+        </div>
+
+        {showingResults && lastGuess && currentRoundLocation && (
+          <ResultScreen
+            actualLocation={currentRoundLocation}
+            guessedLocation={lastGuess}
+            onNextRound={handleNextRound}
+            score={game.score}
+          />
+        )}
+
+        {currentRoundLocation && (
+          <StreetView
+            apiKey={GOOGLE_API_KEY}
+            lat={currentRoundLocation.latitude}
+            lng={currentRoundLocation.longitude}
+          />
+        )}
+
+        <div className="absolute bottom-4 right-4 z-10">
+          <GuessMap
+            onLocationSelect={handleLocationSelect}
+            isLoading={isGuessing}
+          />
+        </div>
       </div>
-
-      {showingResults && lastGuess && currentRoundLocation && (
-        <ResultScreen
-          actualLocation={currentRoundLocation}
-          guessedLocation={lastGuess}
-          onNextRound={handleNextRound}
-          score={game.score}
-        />
-      )}
-
-      {currentRoundLocation && (
-        <StreetView
-          apiKey={GOOGLE_API_KEY}
-          lat={currentRoundLocation.latitude}
-          lng={currentRoundLocation.longitude}
-        />
-      )}
-
-      <div className="absolute bottom-4 right-4 z-10">
-        <GuessMap
-          apiKey={GOOGLE_API_KEY}
-          onLocationSelect={handleLocationSelect}
-          isLoading={isGuessing}
-        />
-      </div>
-    </div>
+    </APIProvider>
   );
 }
 
