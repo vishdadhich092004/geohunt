@@ -2,7 +2,8 @@ import { useState, useCallback } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { AdvancedMarker, Map, MapMouseEvent } from "@vis.gl/react-google-maps";
 
-const mapId = import.meta.env.VITE_JS_MAP_API_KEY as string;
+const mapId = import.meta.env.VITE_JS_MAP_ID as string;
+console.log(mapId);
 
 interface GuessMapProps {
   onLocationSelect?: (lat: number, lng: number) => void;
