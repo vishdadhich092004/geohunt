@@ -11,7 +11,7 @@ export default function NewGame() {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
-  const mutation = useMutation(() => newGame("ocenia", "ocenia"), {
+  const mutation = useMutation(() => newGame("random", "random"), {
     onSuccess: (data) => {
       navigate(`/guesses/${data.id}`);
     },
