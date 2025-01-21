@@ -38,7 +38,8 @@ export const createGuess = async (
     game.currentLocation?.latitude!,
     game.currentLocation?.longitude!
   );
-
+  console.log(game.continent);
+  console.log(game.country);
   const currentRoundScore = calculateScore(distance);
   const newTotalScore = game.score + currentRoundScore;
   const nextLocation = await generateRandomPopularLocation(

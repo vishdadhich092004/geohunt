@@ -43,6 +43,8 @@ export const createGame = async (
         score: 0,
         startedAt: new Date(),
         currentLocationId: firstLocation.id,
+        continent: continent,
+        country: country,
       },
       include: {
         currentLocation: true,

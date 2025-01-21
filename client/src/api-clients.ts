@@ -19,11 +19,14 @@ export const newUser = async (formData: NewUserFormData) => {
   return responseBody;
 };
 
-export const newGame = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/games`, {
-    method: "POST",
-    credentials: "include",
-  });
+export const newGame = async (continent?: string, country?: string) => {
+  const response = await fetch(
+    `${API_BASE_URL}/api/games?continent=${continent}&country=${country}`,
+    {
+      method: "POST",
+      credentials: "include",
+    }
+  );
   const body = await response.json();
   if (!response.ok) {
     throw new Error(body.error);
