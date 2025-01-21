@@ -17,13 +17,11 @@ model User {
 }
 
 model Location {
-  id          String  @id @default(uuid()) @db.Uuid
-  latitude    Float
-  longitude   Float
-  name        String?
-  description String?
-  gameId      String? @db.Uuid
-  Game        Game[]
+  id        String   @id @default(uuid()) @db.Uuid
+  latitude  Float
+  longitude Float
+  createdAt DateTime @default(now())
+  Game      Game[]
 }
 
 model Game {

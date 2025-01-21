@@ -2,10 +2,9 @@ export type LocationType = {
   id?: string;
   latitude: number;
   longitude: number;
-  name?: string;
-  description?: string;
   guess?: GuessType;
   game?: GameType;
+  createdAt: Date;
 };
 export type UserType = {
   id: string;
