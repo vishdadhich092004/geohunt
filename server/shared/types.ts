@@ -24,6 +24,8 @@ export type GameType = {
   startedAt: Date;
   currentLocation: LocationType;
   finishedAt?: Date | null;
+  continent?: string;
+  country?: string;
 };
 
 export type GuessType = {

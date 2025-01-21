@@ -3,18 +3,24 @@ import prisma from "../db/db.config";
 import { GameType } from "../shared/types";
 import generateRandomPopularLocation from "../utils/generate-random-location";
 
+interface ContinentAndCountry {
+  continent?: string;
+  country?: string;
+}
 export const createGame = async (
   req: Request,
   res: Response
 ): Promise<GameType | any> => {
   try {
+    const { continent, country } = req.query as ContinentAndCountry;
+
     const userId = req.user?.userId;
     if (!userId) {
       return res.status(400).json({ message: "No User Found" });
     }
     const randomLocation = await generateRandomPopularLocation(
-      "europe",
-      "sweden"
+      continent!,
+      country!
     );
 
     if (!randomLocation || !randomLocation.lat || !randomLocation.lng) {
