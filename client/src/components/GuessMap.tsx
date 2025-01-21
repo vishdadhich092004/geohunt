@@ -1,30 +1,32 @@
 import { useState, useCallback } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { AdvancedMarker, Map, MapMouseEvent } from "@vis.gl/react-google-maps";
+import { Button } from "./ui/button";
 
 const mapId = import.meta.env.VITE_JS_MAP_ID as string;
-console.log(mapId);
 
 interface GuessMapProps {
   onLocationSelect?: (lat: number, lng: number) => void;
-  isLoading?: boolean;
+  isGuessing?: boolean;
 }
 
-const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
+const GuessMap = ({ onLocationSelect, isGuessing = false }: GuessMapProps) => {
   const [selectedLocation, setSelectedLocation] = useState<{
     lat: number;
     lng: number;
   } | null>(null);
+  const [isFullyExpanded, setIsFullyExpanded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isControlsHovered, setIsControlsHovered] = useState(false);
 
   const mapContainerStyle = {
-    width: isExpanded ? "90vw" : "240px",
-    height: isExpanded ? "70vh" : "160px",
+    width: (isFullyExpanded && "70vw") || (isExpanded && "35vw") || "240px",
+    height: (isFullyExpanded && "30vw") || (isExpanded && "25vw") || "160px",
     transition: "all 0.3s ease-in-out",
   };
 
   const handleMapClick = useCallback((event: MapMouseEvent) => {
-    if (event.detail.latLng) {
+    if (event.detail?.latLng) {
       const newLocation = {
         lat: event.detail.latLng.lat,
         lng: event.detail.latLng.lng,
@@ -34,17 +36,30 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
   }, []);
 
   const handleSubmit = useCallback(() => {
-    if (selectedLocation && onLocationSelect && !isLoading) {
+    if (selectedLocation && onLocationSelect && !isGuessing) {
       onLocationSelect(selectedLocation.lat, selectedLocation.lng);
     }
-  }, [selectedLocation, onLocationSelect, isLoading]);
+  }, [selectedLocation, onLocationSelect, isGuessing]);
 
   const toggleSize = useCallback(() => {
-    setIsExpanded((prev) => !prev);
+    setIsFullyExpanded((prev) => !prev);
+    setIsExpanded(false);
   }, []);
 
+  const handleMapMouseOver = () => {
+    if (!isFullyExpanded && !isControlsHovered) {
+      setIsExpanded(true);
+    }
+  };
+
+  const handleMapMouseOut = () => {
+    if (!isFullyExpanded && !isControlsHovered) {
+      setIsExpanded(false);
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-2 p-2 bg-white/80 backdrop-blur rounded-lg">
+    <div className="flex flex-col gap-2 p-2 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-lg shadow-xl">
       <div className="rounded-lg overflow-hidden shadow-lg relative">
         <Map
           style={mapContainerStyle}
@@ -52,35 +67,50 @@ const GuessMap = ({ onLocationSelect, isLoading = false }: GuessMapProps) => {
           defaultZoom={2}
           gestureHandling={"greedy"}
           mapId={mapId}
+          onMouseover={handleMapMouseOver}
+          onMouseout={handleMapMouseOut}
           onClick={handleMapClick}
+          fullscreenControl={false}
+          streetViewControl={false}
         >
           {selectedLocation && <AdvancedMarker position={selectedLocation} />}
         </Map>
 
-        <button
-          onClick={toggleSize}
-          className="absolute top-2 right-2 p-1 bg-white rounded-md shadow-md hover:bg-gray-100 transition-colors"
-          title={isExpanded ? "Minimize map" : "Maximize map"}
+        {/* Controls Container */}
+        <div
+          className="absolute top-1 right-1"
+          onMouseEnter={() => setIsControlsHovered(true)}
+          onMouseLeave={() => setIsControlsHovered(false)}
         >
-          {isExpanded ? (
-            <Minimize2 className="w-4 h-4 text-gray-600" />
-          ) : (
-            <Maximize2 className="w-4 h-4 text-gray-600" />
-          )}
-        </button>
+          <Button
+            onClick={toggleSize}
+            className="p-2 bg-zinc-800/90 border border-zinc-700/50 
+                     rounded-md shadow-lg hover:bg-zinc-700/90 transition-all duration-300"
+            title={isFullyExpanded ? "Minimize map" : "Maximize map"}
+          >
+            {isFullyExpanded ? (
+              <Minimize2 className="w-4 h-4 text-zinc-300" />
+            ) : (
+              <Maximize2 className="w-4 h-4 text-zinc-300" />
+            )}
+          </Button>
+        </div>
       </div>
 
-      <button
+      <Button
         onClick={handleSubmit}
-        disabled={!selectedLocation || isLoading}
-        className={`py-2 px-4 rounded-lg shadow-lg font-medium transition-colors ${
-          selectedLocation && !isLoading
-            ? "bg-green-500 hover:bg-green-600 text-white"
-            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+        disabled={!selectedLocation || isGuessing}
+        className={`py-2 px-4 rounded-lg shadow-lg font-medium transition-all duration-300 ${
+          selectedLocation && !isGuessing
+            ? "bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 hover:from-amber-500 hover:via-amber-600 hover:to-amber-700 text-zinc-900"
+            : "bg-zinc-800/50 text-zinc-500 border border-zinc-700/50 cursor-not-allowed"
         }`}
       >
-        {isLoading ? "Submitting..." : "Submit Guess"}
-      </button>
+        <span className="hidden sm:inline">
+          {isGuessing ? "Submitting..." : "Submit Guess"}
+        </span>
+        <span className="sm:hidden">{isGuessing ? "..." : "Guess"}</span>
+      </Button>
     </div>
   );
 };

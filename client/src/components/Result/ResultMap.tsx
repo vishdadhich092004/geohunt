@@ -52,6 +52,7 @@ export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
           lat: (actualLocation.latitude + guessedLocation.latitude) / 2,
           lng: (actualLocation.longitude + guessedLocation.longitude) / 2,
         }}
+        clickableIcons={false}
         defaultBounds={defaultBounds}
         disableDefaultUI={false}
       >

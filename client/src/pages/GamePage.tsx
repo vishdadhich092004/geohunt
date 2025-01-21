@@ -7,10 +7,9 @@ import { GameType } from "../../../server/shared/types";
 import GuessMap from "../components/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import ResultScreen from "./ResultScreen";
-import HintButton from "@/components/HintButton";
 import { APIProvider } from "@vis.gl/react-google-maps";
-import { GameScore } from "@/components/Game/GameScore";
 import { HashLoader } from "react-spinners";
+import GameHeader from "@/components/Game/GameHeader";
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
 
@@ -104,15 +103,10 @@ function GamePage() {
   return (
     <APIProvider apiKey={GOOGLE_API_KEY}>
       <div className="relative h-screen w-screen overflow-hidden">
-        <div className="absolute top-4 z-10 left-1 rounded-lg shadow-lg backdrop-blur">
-          <GameScore score={game.score} />
-        </div>
-        <div className="absolute right-2 top-4 z-10 rounded-lg shadow-lg backdrop-blur">
-          <HintButton
-            lat={currentRoundLocation?.latitude}
-            lng={currentRoundLocation?.longitude}
-          />
-        </div>
+        <GameHeader
+          score={game.score}
+          currentRoundLocation={currentRoundLocation!}
+        />
 
         {showingResults && lastGuess && currentRoundLocation && (
           <ResultScreen
@@ -125,7 +119,6 @@ function GamePage() {
 
         {currentRoundLocation && (
           <StreetView
-            apiKey={GOOGLE_API_KEY}
             lat={currentRoundLocation.latitude}
             lng={currentRoundLocation.longitude}
           />
@@ -134,7 +127,7 @@ function GamePage() {
         <div className="absolute bottom-4 right-4 z-10">
           <GuessMap
             onLocationSelect={handleLocationSelect}
-            isLoading={isGuessing}
+            isGuessing={isGuessing}
           />
         </div>
       </div>

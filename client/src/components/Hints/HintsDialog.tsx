@@ -6,7 +6,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { Lightbulb, LoaderCircle } from "lucide-react";
+import { Sparkles, LoaderCircle } from "lucide-react";
 import { Button } from "../ui/button";
 import { HintType } from "../../../../server/shared/types";
 
@@ -33,24 +33,32 @@ function HintsDialog({
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button
-          className="relative flex items-center gap-3 px-6 py-3 text-lg font-semibold text-black bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:from-green-600 hover:via-green-700 hover:to-green-800 rounded-full shadow-lg hover:scale-105 hover:shadow-xl active:scale-95 transition-all duration-300"
+          className="relative flex items-center gap-3 px-6 py-3 text-lg font-semibold text-zinc-900 
+                     bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 
+                     hover:from-amber-500 hover:via-amber-600 hover:to-amber-700
+                     rounded-lg shadow-lg hover:shadow-amber-500/20
+                     hover:scale-105 active:scale-95 transition-all duration-300
+                     disabled:opacity-70 disabled:cursor-not-allowed"
           onClick={hasHintsForLocation ? undefined : handleFetchHints}
           disabled={isLoading}
         >
           <span>
-            <Lightbulb size={24} />
+            <Sparkles className="h-6 w-6" />
           </span>
-          {hasHintsForLocation ? "View Hints" : "Get Hint"}
+          <span className="hidden sm:inline">
+            {hasHintsForLocation ? "View Hints" : "Ask AI"}
+          </span>
+          <span className="sm:hidden">Hints</span>
           {isLoading && <LoaderCircle className="ml-2 h-4 w-4 animate-spin" />}
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-w-md">
+      <DialogContent className="bg-zinc-900/95 border border-zinc-800 backdrop-blur-md shadow-xl max-w-md w-[90vw] md:w-full">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold">
+          <DialogTitle className="text-xl font-bold text-white">
             Location Hints
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-zinc-400">
             Use these hints to help pinpoint the correct location. Each hint
             provides additional clues!
           </DialogDescription>
@@ -58,32 +66,36 @@ function HintsDialog({
 
         <div className="space-y-4 mt-4">
           {error ? (
-            <div className="text-red-500 p-4 rounded-lg bg-red-50">
+            <div className="bg-red-900/20 border border-red-500/20 text-red-400 p-4 rounded-lg">
               {error}
               <Button
                 onClick={handleFetchHints}
-                className="mt-2 w-full bg-red-500 hover:bg-red-600"
+                className="mt-3 w-full bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/40"
               >
                 Try Again
               </Button>
             </div>
           ) : isLoading ? (
             <div className="flex items-center justify-center p-8">
-              <LoaderCircle className="h-8 w-8 animate-spin text-green-600" />
+              <LoaderCircle className="h-8 w-8 animate-spin text-amber-400" />
             </div>
           ) : hints.length > 0 ? (
             <div className="space-y-3">
               {hints.map((hint, index) => (
-                <div key={index} className="p-4 border border-white rounded-sm">
-                  <span className="font-semibold text-white-700">
+                <div
+                  key={index}
+                  className="p-4 bg-zinc-800/50 rounded-lg border border-zinc-700/50 backdrop-blur-sm
+                           hover:bg-zinc-800/70 transition-colors duration-200"
+                >
+                  <span className="font-semibold text-amber-400">
                     Hint {index + 1}:
                   </span>{" "}
-                  {hint}
+                  <span className="text-zinc-300">{hint}</span>
                 </div>
               ))}
             </div>
           ) : (
-            <div className="text-center text-gray-500 p-4">
+            <div className="text-center text-zinc-400 p-4 bg-zinc-800/30 rounded-lg border border-zinc-700/30">
               No hints available yet. Click the button to get started!
             </div>
           )}

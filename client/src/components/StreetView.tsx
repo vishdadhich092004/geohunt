@@ -5,7 +5,6 @@ interface StreetViewProps {
   lng: number;
   height?: string;
   width?: string;
-  apiKey: string;
 }
 
 function StreetView({
