@@ -15,6 +15,10 @@ const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
 
 function GamePage() {
   const { gameId } = useParams();
+  const [selectedLocation, setSelectedLocation] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
   const [game, setGame] = useState<GameType | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isGuessing, setIsGuessing] = useState(false);
@@ -79,6 +83,7 @@ function GamePage() {
     setShowingResults(false);
     setLastGuess(null);
     setCurrentRoundLocation(game?.currentLocation || null);
+    setSelectedLocation(null);
   };
 
   if (loadError || error) {
@@ -113,7 +118,7 @@ function GamePage() {
             actualLocation={currentRoundLocation}
             guessedLocation={lastGuess}
             onNextRound={handleNextRound}
-            score={game.score}
+            currentRoundScore={game.currentRoundScore}
           />
         )}
 
@@ -126,6 +131,8 @@ function GamePage() {
 
         <div className="absolute bottom-4 right-4 z-10">
           <GuessMap
+            selectedLocation={selectedLocation!}
+            setSelectedLocation={setSelectedLocation}
             onLocationSelect={handleLocationSelect}
             isGuessing={isGuessing}
           />

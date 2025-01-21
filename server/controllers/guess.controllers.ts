@@ -39,8 +39,8 @@ export const createGuess = async (
     game.currentLocation?.longitude!
   );
 
-  const newScore = game.score + calculateScore(distance);
-
+  const currentRoundScore = calculateScore(distance);
+  const newTotalScore = game.score + currentRoundScore;
   const nextLocation = await generateRandomPopularLocation();
   if (!nextLocation) {
     return res
@@ -60,7 +60,8 @@ export const createGuess = async (
       currentLocation: {
         connect: { id: newLocation.id },
       },
-      score: newScore,
+      score: newTotalScore,
+      currentRoundScore: currentRoundScore,
     },
     include: {
       currentLocation: true,

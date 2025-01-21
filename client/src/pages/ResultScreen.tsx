@@ -5,6 +5,7 @@ import { MapPin } from "lucide-react";
 import haversineDistance from "@/utils/haversineDistance";
 import { ResultMap } from "@/components/Result/ResultMap";
 import { ResultLegend } from "@/components/Result/ResultLegend";
+import { getScoreMessage } from "@/utils/getMessage";
 
 interface Location {
   latitude: number;
@@ -15,14 +16,14 @@ interface ResultScreenProps {
   actualLocation: Location;
   guessedLocation: Location;
   onNextRound: () => void;
-  score: number;
+  currentRoundScore: number;
 }
 
 function ResultScreen({
   actualLocation,
   guessedLocation,
   onNextRound,
-  score,
+  currentRoundScore,
 }: ResultScreenProps) {
   const distance = useMemo(
     () => haversineDistance(actualLocation, guessedLocation),
@@ -44,7 +45,11 @@ function ResultScreen({
             guessedLocation={guessedLocation}
           />
 
-          <ResultLegend distance={distance} score={score} />
+          <ResultLegend distance={distance} score={currentRoundScore} />
+
+          <div className="text-center text-lg font-medium text-white">
+            {getScoreMessage(currentRoundScore)}
+          </div>
 
           <Button onClick={onNextRound} className="w-full" size="lg">
             Next Round

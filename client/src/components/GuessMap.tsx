@@ -5,16 +5,23 @@ import { Button } from "./ui/button";
 
 const mapId = import.meta.env.VITE_JS_MAP_ID as string;
 
+interface Location {
+  lat: number;
+  lng: number;
+}
 interface GuessMapProps {
   onLocationSelect?: (lat: number, lng: number) => void;
   isGuessing?: boolean;
+  selectedLocation: Location;
+  setSelectedLocation: (arg0: Location | null) => void;
 }
 
-const GuessMap = ({ onLocationSelect, isGuessing = false }: GuessMapProps) => {
-  const [selectedLocation, setSelectedLocation] = useState<{
-    lat: number;
-    lng: number;
-  } | null>(null);
+const GuessMap = ({
+  onLocationSelect,
+  isGuessing = false,
+  selectedLocation,
+  setSelectedLocation,
+}: GuessMapProps) => {
   const [isFullyExpanded, setIsFullyExpanded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isControlsHovered, setIsControlsHovered] = useState(false);
@@ -76,7 +83,6 @@ const GuessMap = ({ onLocationSelect, isGuessing = false }: GuessMapProps) => {
           {selectedLocation && <AdvancedMarker position={selectedLocation} />}
         </Map>
 
-        {/* Controls Container */}
         <div
           className="absolute top-1 right-1"
           onMouseEnter={() => setIsControlsHovered(true)}

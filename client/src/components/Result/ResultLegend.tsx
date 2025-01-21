@@ -26,7 +26,7 @@ export function ResultLegend({ distance, score }: ResultLegendProps) {
         </div>
         <div className="text-center">
           <p className="text-sm text-muted-foreground">Score</p>
-          <p className="text-xl font-bold text-primary">{score}</p>
+          <p className="text-xl font-bold text-primary">{score}/5000</p>
         </div>
       </div>
     </div>
