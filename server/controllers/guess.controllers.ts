@@ -41,7 +41,7 @@ export const createGuess = async (
 
   const currentRoundScore = calculateScore(distance);
   const newTotalScore = game.score + currentRoundScore;
-  const nextLocation = await generateRandomPopularLocation();
+  const nextLocation = await generateRandomPopularLocation("europe", "sweden");
   if (!nextLocation) {
     return res
       .status(404)

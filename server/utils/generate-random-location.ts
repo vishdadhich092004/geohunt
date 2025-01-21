@@ -1,5 +1,3 @@
-import { popularAreas } from "./India-popular-locations";
-
 interface RandomLocationOutput {
   lat: number;
   lng: number;
@@ -18,11 +16,32 @@ const RATE_LIMIT_DELAY = 5000; // 5 seconds in milliseconds
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// Function to dynamically import popular area data based on the country
+const getCountryPopularAreas = async (continent: string, country: string) => {
+  try {
+    const module = await import(`../locations/${continent}/${country}`);
+    return module.popularAreas;
+  } catch (error) {
+    throw new Error(`Could not import popular areas for country: ${country}`);
+  }
+};
+
 const generateRandomPopularLocation = async (
+  continent: string,
+  country: string,
   retryCount = 0
 ): Promise<RandomLocationOutput | null> => {
   if (retryCount >= MAX_RETRIES) {
     console.warn("Max retries reached when generating location");
+    return null;
+  }
+
+  let popularAreas;
+  try {
+    // Dynamically load the country-specific areas
+    popularAreas = await getCountryPopularAreas(continent, country);
+  } catch (error) {
+    console.error("Error loading country-specific data:", error);
     return null;
   }
 
@@ -50,7 +69,7 @@ const generateRandomPopularLocation = async (
         "Rate limit reached, waiting for 5 seconds before retrying..."
       );
       await sleep(RATE_LIMIT_DELAY);
-      return generateRandomPopularLocation(retryCount); // Don't increment retry count for rate limits
+      return generateRandomPopularLocation(continent, country, retryCount); // Don't increment retry count for rate limits
     }
 
     const body = (await response.json()) as StreetViewResponse;
@@ -61,7 +80,7 @@ const generateRandomPopularLocation = async (
 
     if (body.status !== "OK") {
       // Location doesn't have Street View coverage, try again
-      return generateRandomPopularLocation(retryCount + 1);
+      return generateRandomPopularLocation(continent, country, retryCount + 1);
     }
 
     // If the API returns adjusted coordinates, use those instead
@@ -86,11 +105,11 @@ const generateRandomPopularLocation = async (
         "Rate limit reached, waiting for 5 seconds before retrying..."
       );
       await sleep(RATE_LIMIT_DELAY);
-      return generateRandomPopularLocation(retryCount); // Don't increment retry count for rate limits
+      return generateRandomPopularLocation(continent, country, retryCount); // Don't increment retry count for rate limits
     }
 
     // On other network errors, retry with increment
-    return generateRandomPopularLocation(retryCount + 1);
+    return generateRandomPopularLocation(continent, country, retryCount + 1);
   }
 };
 

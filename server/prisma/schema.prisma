@@ -28,6 +28,8 @@ model Game {
   id                String    @id @default(uuid()) @db.Uuid
   userId            String    @db.Uuid
   score             Int
+  continent         String?
+  country           String?
   currentRoundScore Int       @default(0)
   startedAt         DateTime
   finishedAt        DateTime?

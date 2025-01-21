@@ -12,7 +12,10 @@ export const createGame = async (
     if (!userId) {
       return res.status(400).json({ message: "No User Found" });
     }
-    const randomLocation = await generateRandomPopularLocation();
+    const randomLocation = await generateRandomPopularLocation(
+      "europe",
+      "sweden"
+    );
 
     if (!randomLocation || !randomLocation.lat || !randomLocation.lng) {
       console.error("Failed to generate a valid location");
