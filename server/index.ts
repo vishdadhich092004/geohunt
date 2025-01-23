@@ -24,10 +24,10 @@ app.get("/", (req, res) => {
 });
 
 // cron schdeule to delete locations every 24 hour
-const deleteLocations = async () => {
-  await cleanupLocations();
-};
-deleteLocations();
+// const deleteLocations = async () => {
+//   await cleanupLocations();
+// };
+// deleteLocations();
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

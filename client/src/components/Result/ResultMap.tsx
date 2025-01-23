@@ -12,7 +12,6 @@ interface ResultMapProps {
 }
 
 const mapId = import.meta.env.VITE_JS_MAP_ID as string;
-console.log(mapId);
 
 export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
   const pathCoordinates = useMemo(
