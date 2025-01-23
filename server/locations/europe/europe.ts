@@ -10,14 +10,14 @@ import { popularAreas as turkey } from "./turkey";
 import { popularAreas as uk } from "./uk";
 
 export const popularAreas = [
-  ...france,
-  ...germany,
-  ...italy,
-  ...netherlands,
-  ...norway,
-  ...spain,
-  ...sweden,
-  ...switzerland,
-  ...turkey,
-  ...uk,
+  { country: "france", areas: france },
+  { country: "germany", areas: germany },
+  { country: "italy", areas: italy },
+  { country: "netherlands", areas: netherlands },
+  { country: "norway", areas: norway },
+  { country: "spain", areas: spain },
+  { country: "sweden", areas: sweden },
+  { country: "switzerland", areas: switzerland },
+  { country: "turkey", areas: turkey },
+  { country: "uk", areas: uk },
 ];

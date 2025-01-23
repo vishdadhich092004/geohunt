@@ -1,3 +1,8 @@
+import {
+  PopularAreaEntry,
+  popularAreas,
+  PopularAreasMap,
+} from "../locations/random/random";
 interface RandomLocationOutput {
   lat: number;
   lng: number;
@@ -16,41 +21,42 @@ const RATE_LIMIT_DELAY = 5000; // 5 seconds in milliseconds
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Function to dynamically import popular area data based on the country
-const getCountryPopularAreas = async (continent: string, country: string) => {
-  try {
-    const module = await import(`../locations/${continent}/${country}`);
-    return module.popularAreas;
-  } catch (error) {
-    throw new Error(`Could not import popular areas for country: ${country}`);
-  }
-};
-
 const generateRandomPopularLocation = async (
-  continent: string,
+  continent: keyof PopularAreasMap, // More type-safe continent parameter
   country: string,
   retryCount = 0
 ): Promise<RandomLocationOutput | null> => {
   if (retryCount >= MAX_RETRIES) {
-    console.warn("Max retries reached when generating location");
+    console.error("Max retries reached when generating location", {
+      continent,
+      country,
+    });
     return null;
   }
 
-  let popularAreas;
-  try {
-    // Dynamically load the country-specific areas
-    popularAreas = await getCountryPopularAreas(continent, country);
-  } catch (error) {
-    console.error("Error loading country-specific data:", error);
+  // Find the country-specific popular areas for the given continent
+  const countryData = popularAreas[continent].find(
+    (entry: PopularAreaEntry) => entry.country === country
+  );
+
+  if (!countryData) {
+    console.error(
+      `No popular area data found for country: ${country} in continent: ${continent}`
+    );
     return null;
   }
 
-  // Select a random area
-  const area = popularAreas[Math.floor(Math.random() * popularAreas.length)];
+  // Randomly select an area from the country-specific data
+  const selectedArea =
+    countryData.areas[Math.floor(Math.random() * countryData.areas.length)];
 
   // Generate a random lat/lng within the selected bounding box
-  const randomLat = Math.random() * (area.maxLat - area.minLat) + area.minLat;
-  const randomLng = Math.random() * (area.maxLon - area.minLon) + area.minLon;
+  const randomLat =
+    Math.random() * (selectedArea.maxLat - selectedArea.minLat) +
+    selectedArea.minLat;
+  const randomLng =
+    Math.random() * (selectedArea.maxLon - selectedArea.minLon) +
+    selectedArea.minLon;
 
   const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
   if (!GOOGLE_MAPS_API_KEY) {

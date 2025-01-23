@@ -3,6 +3,7 @@ import prisma from "../db/db.config";
 import generateRandomPopularLocation from "../utils/generate-random-location";
 import haversineDistance from "../utils/calculate-distance";
 import calculateScore from "../utils/calculate-score";
+import { PopularAreasMap } from "../locations/random/random";
 
 export const createGuess = async (
   req: Request,
@@ -41,7 +42,7 @@ export const createGuess = async (
   const currentRoundScore = calculateScore(distance);
   const newTotalScore = game.score + currentRoundScore;
   const nextLocation = await generateRandomPopularLocation(
-    game.continent!,
+    game.continent as keyof PopularAreasMap,
     game.country!
   );
   if (!nextLocation) {

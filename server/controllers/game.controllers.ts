@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import prisma from "../db/db.config";
 import { GameType } from "../shared/types";
 import generateRandomPopularLocation from "../utils/generate-random-location";
+import { PopularAreasMap } from "../locations/random/random";
 
 interface ContinentAndCountry {
   continent?: string;
@@ -19,7 +20,7 @@ export const createGame = async (
       return res.status(400).json({ message: "No User Found" });
     }
     const randomLocation = await generateRandomPopularLocation(
-      continent!,
+      continent as keyof PopularAreasMap,
       country!
     );
 

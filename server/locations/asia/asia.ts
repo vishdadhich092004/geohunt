@@ -9,13 +9,13 @@ import { popularAreas as south_korea } from "./south-korea";
 import { popularAreas as sri_lanka } from "./sri-lanka";
 
 export const popularAreas = [
-  ...bangladesh,
-  ...india,
-  ...indonesia,
-  ...japan,
-  ...malaysia,
-  ...pakistan,
-  ...russia,
-  ...south_korea,
-  ...sri_lanka,
+  { country: "bangladesh", areas: bangladesh },
+  { country: "india", areas: india },
+  { country: "indonesia", areas: indonesia },
+  { country: "japan", areas: japan },
+  { country: "malaysia", areas: malaysia },
+  { country: "pakistan", areas: pakistan },
+  { country: "russia", areas: russia },
+  { country: "south_korea", areas: south_korea },
+  { country: "sri_lanka", areas: sri_lanka },
 ];
