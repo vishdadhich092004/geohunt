@@ -20,17 +20,27 @@ function LocationSelect() {
     );
 
   return (
-    <div className="container mx-auto px-4 py-8 bg-transparent min-h-screen">
-      <h1 className="text-6xl font-bold text-center text-white mb-10">
-        Explore Our World
-      </h1>
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-black text-white px-4 py-8 relative">
+      {/* Fixed Background Image */}
+      <div className="fixed inset-0 z-0 opacity-30 pointer-events-none">
+        <img
+          src="https://gtac.wustl.edu/wp-content/uploads/Beautiful-Earth-at-Night-HD-Wallpapers-for-Desktop.jpg"
+          alt="Global map background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      <div className="relative z-10 max-w-4xl mx-auto">
+        <h1 className="text-6xl font-bold text-center mb-10">
+          Explore Our World
+        </h1>
         <LocationSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
         {searchTerm ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-6">
             {filteredLocations.map((location) => (
               <BGCard
+                key={location.keyword}
                 heading={location.name}
                 desc={
                   location.type === "country"
@@ -50,40 +60,16 @@ function LocationSelect() {
           </div>
         ) : (
           <>
-            {/* 
-            <section className="mb-12 text-white">
-              <h2 className="text-2xl font-semibold mb-6">
-                Continents Overview
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {continents.map((continent) => (
-                  <div
-                    key={continent.keyword}
-                    className="transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
-                  >
-                    <BGCard
-                      continent={continent.keyword}
-                      country={""}
-                      heading={continent.name}
-                      desc={continent.desc}
-                      staticImg={continent.staticImg}
-                      dynamicImg={continent.dynamicImg}
-                    />
-                  </div>
-                ))}
-              </div>
-            </section> */}
-
             {continents.map((continent) => (
-              <section key={continent.keyword} className="mb-12 text-white">
-                <h2 className="text-2xl font-semibold mb-6">
+              <section key={continent.keyword} className="mb-12">
+                <h2 className="text-3xl font-semibold mb-6">
                   {continent.name}
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                   {continent.countries.map((country) => (
                     <div
                       key={country.keyword}
-                      className="transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                      className="transform transition-all duration-300 hover:scale-105"
                     >
                       <BGCard
                         heading={country.name}
