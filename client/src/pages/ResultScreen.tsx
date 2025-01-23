@@ -6,6 +6,7 @@ import haversineDistance from "@/utils/haversineDistance";
 import { ResultMap } from "@/components/Result/ResultMap";
 import { ResultLegend } from "@/components/Result/ResultLegend";
 import { getScoreMessage } from "@/utils/getMessage";
+import ExitGame from "@/components/ExitGame";
 
 interface Location {
   latitude: number;
@@ -51,9 +52,12 @@ function ResultScreen({
             {getScoreMessage(currentRoundScore)}
           </div>
 
-          <Button onClick={onNextRound} className="w-full" size="lg">
-            Next Round
-          </Button>
+          <span className="flex gap-1">
+            <Button onClick={onNextRound} className="w-full" size="default">
+              Next Round
+            </Button>
+            <ExitGame />
+          </span>
         </CardContent>
       </Card>
     </div>

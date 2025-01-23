@@ -1,3 +1,4 @@
+import ExitGame from "../ExitGame";
 import HintButton from "../HintButton";
 import LocationNotLoadedButton from "../LocationNotLoadedButton";
 import GameScore from "./GameScore";
@@ -19,11 +20,12 @@ function GameHeader({ score, currentRoundLocation }: GameHeaderProps) {
             <GameScore score={score} />
           </div>
           <div className="flex items-center gap-4">
-            <LocationNotLoadedButton />
             <HintButton
               lat={currentRoundLocation.latitude}
               lng={currentRoundLocation.longitude}
             />
+            <LocationNotLoadedButton />
+            <ExitGame />
           </div>
         </div>
       </div>
