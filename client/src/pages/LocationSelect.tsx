@@ -18,15 +18,17 @@ function LocationSelect() {
     .filter((location) =>
       location.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  console.log(filteredLocations);
 
   return (
     <div className="container mx-auto px-4 py-8 bg-transparent min-h-screen">
+      <h1 className="text-6xl font-bold text-center text-white mb-10">
+        Explore Our World
+      </h1>
       <div className="max-w-4xl mx-auto">
         <LocationSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
         {searchTerm ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             {filteredLocations.map((location) => (
               <BGCard
                 heading={location.name}
@@ -48,10 +50,7 @@ function LocationSelect() {
           </div>
         ) : (
           <>
-            <h1 className="text-4xl font-bold text-center text-white mb-10">
-              Explore Our World
-            </h1>
-
+            {/* 
             <section className="mb-12 text-white">
               <h2 className="text-2xl font-semibold mb-6">
                 Continents Overview
@@ -73,14 +72,14 @@ function LocationSelect() {
                   </div>
                 ))}
               </div>
-            </section>
+            </section> */}
 
             {continents.map((continent) => (
               <section key={continent.keyword} className="mb-12 text-white">
                 <h2 className="text-2xl font-semibold mb-6">
                   {continent.name}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                   {continent.countries.map((country) => (
                     <div
                       key={country.keyword}
@@ -91,8 +90,8 @@ function LocationSelect() {
                         continent={continent.keyword}
                         country={country.keyword}
                         desc={country.desc}
-                        dynamicImg="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW5mNDE1dHpmdmoxcGJscGJ2cjduemRmbTNnMjl4aTEzOXhjYWpxayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlGs7u3G9dkQ8DK/giphy.gif"
-                        staticImg="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b"
+                        staticImg={country.staticImg}
+                        dynamicImg={country.dynamicImg}
                       />
                     </div>
                   ))}
