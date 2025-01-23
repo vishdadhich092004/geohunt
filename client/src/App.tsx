@@ -5,6 +5,7 @@ import GamePage from "./pages/GamePage";
 import NewUser from "./pages/NewUser";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import HowToPlayPage from "./pages/HowToPlayPage";
+import CountryCards from "./pages/LocationSelect";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/new-user" element={<NewUser />} />
         <Route path="/games" element={<NewGame />} />
+        <Route path="/locations" element={<CountryCards />} />
         <Route path="/guesses/:gameId" element={<GamePage />} />
         <Route path="/leaderboard" element={<LeaderboardPage />} />
         <Route path="/how-to-play" element={<HowToPlayPage />} />

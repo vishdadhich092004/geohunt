@@ -1,17 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "react-query";
 import { useAuthContext } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { newGame } from "@/api-clients";
 import { ErrorAlert } from "../ErrorAlert";
 import { NewGameCard } from "./NewGameCard";
 
 export default function NewGame() {
+  const location = useLocation();
+  const [continent, setContinent] = useState("");
+  const [country, setCountry] = useState("");
   const { user } = useAuthContext();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
-  const mutation = useMutation(() => newGame("asia", "india"), {
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const continent = searchParams.get("continent");
+    setContinent(continent!);
+    const country = searchParams.get("country");
+    setCountry(country!);
+  }, [location.search]);
+
+  const mutation = useMutation(() => newGame(continent, country), {
     onSuccess: (data) => {
       navigate(`/guesses/${data.id}`);
     },

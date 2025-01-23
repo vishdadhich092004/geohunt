@@ -17,7 +17,7 @@ export default function NewUser() {
         title: "Welcome to GeoHunt!",
         description: "Your account has been created successfully.",
       });
-      navigate("/games");
+      navigate("/locations");
     },
     onError: (err) => {
       setError(

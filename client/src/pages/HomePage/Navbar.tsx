@@ -7,7 +7,7 @@ export function Navbar() {
   const { isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   const handlePlayNow = () => {
-    if (isAuthenticated) navigate("/games");
+    if (isAuthenticated) navigate("/locations");
     else navigate("/new-user");
   };
   return (

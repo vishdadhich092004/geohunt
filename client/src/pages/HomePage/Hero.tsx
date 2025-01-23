@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { useAuthContext } from "@/contexts/AuthContext";
 import { MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export function Hero() {
+  const { isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -40,7 +42,7 @@ export function Hero() {
         <div className="flex gap-4 justify-center animate-fade-in-up delay-200">
           <Button
             onClick={() => {
-              navigate("/new-user");
+              navigate(`${isAuthenticated ? "/locations" : "/new-user"}`);
             }}
             size="lg"
             className="bg-primary hover:bg-primary/90 text-lg px-8"
