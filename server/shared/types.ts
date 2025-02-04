@@ -11,7 +11,6 @@ export type UserType = {
   username: string;
   games: GameType[];
   createdAt: Date;
-  password?: string;
   updatedAt: Date;
   guess: GuessType[];
 };
