@@ -27,8 +27,16 @@ const GuessMap = ({
   const [isControlsHovered, setIsControlsHovered] = useState(false);
 
   const mapContainerStyle = {
-    width: (isFullyExpanded && "70vw") || (isExpanded && "35vw") || "240px",
-    height: (isFullyExpanded && "30vw") || (isExpanded && "25vw") || "160px",
+    width: isFullyExpanded
+      ? "80vw" // Full width on mobile when expanded
+      : isExpanded
+      ? "min(90vw, 500px)" // Responsive width when hover-expanded
+      : "min(85vw, 240px)", // Base width
+    height: isFullyExpanded
+      ? "50vh" // Taller on mobile when expanded
+      : isExpanded
+      ? "min(60vh, 400px)" // Responsive height when hover-expanded
+      : "min(40vh, 160px)", // Base height
     transition: "all 0.3s ease-in-out",
   };
 
