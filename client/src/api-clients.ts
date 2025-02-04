@@ -1,9 +1,10 @@
 import { GameType } from "../../server/shared/types";
-import { NewUserFormData } from "./components/NewUser";
+import { PasswordData } from "./components/CreateNewPassword";
+import { UserFormData } from "./components/UserForm";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const newUser = async (formData: NewUserFormData) => {
+export const newUser = async (formData: UserFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/users`, {
     method: "POST",
     credentials: "include",
@@ -103,4 +104,20 @@ export const fetchHints = async (lat?: number, lng?: number) => {
     throw new Error(body.error);
   }
   return body;
+};
+
+export const createNewPassword = async (formData: PasswordData) => {
+  const response = await fetch(`${API_BASE_URL}/api/users/create-password`, {
+    credentials: "include",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  const responseBody = await response.json();
+  if (!response.ok) {
+    throw new Error(responseBody.error);
+  }
+  return responseBody;
 };
