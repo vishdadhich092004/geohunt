@@ -10,7 +10,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { UserCircle } from "lucide-react";
-
 export interface UserFormData {
   username: string;
 }
@@ -28,17 +27,17 @@ export function UserForm({ onSubmit, isLoading }: UserFormProps) {
   } = useForm<UserFormData>();
 
   return (
-    <Card className="w-full max-w-md animate-fade-in-up">
+    <Card className="w-full animate-fade-in-up">
       <CardHeader>
         <div className="flex items-center space-x-2">
           <UserCircle className="h-6 w-6 text-primary" />
-          <CardTitle className="text-2xl">Create Account</CardTitle>
+          <CardTitle className="text-2xl">Join GeoHunt</CardTitle>
         </div>
         <CardDescription>
-          Choose a username to start your geographic adventure
+          Join our community of geographic explorers
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-6">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
             <Label htmlFor="username">Username</Label>
@@ -71,6 +70,15 @@ export function UserForm({ onSubmit, isLoading }: UserFormProps) {
             )}
           </div>
 
+          <div className="text-sm text-muted-foreground">
+            <p>You can:</p>
+            <ul className="list-disc list-inside mt-1 space-y-1">
+              <li>Create your own solo adventure</li>
+              <li>Join existing teams (team features coming soon)</li>
+              <li>Compete with top players worldwide</li>
+            </ul>
+          </div>
+
           <Button
             type="submit"
             className="w-full"
@@ -83,7 +91,7 @@ export function UserForm({ onSubmit, isLoading }: UserFormProps) {
                 <span>Creating account...</span>
               </div>
             ) : (
-              "Create Account"
+              "Start Your Journey"
             )}
           </Button>
         </form>

@@ -43,17 +43,6 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center space-x-4">
-            {!isAuthenticated && (
-              <Button
-                onClick={() => {
-                  navigate("/new-user");
-                }}
-                variant="ghost"
-                className="hidden md:inline-flex"
-              >
-                Sign In
-              </Button>
-            )}
             <Button
               onClick={handlePlayNow}
               className="bg-primary hover:bg-primary/90"

@@ -90,17 +90,33 @@ export function LeaderboardTable({ entries }: LeaderboardTableProps) {
                         </Tooltip>
                       </TooltipProvider>
                     )}
-                    {entry.totalScore >= 100000 && (
+                    {entry.totalScore >= 100000 &&
+                      entry.totalScore < 200000 && (
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <div className="flex items-center gap-1 bg-yellow-500/10 text-yellow-500 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-yellow-500/20 transition-colors cursor-help">
+                                <Trophy className="h-3 w-3" />
+                                Master
+                              </div>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Crossed 100,000 points</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      )}
+                    {entry.totalScore >= 200000 && (
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger>
-                            <div className="flex items-center gap-1 bg-yellow-500/10 text-yellow-500 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-yellow-500/20 transition-colors cursor-help">
+                            <div className="flex items-center gap-1 bg-purple-500/10 text-purple-500 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-purple-500/20 transition-colors cursor-help">
                               <Trophy className="h-3 w-3" />
-                              Master
+                              Grandmaster
                             </div>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Crossed 100,000 points</p>
+                            <p>Crossed 200,000 points</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
