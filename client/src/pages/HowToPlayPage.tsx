@@ -3,7 +3,7 @@ import { MessageCircleQuestion } from "lucide-react";
 
 export default function HowToPlayPage() {
   return (
-    <div className="min-h-screen bg-background py-16">
+    <div className="min-h-screen bg-background py-16 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center p-2 bg-primary/10 rounded-full mb-4">
@@ -17,6 +17,18 @@ export default function HowToPlayPage() {
               GeoHunt
             </span>
           </h1>
+
+          {/* New Feature Highlight */}
+          <div className="bg-primary/10 p-4 rounded-lg mb-6">
+            <h2 className="text-2xl font-semibold text-primary mb-2">
+              🎉 New Feature: Team Play!
+            </h2>
+            <p className="text-primary-dark text-lg">
+              Multiple players can now use the same username to contribute to a
+              shared score on the leaderboard. Team up with friends for higher
+              rankings!
+            </p>
+          </div>
 
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Follow these simple steps to start your geographic adventure and

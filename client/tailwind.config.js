@@ -24,6 +24,10 @@ export default {
           "100%": { transform: "translateX(200px)" },
         },
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
+
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

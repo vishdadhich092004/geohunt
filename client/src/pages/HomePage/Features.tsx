@@ -4,27 +4,27 @@ import { Globe2, MapPin, Trophy, Users2 } from "lucide-react";
 const features = [
   {
     icon: <Globe2 className="w-10 h-10" />,
-    title: "Global Coverage",
+    title: "Global Exploration",
     description:
-      "Explore locations from every corner of the world, from bustling cities to remote landscapes.",
+      "Journey through carefully curated locations worldwide, from iconic landmarks to hidden gems, all powered by high-quality Street View imagery.",
   },
   {
     icon: <Users2 className="w-10 h-10" />,
-    title: "Multiplayer Modes",
+    title: "Collaborative Play",
     description:
-      "Challenge friends in real-time multiplayer games or compete in global leaderboards.",
+      "Play solo or team up using shared usernames! Multiple players can contribute to the same username's score, creating a unique collaborative experience.",
   },
   {
     icon: <MapPin className="w-10 h-10" />,
-    title: "Custom Maps",
+    title: "AI-Powered Hints",
     description:
-      "Create and share your own custom maps with specific regions or themes.",
+      "Stuck on a location? Get intelligent hints about landmarks, cultural elements, and geographical features from our AI assistant.",
   },
   {
     icon: <Trophy className="w-10 h-10" />,
-    title: "Daily Challenges",
+    title: "Competitive Rankings",
     description:
-      "New daily challenges with unique locations and special rewards.",
+      "Compare scores across different usernames and see which community of players achieves the highest collective score.",
   },
 ];
 
