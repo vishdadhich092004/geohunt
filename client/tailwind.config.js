@@ -27,7 +27,11 @@ export default {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },
-
+      extend: {
+        animation: {
+          "slow-pulse": "pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        },
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

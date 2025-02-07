@@ -8,6 +8,7 @@ interface BGCardProps {
   dynamicImg: string;
   continent?: string;
   country?: string;
+  children?: React.ReactNode;
 }
 export function BGCard({
   heading,
@@ -16,6 +17,7 @@ export function BGCard({
   dynamicImg,
   continent,
   country,
+  children,
 }: BGCardProps) {
   const navigate = useNavigate();
   const handleLocationSelection = (continent?: string, country?: string) => {
@@ -50,6 +52,7 @@ export function BGCard({
           <p className="font-normal text-base text-gray-50 relative my-4">
             {desc}
           </p>
+          {children}
         </div>
       </div>
     </div>
