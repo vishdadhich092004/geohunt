@@ -1,11 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { useAuthContext } from "@/contexts/AuthContext";
 import { MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function Hero() {
-  const { isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   const [showNewFeature, setShowNewFeature] = useState(false);
 
@@ -31,7 +29,7 @@ export function Hero() {
 
         {/* New Feature Card */}
         <div
-          className="z-10 absolute top-4 right-4 bg-primary/20 backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-primary/30 transition-colors animate-bounce"
+          className="hidden md:z-10 md:absolute md:top-4 md:right-4 md:bg-primary/20 md:backdrop-blur-sm md:rounded-lg md:p-4 md:cursor-pointer md:hover:bg-primary/30 md:transition-colors md:animate-bounce"
           onClick={() => setShowNewFeature(!showNewFeature)}
         >
           {showNewFeature && (
@@ -69,7 +67,7 @@ export function Hero() {
         <div className="flex gap-4 justify-center animate-fade-in-up delay-200">
           <Button
             onClick={() => {
-              navigate(`${isAuthenticated ? "/locations" : "/new-user"}`);
+              navigate("/new-user");
             }}
             size="lg"
             className="bg-primary hover:bg-primary/90 text-lg px-8"

@@ -46,6 +46,7 @@ model Guess {
   latitude  Float
   longitude Float
   distance  Float
+  score     Int      @default(0)
   createdAt DateTime @default(now())
   game      Game     @relation(fields: [gameId], references: [id])
   user      User     @relation(fields: [userId], references: [id])

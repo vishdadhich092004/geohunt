@@ -49,6 +49,7 @@ export const createGame = async (
       },
       include: {
         currentLocation: true,
+        guesses: true,
       },
     });
     if (!game) {

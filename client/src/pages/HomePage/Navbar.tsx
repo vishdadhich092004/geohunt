@@ -1,14 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { useAuthContext } from "@/contexts/AuthContext";
 import { Compass } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
 export function Navbar() {
-  const { isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   const handlePlayNow = () => {
-    if (isAuthenticated) navigate("/locations");
-    else navigate("/new-user");
+    navigate("/new-user");
   };
   return (
     <nav className="fixed w-full z-50 bg-background/80 backdrop-blur-md border-b">

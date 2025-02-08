@@ -15,7 +15,7 @@ function LocationNotLoadedButton() {
   const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleLoadNewGame = () => {
-    navigate("/games");
+    navigate("/locations");
   };
 
   return (

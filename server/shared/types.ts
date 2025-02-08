@@ -34,6 +34,7 @@ export type GuessType = {
   gameId: string;
   latitude: number;
   longitude: number;
+  score: number;
   distance: number;
   createdAt: Date;
 };

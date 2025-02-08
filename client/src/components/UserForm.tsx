@@ -31,10 +31,10 @@ export function UserForm({ onSubmit, isLoading }: UserFormProps) {
       <CardHeader>
         <div className="flex items-center space-x-2">
           <UserCircle className="h-6 w-6 text-primary" />
-          <CardTitle className="text-2xl">Join GeoHunt</CardTitle>
+          <CardTitle className="text-2xl">Which Username?</CardTitle>
         </div>
         <CardDescription>
-          Join our community of geographic explorers
+          Choose a username that will represent you in the community
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">

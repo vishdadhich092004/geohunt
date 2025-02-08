@@ -41,6 +41,23 @@ export const createGuess = async (
   );
   const currentRoundScore = calculateScore(distance);
   const newTotalScore = game.score + currentRoundScore;
+
+  // Create the guess record
+  const guess = await prisma.guess.create({
+    data: {
+      latitude,
+      longitude,
+      distance,
+      score: currentRoundScore,
+      game: {
+        connect: { id: gameId },
+      },
+      user: {
+        connect: { id: userId },
+      },
+    },
+  });
+
   const nextLocation = await generateRandomPopularLocation(
     game.continent as keyof PopularAreasMap,
     game.country!
@@ -66,8 +83,10 @@ export const createGuess = async (
       score: newTotalScore,
       currentRoundScore: currentRoundScore,
     },
+
     include: {
       currentLocation: true,
+      guesses: true,
     },
   });
 
