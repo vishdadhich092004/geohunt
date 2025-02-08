@@ -18,6 +18,7 @@ import { Card } from "../ui/card";
 import { Trophy, Users, ArrowUp } from "lucide-react";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 interface LeaderboardEntry {
   id: string;
@@ -72,9 +73,12 @@ export function LeaderboardTable({ entries }: LeaderboardTableProps) {
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold group-hover:text-primary transition-colors">
+                    <Link
+                      to={`/analytics/${entry.id}`}
+                      className="font-semibold group-hover:text-primary transition-colors"
+                    >
                       {entry.username}
-                    </span>
+                    </Link>
                     {entry.isTeam && (
                       <TooltipProvider>
                         <Tooltip>

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import prisma from "../db/db.config";
+
 export const getAnalytics = async (
   req: Request,
   res: Response
@@ -8,20 +9,34 @@ export const getAnalytics = async (
   if (!userId) {
     return res.status(400).json({ message: "User ID is required" });
   }
-  const games = (
-    await prisma.game.findMany({
-      where: {
-        userId: userId,
-      },
-    })
-  ).sort((a, b) => a.startedAt.getTime() - b.startedAt.getTime());
-  if (!games) {
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  const games = await prisma.game.findMany({
+    where: {
+      userId: userId,
+    },
+  });
+
+  if (!games || games.length === 0) {
     return res.status(404).json({ message: "No games found" });
   }
+
+  // Sort after checking for empty array
+  const sortedGames = games.sort(
+    (a, b) => a.startedAt.getTime() - b.startedAt.getTime()
+  );
+
   const totalGames = games.length;
   const score = games.reduce((acc, game) => acc + game.score, 0);
-  const firstGame = games[0];
-  const lastGame = games[games.length - 1];
+  const firstGame = sortedGames[0];
+  const lastGame = sortedGames[sortedGames.length - 1];
   const playingSince = new Date(firstGame.startedAt);
   const playingSinceInDays = Math.floor(
     (new Date().getTime() - playingSince.getTime()) / (1000 * 60 * 60 * 24)
@@ -34,5 +49,6 @@ export const getAnalytics = async (
     lastGame,
     playingSinceInDays,
     averageScore,
+    user, // Include user information in the response
   });
 };

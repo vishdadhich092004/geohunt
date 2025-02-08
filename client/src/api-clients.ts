@@ -104,3 +104,15 @@ export const fetchHints = async (lat?: number, lng?: number) => {
   }
   return body;
 };
+
+export const getAnalytics = async (userId: string) => {
+  const response = await fetch(`${API_BASE_URL}/api/analytics/${userId}`, {
+    method: "GET",
+    credentials: "include",
+  });
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error("Error Fetching analytics");
+  }
+  return body;
+};

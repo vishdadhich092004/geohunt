@@ -13,7 +13,7 @@ export default function LeaderboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 mt-12">
         <LeaderboardHeader />
         <div className="max-w-4xl mx-auto">
           {error ? (

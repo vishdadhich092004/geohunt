@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Compass } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useAuthContext } from "@/contexts/AuthContext";
 export function Navbar() {
+  const { user } = useAuthContext();
   const navigate = useNavigate();
   const handlePlayNow = () => {
     navigate("/new-user");
@@ -36,6 +37,12 @@ export function Navbar() {
               className="text-foreground/80 hover:text-primary transition-colors"
             >
               Premium
+            </Link>
+            <Link
+              to={`/analytics/${user?.id}`}
+              className="text-foreground/80 hover:text-primary transition-colors"
+            >
+              Stats
             </Link>
           </div>
 

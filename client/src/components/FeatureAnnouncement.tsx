@@ -1,11 +1,20 @@
 import { Sparkles, Users, Target, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 export function FeatureAnnouncement() {
+  const { user, isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   const handleLearnMore = () => {
     navigate("/learn-more");
+  };
+  const handleViewStats = () => {
+    if (isAuthenticated) {
+      navigate(`/analytics/${user?.id}`);
+    } else {
+      navigate("/new-user");
+    }
   };
 
   return (
@@ -110,7 +119,7 @@ export function FeatureAnnouncement() {
                   </div>
                   <div className="mt-auto">
                     <Button
-                      onClick={() => navigate("/new-user")}
+                      onClick={handleViewStats}
                       className="group w-full bg-white/5 hover:bg-primary/90 text-white font-medium px-4 py-2 rounded-md transition-all duration-300 text-sm"
                     >
                       <span className="flex items-center justify-center">

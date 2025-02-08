@@ -11,6 +11,7 @@ import Layout from "./layouts/Layout";
 import NotFoundPage from "./pages/NotFoundPage";
 import Premium from "./pages/Premium";
 import Contact from "./pages/Contact";
+import AnalyticsPage from "./pages/AnalyticsPage";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
         />
         <Route path="/premium" element={<Premium />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/analytics/:userId" element={<AnalyticsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
