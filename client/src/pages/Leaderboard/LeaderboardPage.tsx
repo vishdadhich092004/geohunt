@@ -4,12 +4,16 @@ import { ErrorAlert } from "@/components/ErrorAlert";
 import { LeaderboardHeader } from "@/components/Leaderboard/LeaderboardHeader";
 import { LeaderboardLoading } from "@/components/Leaderboard/LeaderboardLoading";
 import { LeaderboardTable } from "@/components/Leaderboard/LeaderboardTable";
+import { useState } from "react";
+import { LeaderboardFooter } from "@/components/Leaderboard/LeaderboardFooter";
+
 export default function LeaderboardPage() {
+  const [page, setPage] = useState(1);
   const {
-    data: entries,
+    data: response,
     isLoading,
     error,
-  } = useQuery("leaderboard", fetchLeaderboard);
+  } = useQuery(["leaderboard", page], () => fetchLeaderboard(page, 15));
 
   return (
     <div className="min-h-screen bg-background">
@@ -24,7 +28,18 @@ export default function LeaderboardPage() {
           ) : isLoading ? (
             <LeaderboardLoading />
           ) : (
-            <LeaderboardTable entries={entries} />
+            <>
+              <LeaderboardTable
+                entries={response.data}
+                currentPage={page}
+                limit={15}
+              />
+              <LeaderboardFooter
+                currentPage={page}
+                totalPages={response.meta.totalPages}
+                onPageChange={setPage}
+              />
+            </>
           )}
         </div>
       </div>

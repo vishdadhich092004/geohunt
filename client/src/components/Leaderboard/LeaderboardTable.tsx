@@ -30,9 +30,15 @@ interface LeaderboardEntry {
 
 interface LeaderboardTableProps {
   entries: LeaderboardEntry[];
+  currentPage: number;
+  limit: number;
 }
 
-export function LeaderboardTable({ entries }: LeaderboardTableProps) {
+export function LeaderboardTable({
+  entries,
+  currentPage,
+  limit,
+}: LeaderboardTableProps) {
   const [showScrollButton, setShowScrollButton] = useState(false);
 
   // Show button when scrolled down 200px
@@ -46,6 +52,11 @@ export function LeaderboardTable({ entries }: LeaderboardTableProps) {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // Calculate the starting rank for the current page
+  const getEntryRank = (index: number) => {
+    return (currentPage - 1) * limit + index + 1;
   };
 
   return (
@@ -65,11 +76,11 @@ export function LeaderboardTable({ entries }: LeaderboardTableProps) {
                 key={entry.id}
                 className={cn(
                   "group transition-colors hover:bg-muted/50",
-                  index < 3 && "bg-muted/20"
+                  getEntryRank(index) <= 3 && "bg-muted/20"
                 )}
               >
                 <TableCell className="font-medium">
-                  <RankBadge rank={index + 1} />
+                  <RankBadge rank={getEntryRank(index)} />
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
