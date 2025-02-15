@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ChevronLeft } from "lucide-react";
+import {
+  ChevronLeft,
+  Trophy,
+  Calendar,
+  Clock,
+  Target,
+  GamepadIcon,
+  History,
+  User,
+  MapPin,
+} from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { format } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
 import { GameType } from "../../../../server/shared/types";
 import { UserType } from "../../../../server/shared/types";
 import { getAnalytics } from "@/api-clients";
+import AnalyticsMap from "./AnalyticsMap";
 
 interface AnalyticsData {
   totalGames: number;
@@ -15,6 +26,28 @@ interface AnalyticsData {
   playingSinceInDays: number;
   averageScore: number;
   user: UserType;
+}
+
+function StatCard({
+  icon: Icon,
+  value,
+  label,
+}: {
+  icon: React.ElementType;
+  value: string | number;
+  label: string;
+}) {
+  return (
+    <Card className="transform transition-all duration-300 hover:scale-105">
+      <CardContent className="pt-6 pb-6">
+        <div className="flex flex-col items-center space-y-2">
+          <Icon className="w-8 h-8 text-primary mb-2" />
+          <div className="text-3xl font-bold">{value}</div>
+          <div className="text-sm text-muted-foreground">{label}</div>
+        </div>
+      </CardContent>
+    </Card>
+  );
 }
 
 function AnalyticsPage() {
@@ -28,7 +61,6 @@ function AnalyticsPage() {
     const fetchAnalytics = async () => {
       try {
         const data = await getAnalytics(userId!);
-        console.log(data);
         setAnalytics(data);
       } catch (err) {
         console.error(err);
@@ -45,129 +77,150 @@ function AnalyticsPage() {
 
   if (error) {
     return (
-      <div className="container mx-auto px-4">
-        <p className="text-center text-destructive mt-4">{error}</p>
+      <div className="container mx-auto px-4 min-h-screen flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="p-6">
+            <p className="text-center text-destructive">{error}</p>
+          </CardContent>
+        </Card>
       </div>
     );
   }
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 space-y-4">
         <Skeleton className="h-20 w-full" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[...Array(4)].map((_, i) => (
+            <Skeleton key={i} className="h-32 w-full" />
+          ))}
+        </div>
       </div>
     );
   }
 
   if (analytics && analytics.totalGames === 0) {
     return (
-      <div className="container mx-auto px-4">
-        <p className="text-center text-muted-foreground mt-4">
-          No games played
-        </p>
+      <div className="container mx-auto px-4 min-h-screen flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardContent className="p-6">
+            <button
+              onClick={() => navigate(-1)}
+              className="mb-6 flex items-center text-sm text-muted-foreground hover:text-primary transition-colors group"
+            >
+              <ChevronLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              Back
+            </button>
+            <GamepadIcon className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
+            <p className="text-center text-muted-foreground">
+              No games played yet
+            </p>
+          </CardContent>
+        </Card>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <button
-        onClick={() => navigate(-1)}
-        className="mb-4 flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
-      >
-        <ChevronLeft className="mr-2 h-4 w-4" />
-        Back
-      </button>
+    <div className="min-h-screen bg-gradient-to-b from-background to-background/80 py-8 px-4">
+      <div className="container mx-auto max-w-7xl">
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-6 flex items-center text-sm text-muted-foreground hover:text-primary transition-colors group"
+        >
+          <ChevronLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+          Back
+        </button>
 
-      <h1 className="text-3xl font-bold text-center mb-8">Player Statistics</h1>
+        <div className="mb-8 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+            <User className="w-8 h-8 text-primary" />
+          </div>
+          <h1 className="text-4xl font-bold mb-2">
+            {analytics?.user.username}
+          </h1>
+          <p className="text-muted-foreground">
+            Joined{" "}
+            {analytics?.user.createdAt
+              ? format(new Date(analytics.user.createdAt), "MMMM dd, yyyy")
+              : "N/A"}
+          </p>
+        </div>
 
-      {/* User Information */}
-      <div className="text-center mb-8">
-        <h2 className="text-xl font-semibold">
-          User: {analytics?.user.username}
-        </h2>
-        <p className="text-sm text-muted-foreground">
-          Joined:{" "}
-          {analytics?.user.createdAt
-            ? format(new Date(analytics.user.createdAt), "MMMM dd, yyyy")
-            : "N/A"}
-        </p>
-        {/* Total Games */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <StatCard
+            icon={GamepadIcon}
+            value={analytics?.totalGames || 0}
+            label="Total Games"
+          />
+          <StatCard
+            icon={Target}
+            value={analytics?.averageScore.toFixed(1) || 0}
+            label="Average Score"
+          />
+          <StatCard
+            icon={Calendar}
+            value={analytics?.playingSinceInDays || 0}
+            label="Days Playing"
+          />
+          <StatCard
+            icon={Trophy}
+            value={analytics?.lastGame?.score || 0}
+            label="Last Game Score"
+          />
+        </div>
+
         <Card className="backdrop-blur-lg bg-card/50">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">
-                {analytics?.totalGames}
-              </div>
-              <div className="text-muted-foreground">Total Games</div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Average Score */}
-        <Card className="backdrop-blur-lg bg-card/50">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">
-                {analytics?.averageScore.toFixed(1)}
-              </div>
-              <div className="text-muted-foreground">Average Score</div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Days Playing */}
-        <Card className="backdrop-blur-lg bg-card/50">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">
-                {analytics?.playingSinceInDays}
-              </div>
-              <div className="text-muted-foreground">Days Playing</div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Last Game Score */}
-        <Card className="backdrop-blur-lg bg-card/50">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">
-                {analytics?.lastGame?.score}
-              </div>
-              <div className="text-muted-foreground">Last Game Score</div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Gaming History */}
-        <Card className="col-span-1 sm:col-span-2 lg:col-span-4 backdrop-blur-lg bg-card/50">
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center space-x-2">
+            <History className="w-5 h-5 text-primary" />
             <h2 className="text-xl font-semibold">Gaming History</h2>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-muted-foreground">First Game</p>
-                <p className="font-medium">
-                  {analytics?.firstGame &&
-                    format(
-                      new Date(analytics.firstGame.startedAt),
-                      "MMMM dd, yyyy"
-                    )}
-                </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="flex items-center space-x-4">
+                <Clock className="w-5 h-5 text-muted-foreground" />
+                <div>
+                  <p className="text-sm text-muted-foreground">First Game</p>
+                  <p className="font-medium">
+                    {analytics?.firstGame &&
+                      format(
+                        new Date(analytics.firstGame.startedAt),
+                        "MMMM dd, yyyy"
+                      )}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="text-sm text-muted-foreground">Latest Game</p>
-                <p className="font-medium">
-                  {analytics?.lastGame &&
-                    format(
-                      new Date(analytics.lastGame.startedAt),
-                      "MMMM dd, yyyy"
-                    )}
-                </p>
+              <div className="flex items-center space-x-4">
+                <Clock className="w-5 h-5 text-muted-foreground" />
+                <div>
+                  <p className="text-sm text-muted-foreground">Latest Game</p>
+                  <p className="font-medium">
+                    {analytics?.lastGame &&
+                      format(
+                        new Date(analytics.lastGame.startedAt),
+                        "MMMM dd, yyyy"
+                      )}
+                  </p>
+                </div>
               </div>
             </div>
+          </CardContent>
+        </Card>
+
+        <Card className="backdrop-blur-lg bg-card/50 mt-6">
+          <CardHeader className="flex flex-row items-center space-x-2">
+            <MapPin className="w-5 h-5 text-primary" />
+            <h2 className="text-xl font-semibold">Last Known Location</h2>
+          </CardHeader>
+          <CardContent>
+            {analytics?.lastGame?.currentLocation?.latitude &&
+              analytics?.lastGame?.currentLocation?.longitude && (
+                <AnalyticsMap
+                  latitude={analytics.lastGame.currentLocation.latitude}
+                  longitude={analytics.lastGame.currentLocation.longitude}
+                />
+              )}
           </CardContent>
         </Card>
       </div>

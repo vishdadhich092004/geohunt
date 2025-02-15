@@ -22,6 +22,12 @@ export function Navbar() {
 
           <div className="hidden md:flex items-center space-x-6">
             <Link
+              to="/"
+              className="text-foreground/80 hover:text-primary transition-colors"
+            >
+              Home
+            </Link>
+            <Link
               to="/how-to-play"
               className="text-foreground/80 hover:text-primary transition-colors"
             >

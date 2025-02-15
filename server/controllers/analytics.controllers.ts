@@ -22,10 +22,20 @@ export const getAnalytics = async (
     where: {
       userId: userId,
     },
+    include: {
+      currentLocation: true,
+    },
   });
 
   if (!games || games.length === 0) {
-    return res.status(404).json({ message: "No games found" });
+    return res.status(200).json({
+      totalGames: 0,
+      firstGame: null,
+      lastGame: null,
+      playingSinceInDays: 0,
+      averageScore: 0,
+      user: user,
+    });
   }
 
   // Sort after checking for empty array
