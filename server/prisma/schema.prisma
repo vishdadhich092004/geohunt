@@ -44,7 +44,6 @@ model Guess {
   userId    String   @db.Uuid
   gameId    String   @db.Uuid
   latitude  Float
-  hints     Int      @default(0)
   longitude Float
   distance  Float
   score     Int      @default(0)
