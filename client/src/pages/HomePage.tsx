@@ -1,7 +1,7 @@
 import { CTA } from "./HomePage/CTA";
 import { Features } from "./HomePage/Features";
 import { Hero } from "./HomePage/Hero";
-import { FeatureAnnouncement } from "@/components/FeatureAnnouncement";
+import { FeatureAnnouncement } from "@/components/HeroSection/FeatureAnnouncement";
 
 function HomePage() {
   return (

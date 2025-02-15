@@ -2,15 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Compass } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "@/contexts/AuthContext";
+import UserDropdown from "@/components/Navbar/UserDropdown";
 export function Navbar() {
-  const { user } = useAuthContext();
+  const { user, isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   const handlePlayNow = () => {
     navigate("/new-user");
   };
   return (
     <nav className="fixed w-full z-50 bg-background/80 backdrop-blur-md border-b">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <Compass className="h-8 w-8 text-primary" />
@@ -38,15 +39,18 @@ export function Navbar() {
             >
               Premium
             </Link>
-            <Link
-              to={`/analytics/${user?.id}`}
-              className="text-foreground/80 hover:text-primary transition-colors"
-            >
-              Stats
-            </Link>
+            {isAuthenticated && (
+              <Link
+                to={`/analytics/${user?.id}`}
+                className="text-foreground/80 hover:text-primary transition-colors"
+              >
+                Stats
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center space-x-4">
+            <UserDropdown />
             <Button
               onClick={handlePlayNow}
               className="bg-primary hover:bg-primary/90"

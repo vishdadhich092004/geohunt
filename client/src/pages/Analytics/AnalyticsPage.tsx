@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getAnalytics } from "../api-clients";
+import { useParams, useNavigate } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { GameType, UserType } from "../../../server/shared/types";
 import { format } from "date-fns";
 import { Skeleton } from "@/components/ui/skeleton";
+import { GameType } from "../../../../server/shared/types";
+import { UserType } from "../../../../server/shared/types";
+import { getAnalytics } from "@/api-clients";
 
 interface AnalyticsData {
   totalGames: number;
@@ -17,6 +19,7 @@ interface AnalyticsData {
 
 function AnalyticsPage() {
   const { userId } = useParams();
+  const navigate = useNavigate();
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,6 +71,14 @@ function AnalyticsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-4 flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
+      >
+        <ChevronLeft className="mr-2 h-4 w-4" />
+        Back
+      </button>
+
       <h1 className="text-3xl font-bold text-center mb-8">Player Statistics</h1>
 
       {/* User Information */}

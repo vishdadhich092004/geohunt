@@ -1,17 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import NewGame from "./components/Game/NewGame";
-import GamePage from "./pages/GamePage";
-import NewUser from "./pages/NewUser";
-import LeaderboardPage from "./pages/LeaderboardPage";
-import HowToPlayPage from "./pages/HowToPlayPage";
-import CountryCards from "./pages/LocationSelect";
-import LearnMore from "./pages/LearnMore";
+import GamePage from "./pages/Game/GamePage";
+import NewUser from "./pages/User/NewUser";
+import LeaderboardPage from "./pages/Leaderboard/LeaderboardPage";
+import HowToPlayPage from "./pages/Extras/HowToPlayPage";
+import CountryCards from "./pages/Locations/LocationSelect";
+import LearnMore from "./pages/Extras/LearnMore";
 import Layout from "./layouts/Layout";
-import NotFoundPage from "./pages/NotFoundPage";
-import Premium from "./pages/Premium";
-import Contact from "./pages/Contact";
-import AnalyticsPage from "./pages/AnalyticsPage";
+import NotFoundPage from "./pages/Extras/NotFoundPage";
+import Premium from "./pages/Extras/Premium";
+import Contact from "./pages/Extras/Contact";
+import AnalyticsPage from "./pages/Analytics/AnalyticsPage";
+import IntermediateUserChoice from "./pages/User/IntermediateUserChoice";
 
 function App() {
   return (
@@ -30,6 +31,14 @@ function App() {
           element={
             <Layout>
               <NewUser />
+            </Layout>
+          }
+        />
+        <Route
+          path="/user-choice"
+          element={
+            <Layout>
+              <IntermediateUserChoice />
             </Layout>
           }
         />

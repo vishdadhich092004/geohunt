@@ -1,7 +1,7 @@
-import ExitGame from "../ExitGame";
-import HintButton from "../HintButton";
-import LocationNotLoadedButton from "../LocationNotLoadedButton";
-import GameScore from "./GameScore";
+import HintButton from "@/components/Hints/HintButton";
+import LocationNotLoadedButton from "@/components/Locations/LocationNotLoadedButton";
+import ExitGame from "@/components/Game/ExitGame";
+import GameScore from "@/components/Game/GameScore";
 
 interface GameHeaderProps {
   score: number;

@@ -4,12 +4,11 @@ import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { newUser, fetchLeaderboard } from "@/api-clients";
 import { useToast } from "@/hooks/use-toast";
-import { UserForm, UserFormData } from "@/components/UserForm";
 import { ErrorAlert } from "@/components/ErrorAlert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-
+import { UserForm, UserFormData } from "@/components/User/UserForm";
 export default function NewUser() {
   const navigate = useNavigate();
   const { toast } = useToast();

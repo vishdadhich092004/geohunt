@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { fetchHints } from "@/api-clients";
-import HintsDialog from "./Hints/HintsDialog";
+import HintsDialog from "@/components/Hints/HintsDialog";
 
 interface HintButtonProps {
   lat?: number;

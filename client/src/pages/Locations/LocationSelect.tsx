@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Globe2, Search } from "lucide-react";
+import { Globe2, Search, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { BGCard } from "@/components/ui/background-card";
 import { continents } from "@/utils/countries-data";
+import { Link } from "react-router-dom";
 
 function LocationSelect() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,6 +45,17 @@ function LocationSelect() {
         }}
       />
       <div className="relative z-10">
+        {/* Back Button - Always visible */}
+        <div className="absolute top-4 left-4 z-50">
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors px-4 py-2 rounded-lg hover:bg-primary/10"
+          >
+            <ArrowLeft className="h-5 w-5" />
+            <span>Back</span>
+          </Link>
+        </div>
+
         {/* Fixed Search Section */}
 
         {/* Hero Section - Only visible when not scrolled */}

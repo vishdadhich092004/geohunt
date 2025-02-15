@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { fetchLeaderboard } from "../api-clients";
+import { fetchLeaderboard } from "@/api-clients";
 import { ErrorAlert } from "@/components/ErrorAlert";
 import { LeaderboardHeader } from "@/components/Leaderboard/LeaderboardHeader";
 import { LeaderboardLoading } from "@/components/Leaderboard/LeaderboardLoading";

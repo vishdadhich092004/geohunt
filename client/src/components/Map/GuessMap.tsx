@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { AdvancedMarker, Map, MapMouseEvent } from "@vis.gl/react-google-maps";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 const mapId = import.meta.env.VITE_JS_MAP_ID as string;
 

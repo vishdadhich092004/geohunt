@@ -6,7 +6,7 @@ import haversineDistance from "@/utils/haversineDistance";
 import { ResultMap } from "@/components/Result/ResultMap";
 import { ResultLegend } from "@/components/Result/ResultLegend";
 import { getScoreMessage } from "@/utils/getMessage";
-import ExitGame from "@/components/ExitGame";
+import ExitGame from "@/components/Game/ExitGame";
 
 interface Location {
   latitude: number;

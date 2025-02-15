@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLoadScript } from "@react-google-maps/api";
-import StreetView from "../components/StreetView";
+import StreetView from "../../components/Map/StreetView";
 import { useParams } from "react-router-dom";
-import { fetchGameByGameId, newGuess } from "../api-clients";
-import { GameType } from "../../../server/shared/types";
-import GuessMap from "../components/GuessMap";
+import { fetchGameByGameId, newGuess } from "../../api-clients";
+import { GameType } from "../../../../server/shared/types";
+import GuessMap from "../../components/Map/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-import ResultScreen from "./ResultScreen";
+import ResultScreen from "../../components/Map/ResultScreen";
 import { APIProvider } from "@vis.gl/react-google-maps";
 import { HashLoader } from "react-spinners";
 import GameHeader from "@/components/Game/GameHeader";

@@ -1,5 +1,5 @@
 import { GameType } from "../../server/shared/types";
-import { NewUserFormData } from "./components/NewUser";
+import { NewUserFormData } from "./components/User/NewUser";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

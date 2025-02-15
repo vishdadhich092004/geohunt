@@ -6,8 +6,11 @@ export function CTA() {
   const { isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   const handlePlayNow = () => {
-    if (isAuthenticated) navigate("/games");
-    else navigate("/new-user");
+    if (isAuthenticated) {
+      navigate("/user-choice");
+    } else {
+      navigate("/new-user");
+    }
   };
   return (
     <div className="relative py-24 overflow-hidden">

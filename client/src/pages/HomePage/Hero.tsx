@@ -2,10 +2,12 @@ import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { useAuthContext } from "@/contexts/AuthContext";
 export function Hero() {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuthContext();
   const [showNewFeature, setShowNewFeature] = useState(false);
+  const [showComingSoon, setShowComingSoon] = useState(false);
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -67,7 +69,11 @@ export function Hero() {
         <div className="flex gap-4 justify-center animate-fade-in-up delay-200">
           <Button
             onClick={() => {
-              navigate("/new-user");
+              if (isAuthenticated) {
+                navigate("/user-choice");
+              } else {
+                navigate("/new-user");
+              }
             }}
             size="lg"
             className="bg-primary hover:bg-primary/90 text-lg px-8"
@@ -77,9 +83,16 @@ export function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="text-white border-white hover:bg-white/10 text-lg px-8"
+            className="text-white border-white hover:bg-white/10 text-lg px-8 relative"
+            onClick={() => setShowComingSoon(true)}
+            onMouseLeave={() => setShowComingSoon(false)}
           >
             Watch Demo
+            {showComingSoon && (
+              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-black/90 text-white px-4 py-2 rounded-lg whitespace-nowrap">
+                Coming Soon!
+              </div>
+            )}
           </Button>
         </div>
       </div>
