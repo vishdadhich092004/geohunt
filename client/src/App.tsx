@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+// import HomePage from "./pages/HomePage";
 import NewGame from "./components/Game/NewGame";
 import GamePage from "./pages/Game/GamePage";
 import NewUser from "./pages/User/NewUser";
@@ -13,6 +13,7 @@ import Premium from "./pages/Extras/Premium";
 import Contact from "./pages/Extras/Contact";
 import AnalyticsPage from "./pages/Analytics/AnalyticsPage";
 import IntermediateUserChoice from "./pages/User/IntermediateUserChoice";
+import MaintenancePage from "./pages/Extras/MaintenancePage";
 
 function App() {
   return (
@@ -21,9 +22,10 @@ function App() {
         <Route
           path="/"
           element={
-            <Layout>
-              <HomePage />
-            </Layout>
+            // <Layout>
+            //   <HomePage />
+            // </Layout>
+            <MaintenancePage />
           }
         />
         <Route
