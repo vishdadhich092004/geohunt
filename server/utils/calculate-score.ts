@@ -1,18 +1,14 @@
-const calculateScore = (distance: number, scoreFactor?: number) => {
-  if (distance * 1000 < 25) {
+const calculateScore = (distance: number, scoreFactor: number = 1000) => {
+  // Perfect score only for extremely accurate guesses (within 10 meters)
+  if (distance * 1000 < 10) {
     return 5000;
   }
 
-  const mapFactor = scoreFactor || 2000;
+  // Calculate score using exponential decay with steeper curve
+  const score = 5000 * Math.exp(-distance / scoreFactor);
 
-  const power = (distance * -1) / mapFactor;
-  const score = 5000 * Math.pow(Math.E, power);
-
-  if (score < 0) {
-    return 0;
-  }
-
-  return Math.round(score);
+  // Return rounded score, ensuring it's between 0 and 5000
+  return Math.max(0, Math.round(score));
 };
 
 export default calculateScore;
