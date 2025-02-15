@@ -24,6 +24,23 @@ export default {
           "100%": { transform: "translateX(200px)" },
         },
       },
+      animation: {
+        "gradient-x": "gradient-x 15s ease infinite",
+        "bounce-slow": "bounce 3s ease-in-out infinite",
+        "pulse-slow": "pulse 3s ease-in-out infinite",
+      },
+      keyframes: {
+        "gradient-x": {
+          "0%, 100%": {
+            "background-size": "200% 200%",
+            "background-position": "left center",
+          },
+          "50%": {
+            "background-size": "200% 200%",
+            "background-position": "right center",
+          },
+        },
+      },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
       },

@@ -43,7 +43,7 @@ export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
   }, [actualLocation, guessedLocation]);
 
   return (
-    <div className="w-full h-96">
+    <div className="w-full h-96 ">
       <Map
         mapId={mapId}
         defaultZoom={4}
@@ -53,7 +53,7 @@ export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
         }}
         clickableIcons={false}
         defaultBounds={defaultBounds}
-        disableDefaultUI={false}
+        disableDefaultUI={true}
       >
         <Polyline coordinates={pathCoordinates} />
 
