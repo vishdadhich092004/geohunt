@@ -77,6 +77,7 @@ const GuessMap = ({
     <div className="flex flex-col gap-2 p-2 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-lg shadow-xl">
       <div className="rounded-lg overflow-hidden shadow-lg relative">
         <Map
+          key={isGuessing ? "guessing" : "not-guessing"}
           style={mapContainerStyle}
           defaultCenter={defaultCenter}
           defaultZoom={2}

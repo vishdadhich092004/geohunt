@@ -16,7 +16,7 @@ import MaintenancePage from "./pages/Extras/MaintenancePage";
 import HomePage from "./pages/HomePage";
 
 function App() {
-  const isMaintenanceMode = true;
+  const isMaintenanceMode = false;
 
   return (
     <BrowserRouter>
