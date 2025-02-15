@@ -6,8 +6,8 @@ import { FeatureAnnouncement } from "@/components/HeroSection/FeatureAnnouncemen
 function HomePage() {
   return (
     <div className="min-h-screen bg-background">
-      <FeatureAnnouncement />
       <Hero />
+      <FeatureAnnouncement />
       <Features />
       <CTA />
     </div>
