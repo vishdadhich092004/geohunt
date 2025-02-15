@@ -14,6 +14,15 @@ function Premium() {
       >
         Home Page
       </Link>
+
+      <a
+        className="text-lg text-center bg-blue-600 px-3 py-2 rounded-lg shadow-2xl hover:bg-blue-700 transition-colors"
+        href="https://paypal.me/vishdadhich"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Donate via PayPal
+      </a>
     </div>
   );
 }

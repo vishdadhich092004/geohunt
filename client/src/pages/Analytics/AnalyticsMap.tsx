@@ -13,7 +13,7 @@ interface MapProps {
   zoom?: number;
 }
 
-const AnalyticsMap = ({ latitude, longitude, zoom = 15 }: MapProps) => {
+const AnalyticsMap = ({ latitude, longitude, zoom = 12 }: MapProps) => {
   const position = { lat: latitude, lng: longitude };
 
   return (

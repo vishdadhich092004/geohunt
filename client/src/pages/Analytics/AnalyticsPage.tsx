@@ -18,7 +18,7 @@ import { GameType } from "../../../../server/shared/types";
 import { UserType } from "../../../../server/shared/types";
 import { getAnalytics } from "@/api-clients";
 import AnalyticsMap from "./AnalyticsMap";
-
+import StatCard from "@/components/ui/stat-card";
 interface AnalyticsData {
   totalGames: number;
   firstGame: GameType;
@@ -26,28 +26,6 @@ interface AnalyticsData {
   playingSinceInDays: number;
   averageScore: number;
   user: UserType;
-}
-
-function StatCard({
-  icon: Icon,
-  value,
-  label,
-}: {
-  icon: React.ElementType;
-  value: string | number;
-  label: string;
-}) {
-  return (
-    <Card className="transform transition-all duration-300 hover:scale-105">
-      <CardContent className="pt-6 pb-6">
-        <div className="flex flex-col items-center space-y-2">
-          <Icon className="w-8 h-8 text-primary mb-2" />
-          <div className="text-3xl font-bold">{value}</div>
-          <div className="text-sm text-muted-foreground">{label}</div>
-        </div>
-      </CardContent>
-    </Card>
-  );
 }
 
 function AnalyticsPage() {
@@ -141,7 +119,7 @@ function AnalyticsPage() {
             {analytics?.user.username}
           </h1>
           <p className="text-muted-foreground">
-            Joined{" "}
+            Joined the party on{" "}
             {analytics?.user.createdAt
               ? format(new Date(analytics.user.createdAt), "MMMM dd, yyyy")
               : "N/A"}
@@ -152,36 +130,36 @@ function AnalyticsPage() {
           <StatCard
             icon={GamepadIcon}
             value={analytics?.totalGames || 0}
-            label="Total Games"
+            label="Games Conquered"
           />
           <StatCard
             icon={Target}
             value={analytics?.averageScore.toFixed(1) || 0}
-            label="Average Score"
+            label="Average Awesomeness"
           />
           <StatCard
             icon={Calendar}
             value={analytics?.playingSinceInDays || 0}
-            label="Days Playing"
+            label="Days of Glory"
           />
           <StatCard
             icon={Trophy}
             value={analytics?.lastGame?.score || 0}
-            label="Last Game Score"
+            label="Latest Triumph"
           />
         </div>
 
         <Card className="backdrop-blur-lg bg-card/50">
           <CardHeader className="flex flex-row items-center space-x-2">
             <History className="w-5 h-5 text-primary" />
-            <h2 className="text-xl font-semibold">Gaming History</h2>
+            <h2 className="text-xl font-semibold">Epic Saga</h2>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex items-center space-x-4">
                 <Clock className="w-5 h-5 text-muted-foreground" />
                 <div>
-                  <p className="text-sm text-muted-foreground">First Game</p>
+                  <p className="text-sm text-muted-foreground">The Beginning</p>
                   <p className="font-medium">
                     {analytics?.firstGame &&
                       format(
@@ -194,7 +172,7 @@ function AnalyticsPage() {
               <div className="flex items-center space-x-4">
                 <Clock className="w-5 h-5 text-muted-foreground" />
                 <div>
-                  <p className="text-sm text-muted-foreground">Latest Game</p>
+                  <p className="text-sm text-muted-foreground">Latest Quest</p>
                   <p className="font-medium">
                     {analytics?.lastGame &&
                       format(
@@ -211,7 +189,7 @@ function AnalyticsPage() {
         <Card className="backdrop-blur-lg bg-card/50 mt-6">
           <CardHeader className="flex flex-row items-center space-x-2">
             <MapPin className="w-5 h-5 text-primary" />
-            <h2 className="text-xl font-semibold">Last Known Location</h2>
+            <h2 className="text-xl font-semibold">Last Seen Adventuring</h2>
           </CardHeader>
           <CardContent>
             {analytics?.lastGame?.currentLocation?.latitude &&
