@@ -46,3 +46,8 @@ export interface APIResponse<T> {
 }
 
 export type HintType = string;
+
+export type CoordinatesType = {
+  latitude: number;
+  longitude: number;
+};

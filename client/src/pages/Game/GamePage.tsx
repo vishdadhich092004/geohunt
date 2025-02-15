@@ -135,6 +135,7 @@ function GamePage() {
             setSelectedLocation={setSelectedLocation}
             onLocationSelect={handleLocationSelect}
             isGuessing={isGuessing}
+            currentRoundLocation={currentRoundLocation!}
           />
         </div>
       </div>

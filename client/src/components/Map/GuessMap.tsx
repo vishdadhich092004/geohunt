@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { AdvancedMarker, Map, MapMouseEvent } from "@vis.gl/react-google-maps";
 import { Button } from "../ui/button";
-
+import { CoordinatesType } from "../../../../server/shared/types";
 const mapId = import.meta.env.VITE_JS_MAP_ID as string;
 
 interface Location {
@@ -14,6 +14,7 @@ interface GuessMapProps {
   isGuessing?: boolean;
   selectedLocation: Location;
   setSelectedLocation: (arg0: Location | null) => void;
+  currentRoundLocation: CoordinatesType;
 }
 
 const GuessMap = ({
@@ -21,6 +22,7 @@ const GuessMap = ({
   isGuessing = false,
   selectedLocation,
   setSelectedLocation,
+  currentRoundLocation,
 }: GuessMapProps) => {
   const [isFullyExpanded, setIsFullyExpanded] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -77,7 +79,7 @@ const GuessMap = ({
     <div className="flex flex-col gap-2 p-2 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-lg shadow-xl">
       <div className="rounded-lg overflow-hidden shadow-lg relative">
         <Map
-          key={isGuessing ? "guessing" : "not-guessing"}
+          key={`map-${currentRoundLocation.latitude}-${currentRoundLocation.longitude}`}
           style={mapContainerStyle}
           defaultCenter={defaultCenter}
           defaultZoom={2}
@@ -93,7 +95,7 @@ const GuessMap = ({
         </Map>
 
         {isGuessing && (
-          <div className="absolute inset-0 bg-zinc-900/80 backdrop-blur-sm flex items-center justify-center">
+          <div className="absolute inset-0 bg-zinc-900/80 backdrop-blur-sm flex items-center justify-center z-10">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500"></div>
           </div>
         )}
