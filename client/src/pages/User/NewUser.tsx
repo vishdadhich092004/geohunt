@@ -6,9 +6,10 @@ import { newUser, fetchLeaderboard } from "@/api-clients";
 import { useToast } from "@/hooks/use-toast";
 import { ErrorAlert } from "@/components/ErrorAlert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy } from "lucide-react";
+import { Trophy, Loader2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserForm, UserFormData } from "@/components/User/UserForm";
+
 export default function NewUser() {
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -31,10 +32,9 @@ export default function NewUser() {
     },
   });
 
-  const { data: topPlayers } = useQuery(["leaderboard"], () =>
+  const { data, isLoading } = useQuery(["leaderboard"], () =>
     fetchLeaderboard(1, 15)
   );
-
   const handleSubmit = (data: UserFormData) => {
     setError(null);
     mutation.mutate(data);
@@ -59,22 +59,28 @@ export default function NewUser() {
             <CardContent>
               <ScrollArea className="h-[500px] pr-2">
                 <div className="space-y-3">
-                  {topPlayers?.map((player: any, index: any) => (
-                    <div
-                      key={player.id}
-                      className="flex items-center justify-between p-3 bg-muted/30 rounded-lg"
-                    >
-                      <div className="flex items-center gap-2">
-                        <span className="text-primary font-medium min-w-[2rem]">
-                          {index + 1}
-                        </span>
-                        <span>{player.username}</span>
-                      </div>
-                      <span className="text-muted-foreground font-mono">
-                        {player.totalScore.toLocaleString()}
-                      </span>
+                  {isLoading ? (
+                    <div className="flex items-center justify-center py-8">
+                      <Loader2 className="h-8 w-8 animate-spin text-primary" />
                     </div>
-                  ))}
+                  ) : (
+                    data?.data?.map((player: any, index: any) => (
+                      <div
+                        key={player.id}
+                        className="flex items-center justify-between p-3 bg-muted/30 rounded-lg"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className="text-primary font-medium min-w-[2rem]">
+                            {index + 1}
+                          </span>
+                          <span>{player.username}</span>
+                        </div>
+                        <span className="text-muted-foreground font-mono">
+                          {player.totalScore.toLocaleString()}
+                        </span>
+                      </div>
+                    ))
+                  )}
                 </div>
               </ScrollArea>
             </CardContent>
