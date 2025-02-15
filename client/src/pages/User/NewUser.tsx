@@ -31,9 +31,9 @@ export default function NewUser() {
     },
   });
 
-  const { data: topPlayers } = useQuery("leaderboard", fetchLeaderboard, {
-    staleTime: 60000,
-  });
+  const { data: topPlayers } = useQuery(["leaderboard"], () =>
+    fetchLeaderboard(1, 15)
+  );
 
   const handleSubmit = (data: UserFormData) => {
     setError(null);
