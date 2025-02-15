@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MoreVertical } from "lucide-react";
+import { useState } from "react";
 
 interface GameHeaderProps {
   score: number;
@@ -19,6 +20,8 @@ interface GameHeaderProps {
 }
 
 function GameHeader({ score, currentRoundLocation }: GameHeaderProps) {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   return (
     <div className="absolute top-4 z-10 w-full px-4">
       <div className="mx-auto max-w-6xl bg-zinc-900/90 rounded-lg shadow-xl border border-zinc-800">
@@ -31,15 +34,18 @@ function GameHeader({ score, currentRoundLocation }: GameHeaderProps) {
             />
           </div>
           <div className="md:hidden">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="focus:outline-none">
+            <DropdownMenu
+              open={isDropdownOpen}
+              onOpenChange={setIsDropdownOpen}
+            >
+              <DropdownMenuTrigger>
                 <MoreVertical className="h-5 w-5" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem>
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
                   <LocationNotLoadedButton />
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
                   <ExitGame />
                 </DropdownMenuItem>
               </DropdownMenuContent>

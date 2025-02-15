@@ -31,17 +31,17 @@ function LocationNotLoadedButton() {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="bg-zinc-900/95 border border-zinc-800 backdrop-blur-md shadow-xl">
+      <DialogContent className="bg-zinc-900/95 border border-zinc-800 backdrop-blur-md shadow-xl w-[90vw] max-w-md mx-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-white">
+          <DialogTitle className="text-lg md:text-xl font-bold text-white">
             Location Not Loaded?
           </DialogTitle>
-          <DialogDescription className="flex flex-col gap-4 text-zinc-300">
+          <DialogDescription className="flex flex-col gap-2 md:gap-4 text-sm md:text-base text-zinc-300">
             Sorry for the loss in the game. We are dependent on Google Street
             View.
             <Button
               variant="default"
-              className="bg-amber-500 hover:bg-amber-600 text-zinc-900 font-medium w-fit"
+              className="bg-amber-500 hover:bg-amber-600 text-zinc-900 font-medium w-fit text-sm md:text-base px-3 py-2"
               onClick={handleLoadNewGame}
             >
               Start New Game

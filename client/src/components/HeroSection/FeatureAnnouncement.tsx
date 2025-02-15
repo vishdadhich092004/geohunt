@@ -18,7 +18,7 @@ export function FeatureAnnouncement() {
   };
 
   return (
-    <div className="relative mx-4 mb-3 mt-20">
+    <div className="relative mx-4 mb-3 ">
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 rounded-lg bg-cover bg-center"

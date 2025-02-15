@@ -37,24 +37,24 @@ function ExitGame({ className }: ExitGameProps) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="bg-zinc-900/95 border border-zinc-800 backdrop-blur-md shadow-xl">
+      <DialogContent className="bg-zinc-900/95 border border-zinc-800 backdrop-blur-md shadow-xl w-[90vw] max-w-md mx-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl font-bold text-white">
+          <DialogTitle className="text-lg md:text-xl font-bold text-white">
             Wait, Why Exit?
           </DialogTitle>
-          <DialogDescription className="flex flex-col gap-4 text-zinc-300">
+          <DialogDescription className="flex flex-col gap-2 md:gap-4 text-sm md:text-base text-zinc-300">
             Maintain a streak of accurate guesses and compete with others.
-            <span className="flex gap-2">
+            <span className="flex flex-col sm:flex-row gap-2">
               <Button
                 variant="default"
-                className={`bg-amber-500 hover:bg-amber-600 text-zinc-900 font-medium w-fit ${className}`}
+                className={`bg-amber-500 hover:bg-amber-600 text-zinc-900 font-medium w-full sm:w-fit text-sm md:text-base ${className}`}
                 onClick={handleCancelExit}
               >
                 Continue Playing
               </Button>
               <Button
                 variant="destructive"
-                // className="bg-amber-500 hover:bg-amber-600 text-zinc-900 font-medium w-fit"
+                className="w-full sm:w-fit text-sm md:text-base"
                 onClick={handleExitGame}
               >
                 Exit
