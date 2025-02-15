@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import HomePage from "./pages/HomePage";
 import NewGame from "./components/Game/NewGame";
 import GamePage from "./pages/Game/GamePage";
 import NewUser from "./pages/User/NewUser";
@@ -14,67 +13,75 @@ import Contact from "./pages/Extras/Contact";
 import AnalyticsPage from "./pages/Analytics/AnalyticsPage";
 import IntermediateUserChoice from "./pages/User/IntermediateUserChoice";
 import MaintenancePage from "./pages/Extras/MaintenancePage";
+import HomePage from "./pages/HomePage";
 
 function App() {
+  const isMaintenanceMode = true;
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            // <Layout>
-            //   <HomePage />
-            // </Layout>
-            <MaintenancePage />
-          }
-        />
-        <Route
-          path="/new-user"
-          element={
-            <Layout>
-              <NewUser />
-            </Layout>
-          }
-        />
-        <Route
-          path="/user-choice"
-          element={
-            <Layout>
-              <IntermediateUserChoice />
-            </Layout>
-          }
-        />
-        <Route path="/games" element={<NewGame />} />
-        <Route path="/locations" element={<CountryCards />} />
-        <Route path="/guesses/:gameId" element={<GamePage />} />
-        <Route
-          path="/leaderboard"
-          element={
-            <Layout>
-              <LeaderboardPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/how-to-play"
-          element={
-            <Layout>
-              <HowToPlayPage />
-            </Layout>
-          }
-        />
-        <Route
-          path="/learn-more"
-          element={
-            <Layout>
-              <LearnMore />
-            </Layout>
-          }
-        />
-        <Route path="/premium" element={<Premium />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/analytics/:userId" element={<AnalyticsPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        {isMaintenanceMode ? (
+          <Route path="*" element={<MaintenancePage />} />
+        ) : (
+          <>
+            <Route
+              path="/"
+              element={
+                <Layout>
+                  <HomePage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/new-user"
+              element={
+                <Layout>
+                  <NewUser />
+                </Layout>
+              }
+            />
+            <Route
+              path="/user-choice"
+              element={
+                <Layout>
+                  <IntermediateUserChoice />
+                </Layout>
+              }
+            />
+            <Route path="/games" element={<NewGame />} />
+            <Route path="/locations" element={<CountryCards />} />
+            <Route path="/guesses/:gameId" element={<GamePage />} />
+            <Route
+              path="/leaderboard"
+              element={
+                <Layout>
+                  <LeaderboardPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/how-to-play"
+              element={
+                <Layout>
+                  <HowToPlayPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="/learn-more"
+              element={
+                <Layout>
+                  <LearnMore />
+                </Layout>
+              }
+            />
+            <Route path="/premium" element={<Premium />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/analytics/:userId" element={<AnalyticsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </>
+        )}
       </Routes>
     </BrowserRouter>
   );
