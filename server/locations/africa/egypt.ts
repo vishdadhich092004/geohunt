@@ -20,4 +20,16 @@ export const popularAreas = [
   { minLat: 30.8173, minLon: 28.9517, maxLat: 30.8573, maxLon: 28.9917 }, // El Alamein
   { minLat: 27.1809, minLon: 31.1837, maxLat: 27.2209, maxLon: 31.2237 }, // Qena
   { minLat: 31.0461, minLon: 31.3783, maxLat: 31.0861, maxLon: 31.4183 }, // Tanta
+
+  // Additional cities
+  { minLat: 25.4208, minLon: 30.5917, maxLat: 25.4608, maxLon: 30.6317 }, // Asyut
+  { minLat: 24.4539, minLon: 35.4744, maxLat: 24.4939, maxLon: 35.5144 }, // Safaga
+  { minLat: 29.3761, minLon: 30.817, maxLat: 29.4161, maxLon: 30.857 }, // Beni Suef
+  { minLat: 26.1901, minLon: 32.7368, maxLat: 26.2301, maxLon: 32.7768 }, // Minya
+  { minLat: 31.3409, minLon: 30.0595, maxLat: 31.3809, maxLon: 30.0995 }, // Rosetta (Rashid)
+  { minLat: 30.7089, minLon: 30.9454, maxLat: 30.7489, maxLon: 30.9854 }, // Benha
+  { minLat: 25.0257, minLon: 35.2448, maxLat: 25.0657, maxLon: 35.2848 }, // Dahab
+  { minLat: 29.8688, minLon: 32.5007, maxLat: 29.9088, maxLon: 32.5407 }, // Suez
+  { minLat: 30.4398, minLon: 31.8132, maxLat: 30.4798, maxLon: 31.8532 }, // Heliopolis
+  { minLat: 26.8206, minLon: 30.8017, maxLat: 26.8606, maxLon: 30.8417 }, // Akhmim
 ];

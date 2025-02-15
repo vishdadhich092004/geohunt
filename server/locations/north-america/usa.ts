@@ -31,4 +31,9 @@ export const popularAreas = [
   { minLat: 39.1031, minLon: -84.512, maxLat: 39.1431, maxLon: -84.472 }, // Cincinnati, OH
   { minLat: 43.0389, minLon: -87.9065, maxLat: 43.0789, maxLon: -87.8665 }, // Milwaukee, WI
   { minLat: 40.7608, minLon: -111.891, maxLat: 40.8008, maxLon: -111.851 }, // Salt Lake City, UT
+  { minLat: 39.9526, minLon: -75.1652, maxLat: 39.9926, maxLon: -75.1252 }, // Philadelphia, PA
+  { minLat: 32.7157, minLon: -117.1611, maxLat: 32.7557, maxLon: -117.1211 }, // San Diego, CA
+  { minLat: 30.2672, minLon: -97.7431, maxLat: 30.3072, maxLon: -97.7031 }, // Austin, TX
+  { minLat: 35.7796, minLon: -78.6382, maxLat: 35.8196, maxLon: -78.5982 }, // Raleigh, NC
+  { minLat: 39.2904, minLon: -76.6122, maxLat: 39.3304, maxLon: -76.5722 }, // Baltimore, MD
 ];

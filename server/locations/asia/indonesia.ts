@@ -20,4 +20,7 @@ export const popularAreas = [
   { minLat: -6.9102, minLon: 107.61, maxLat: -6.8702, maxLon: 107.65 }, // Garut
   { minLat: -6.2061, minLon: 106.7397, maxLat: -6.1661, maxLon: 106.7797 }, // Depok
   { minLat: -8.5837, minLon: 118.6677, maxLat: -8.5437, maxLon: 118.7077 }, // Kupang
+  { minLat: 3.5952, minLon: 98.6722, maxLat: 3.6352, maxLon: 98.7122 }, // Medan
+  { minLat: -5.1477, minLon: 119.4327, maxLat: -5.1077, maxLon: 119.4727 }, // Makassar
+  { minLat: -2.9909, minLon: 104.7561, maxLat: -2.9509, maxLon: 104.7961 }, // Palembang
 ];

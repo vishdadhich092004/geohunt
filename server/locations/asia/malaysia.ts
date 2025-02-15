@@ -20,4 +20,7 @@ export const popularAreas = [
   { minLat: 4.7981, minLon: 103.3197, maxLat: 4.8381, maxLon: 103.3597 }, // Batu Pahat
   { minLat: 3.0802, minLon: 101.7138, maxLat: 3.1202, maxLon: 101.7538 }, // Puchong
   { minLat: 5.3755, minLon: 100.3273, maxLat: 5.4155, maxLon: 100.3673 }, // Bukit Mertajam
+  { minLat: 5.329, minLon: 103.137, maxLat: 5.369, maxLon: 103.177 }, // Kuala Terengganu
+  { minLat: 2.287, minLon: 111.831, maxLat: 2.327, maxLon: 111.871 }, // Sibu
+  { minLat: 5.283, minLon: 115.23, maxLat: 5.323, maxLon: 115.27 }, // Labuan
 ];

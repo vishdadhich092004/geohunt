@@ -31,4 +31,15 @@ export const popularAreas = [
   { minLat: -27.1953, minLon: 153.027, maxLat: -27.1553, maxLon: 153.067 }, // Moreton Island, Queensland
   { minLat: -35.711, minLon: 150.1762, maxLat: -35.671, maxLon: 150.2162 }, // Batemans Bay, New South Wales
   { minLat: -25.282, minLon: 152.8509, maxLat: -25.242, maxLon: 152.8909 }, // Hervey Bay, Queensland
+  { minLat: -31.9535, minLon: 115.8575, maxLat: -31.9135, maxLon: 115.8975 }, // Fremantle, Western Australia
+  { minLat: -33.8688, minLon: 151.2093, maxLat: -33.8288, maxLon: 151.2493 }, // Manly, New South Wales
+  { minLat: -37.814, minLon: 144.9633, maxLat: -37.774, maxLon: 145.0033 }, // St Kilda, Victoria
+  { minLat: -27.4698, minLon: 153.0251, maxLat: -27.4298, maxLon: 153.0651 }, // Noosa, Queensland
+  { minLat: -31.9505, minLon: 115.8605, maxLat: -31.9105, maxLon: 115.9005 }, // Rottnest Island, Western Australia
+  { minLat: -34.9285, minLon: 138.6007, maxLat: -34.8885, maxLon: 138.6407 }, // Glenelg, South Australia
+  { minLat: -35.2809, minLon: 149.13, maxLat: -35.2409, maxLon: 149.17 }, // Jervis Bay, New South Wales
+  { minLat: -28.0167, minLon: 153.4, maxLat: -27.9767, maxLon: 153.44 }, // Surfers Paradise, Queensland
+  { minLat: -32.9283, minLon: 151.7817, maxLat: -32.8883, maxLon: 151.8217 }, // Port Stephens, New South Wales
+  { minLat: -42.8821, minLon: 147.3272, maxLat: -42.8421, maxLon: 147.3672 }, // Launceston, Tasmania
+  { minLat: -12.4634, minLon: 130.8456, maxLat: -12.4234, maxLon: 130.8856 }, // Litchfield National Park, Northern Territory
 ];

@@ -42,4 +42,23 @@ export const popularAreas = [
   { minLat: 16.5062, minLon: 80.648, maxLat: 16.5462, maxLon: 80.708 }, // Vijayawada, Andhra Pradesh
   { minLat: 10.7867, minLon: 79.1378, maxLat: 10.8267, maxLon: 79.1978 }, // Thanjavur, Tamil Nadu
   { minLat: 22.3072, minLon: 73.1812, maxLat: 22.3472, maxLon: 73.2412 }, // Vadodara, Gujarat
+
+  { minLat: 26.8467, minLon: 80.9462, maxLat: 26.8867, maxLon: 81.0062 }, // Lucknow, Uttar Pradesh
+  { minLat: 23.3441, minLon: 85.3096, maxLat: 23.3841, maxLon: 85.3696 }, // Ranchi, Jharkhand
+  { minLat: 23.6345, minLon: 86.4298, maxLat: 23.6745, maxLon: 86.4898 }, // Jamshedpur, Jharkhand
+  { minLat: 26.1433, minLon: 91.7898, maxLat: 26.1833, maxLon: 91.8498 }, // Guwahati, Assam
+  { minLat: 23.0525, minLon: 72.5714, maxLat: 23.0925, maxLon: 72.6314 }, // Gandhinagar, Gujarat
+  { minLat: 14.4426, minLon: 79.9865, maxLat: 14.4826, maxLon: 80.0465 }, // Tirupati, Andhra Pradesh
+  { minLat: 11.1271, minLon: 78.6569, maxLat: 11.1671, maxLon: 78.7169 }, // Salem, Tamil Nadu
+  { minLat: 25.5941, minLon: 91.8926, maxLat: 25.6341, maxLon: 91.9526 }, // Shillong, Meghalaya
+  { minLat: 23.7271, minLon: 86.9524, maxLat: 23.7671, maxLon: 87.0124 }, // Dhanbad, Jharkhand
+  { minLat: 26.4499, minLon: 74.6699, maxLat: 26.4899, maxLon: 74.7299 }, // Ajmer, Rajasthan
+  { minLat: 17.6868, minLon: 83.2185, maxLat: 17.7268, maxLon: 83.2785 }, // Vizianagaram, Andhra Pradesh
+  { minLat: 23.0161, minLon: 76.9022, maxLat: 23.0561, maxLon: 76.9622 }, // Ujjain, Madhya Pradesh
+  { minLat: 25.4358, minLon: 78.5682, maxLat: 25.4758, maxLon: 78.6282 }, // Gwalior, Madhya Pradesh
+  { minLat: 15.5957, minLon: 73.8278, maxLat: 15.6357, maxLon: 73.8878 }, // Margao, Goa
+  { minLat: 13.3409, minLon: 74.7421, maxLat: 13.3809, maxLon: 74.8021 }, // Mangaluru, Karnataka
+  { minLat: 16.3067, minLon: 80.4365, maxLat: 16.3467, maxLon: 80.4965 }, // Guntur, Andhra Pradesh
+  { minLat: 23.8103, minLon: 91.2887, maxLat: 23.8503, maxLon: 91.3487 }, // Aizawl, Mizoram
+  { minLat: 27.0844, minLon: 93.6055, maxLat: 27.1244, maxLon: 93.6655 }, // Itanagar, Arunachal Pradesh
 ];

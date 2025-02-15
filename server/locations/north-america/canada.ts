@@ -31,4 +31,13 @@ export const popularAreas = [
   { minLat: 49.106, minLon: -117.7122, maxLat: 49.146, maxLon: -117.6722 }, // Nelson, British Columbia
   { minLat: 45.3627, minLon: -73.7438, maxLat: 45.4027, maxLon: -73.7038 }, // Laval, Quebec
   { minLat: 43.5448, minLon: -80.2482, maxLat: 43.5848, maxLon: -80.2082 }, // Guelph, Ontario
+
+  { minLat: 45.5019, minLon: -73.5674, maxLat: 45.5419, maxLon: -73.5274 }, // Laval, Quebec
+  { minLat: 43.5448, minLon: -80.2482, maxLat: 43.5848, maxLon: -80.2082 }, // Guelph, Ontario
+
+  { minLat: 45.3484, minLon: -75.7574, maxLat: 45.3884, maxLon: -75.7174 }, // Gatineau, Quebec
+  { minLat: 49.282, minLon: -123.1171, maxLat: 49.322, maxLon: -123.0771 }, // Burnaby, British Columbia
+  { minLat: 43.6532, minLon: -79.3832, maxLat: 43.6932, maxLon: -79.3432 }, // Mississauga, Ontario
+  { minLat: 45.4215, minLon: -75.6903, maxLat: 45.4615, maxLon: -75.6503 }, // Brampton, Ontario
+  { minLat: 49.8951, minLon: -97.1384, maxLat: 49.9351, maxLon: -97.0984 }, // Surrey, British Columbia
 ];

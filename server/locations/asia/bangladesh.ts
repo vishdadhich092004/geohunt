@@ -31,4 +31,15 @@ export const popularAreas = [
   { minLat: 24.5761, minLon: 89.6297, maxLat: 24.6161, maxLon: 89.6897 }, // Sirajganj
   { minLat: 22.8073, minLon: 91.1172, maxLat: 22.8473, maxLon: 91.1772 }, // Chandpur
   { minLat: 24.4423, minLon: 91.7695, maxLat: 24.4823, maxLon: 91.8295 }, // Maulvibazar
+
+  { minLat: 23.6345, minLon: 90.5058, maxLat: 23.6745, maxLon: 90.5658 }, // Savar
+  { minLat: 23.9408, minLon: 90.8485, maxLat: 23.9808, maxLon: 90.9085 }, // Gazipur
+  { minLat: 22.5726, minLon: 90.6128, maxLat: 22.6126, maxLon: 90.6728 }, // Patuakhali
+  { minLat: 24.0971, minLon: 90.2675, maxLat: 24.1371, maxLon: 90.3275 }, // Kishoreganj
+  { minLat: 23.5206, minLon: 90.6528, maxLat: 23.5606, maxLon: 90.7128 }, // Munshiganj
+  { minLat: 24.7936, minLon: 90.7211, maxLat: 24.8336, maxLon: 90.7811 }, // Sunamganj
+  { minLat: 22.9868, minLon: 91.4489, maxLat: 23.0268, maxLon: 91.5089 }, // Habiganj
+  { minLat: 23.6411, minLon: 90.1989, maxLat: 23.6811, maxLon: 90.2589 }, // Gopalganj
+  { minLat: 24.0936, minLon: 89.2752, maxLat: 24.1336, maxLon: 89.3352 }, // Pabna
+  { minLat: 22.5211, minLon: 89.1809, maxLat: 22.5611, maxLon: 89.2409 }, // Narail
 ];

@@ -19,4 +19,7 @@ export const popularAreas = [
   { minLat: 37.2308, minLon: 140.378, maxLat: 37.2708, maxLon: 140.418 }, // Koriyama
   { minLat: 34.979, minLon: 135.759, maxLat: 35.019, maxLon: 135.799 }, // Kobe
   { minLat: 36.998, minLon: 138.267, maxLat: 37.038, maxLon: 138.307 }, // Kanazawa
+  { minLat: 34.3853, minLon: 132.4553, maxLat: 34.4253, maxLon: 132.4953 }, // Hiroshima
+  { minLat: 35.1815, minLon: 136.9066, maxLat: 35.2215, maxLon: 136.9466 }, // Nagoya
+  { minLat: 35.4437, minLon: 139.638, maxLat: 35.4837, maxLon: 139.678 }, // Yokohama
 ];
