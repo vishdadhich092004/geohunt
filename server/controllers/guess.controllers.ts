@@ -72,9 +72,9 @@ export const createGuess = async (
         lives: updatedLives,
         score: game.score + currentRoundScore,
         currentRoundScore: currentRoundScore,
+        finishedAt: new Date(),
       },
     });
-    return res.status(400).json({ error: "Game over" });
   }
 
   const nextLocation = await generateRandomPopularLocation(

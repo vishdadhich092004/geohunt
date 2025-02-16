@@ -7,7 +7,10 @@ interface GameLivesProps {
 
 function GameLives({ lives, maxLives = 5 }: GameLivesProps) {
   return (
-    <div className="flex items-center gap-1 bg-zinc-800/50 backdrop-blur-sm px-1.5 sm:px-2 py-1.5 rounded-xl border border-zinc-700/30 transition-all duration-300 hover:border-zinc-700/50">
+    <div
+      className="flex items-center gap-1 bg-zinc-800/50 backdrop-blur-sm px-1.5 sm:px-2 py-1.5 rounded-xl border border-zinc-700/30 transition-all duration-300 hover:border-zinc-700/50"
+      title={`${lives}/${maxLives} lives remaining`}
+    >
       {[...Array(maxLives)].map((_, index) => (
         <Compass
           key={index}

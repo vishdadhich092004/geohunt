@@ -10,7 +10,9 @@ import ResultScreen from "../../components/Map/ResultScreen";
 import { APIProvider } from "@vis.gl/react-google-maps";
 import { HashLoader } from "react-spinners";
 import GameHeader from "@/components/Game/GameHeader";
-
+import GameOver from "@/components/Game/GameOver";
+import LifeChangeAlert from "@/components/Game/LifeChangeAlert";
+import LivesExplanationAlert from "@/components/Game/LivesExplanationAlert";
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
 
@@ -32,6 +34,12 @@ function GamePage() {
     latitude: number;
     longitude: number;
   } | null>(null);
+  const [previousLives, setPreviousLives] = useState<number | null>(null);
+  const [showLifeAlert, setShowLifeAlert] = useState(false);
+  const [lifeChangeType, setLifeChangeType] = useState<
+    "increase" | "decrease" | null
+  >(null);
+  const [showLivesExplanation, setShowLivesExplanation] = useState(true);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: GOOGLE_API_KEY,
@@ -55,6 +63,23 @@ function GamePage() {
 
     fetchGameById();
   }, [gameId]);
+
+  useEffect(() => {
+    if (previousLives !== null && game?.lives !== undefined) {
+      if (game.lives !== previousLives) {
+        if (game.lives > previousLives) {
+          setLifeChangeType("increase");
+          setShowLifeAlert(true);
+        } else if (game.lives < previousLives) {
+          setLifeChangeType("decrease");
+          setShowLifeAlert(true);
+        }
+        const timer = setTimeout(() => setShowLifeAlert(false), 3000);
+        return () => clearTimeout(timer);
+      }
+    }
+    setPreviousLives(game?.lives ?? null);
+  }, [game?.lives, previousLives]);
 
   const handleLocationSelect = async (latitude: number, longitude: number) => {
     if (!gameId) {
@@ -108,9 +133,25 @@ function GamePage() {
     );
   }
 
+  if (game.lives <= 0) {
+    return <GameOver score={game?.score || 0} />;
+  }
+
   return (
     <APIProvider apiKey={GOOGLE_API_KEY}>
       <div className="relative h-screen w-screen overflow-hidden bg-zinc-950">
+        {/* Lives Explanation Alert */}
+        {showLivesExplanation && (
+          <LivesExplanationAlert
+            setShowLivesExplanation={setShowLivesExplanation}
+          />
+        )}
+
+        {/* Life Change Alert */}
+        {showLifeAlert && lifeChangeType && (
+          <LifeChangeAlert lifeChangeType={lifeChangeType} />
+        )}
+
         {/* Game Header */}
         {game && currentRoundLocation && (
           <GameHeader
