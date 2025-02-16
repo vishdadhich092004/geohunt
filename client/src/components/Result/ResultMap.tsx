@@ -1,6 +1,7 @@
 import { useMemo } from "react";
-import { AdvancedMarker, Map, Pin } from "@vis.gl/react-google-maps";
+import { AdvancedMarker, Map } from "@vis.gl/react-google-maps";
 import { Polyline } from "./Polyline";
+import { MapPin } from "lucide-react";
 interface Location {
   latitude: number;
   longitude: number;
@@ -63,11 +64,9 @@ export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
             lng: actualLocation.longitude,
           }}
         >
-          <Pin
-            background={"green"}
-            borderColor={"green"}
-            glyphColor={"white"}
-          />
+          <div className="bg-primary text-white p-1 rounded-lg">
+            <MapPin className="w-5 h-5" />
+          </div>
         </AdvancedMarker>
 
         <AdvancedMarker
@@ -76,12 +75,9 @@ export function ResultMap({ actualLocation, guessedLocation }: ResultMapProps) {
             lng: guessedLocation.longitude,
           }}
         >
-          {" "}
-          <Pin
-            background={"#8b0000"}
-            borderColor={"#8b0000"}
-            glyphColor={"white"}
-          />
+          <div className="bg-red-800 text-white p-1 rounded-lg">
+            <MapPin className=" bg-red-800 w-5 h-5" />
+          </div>
         </AdvancedMarker>
       </Map>
     </div>

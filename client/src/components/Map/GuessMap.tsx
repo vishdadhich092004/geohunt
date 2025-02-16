@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { Maximize2, Minimize2 } from "lucide-react";
+import { MapPin, Maximize2, Minimize2 } from "lucide-react";
 import { AdvancedMarker, Map, MapMouseEvent } from "@vis.gl/react-google-maps";
 import { Button } from "../ui/button";
 import { CoordinatesType } from "../../../../server/shared/types";
@@ -91,7 +91,13 @@ const GuessMap = ({
           fullscreenControl={false}
           streetViewControl={false}
         >
-          {selectedLocation && <AdvancedMarker position={selectedLocation} />}
+          {selectedLocation && (
+            <AdvancedMarker position={selectedLocation}>
+              <div className="bg-primary text-white p-1 rounded-lg">
+                <MapPin className="w-5 h-5" />
+              </div>
+            </AdvancedMarker>
+          )}
         </Map>
 
         {isGuessing && (

@@ -18,7 +18,7 @@ function LivesExplanationAlert({
         </AlertTitle>
         <AlertDescription className="space-y-4">
           <div className="text-zinc-200 leading-relaxed">
-            You start with 3 lives. Master the scoring system:
+            You start with 5 lives. Master the scoring system:
           </div>
           <div className="space-y-3 text-sm">
             <div className="flex items-center gap-3 bg-zinc-800/30 p-2.5 rounded-xl border border-emerald-500/20">

@@ -12,7 +12,7 @@ export function ResultLegend({ distance, score }: ResultLegendProps) {
           <span className="text-sm text-muted-foreground">Actual Location</span>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded-full bg-destructive"></div>
+          <div className="w-3 h-3 rounded-full bg-red-800"></div>
           <span className="text-sm text-muted-foreground">Your Guess</span>
         </div>
       </div>

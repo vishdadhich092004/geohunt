@@ -4,7 +4,7 @@ import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 
 function LifeChangeAlert({ lifeChangeType }: { lifeChangeType: string }) {
   return (
-    <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-5 duration-500">
+    <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in slide-in-from-top-5 duration-800">
       <Alert
         className={`max-w-md w-full ${
           lifeChangeType === "increase"
