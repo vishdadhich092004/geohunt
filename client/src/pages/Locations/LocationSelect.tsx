@@ -20,14 +20,13 @@ function LocationSelect() {
   }, []);
 
   const filteredLocations = continents
-    .flatMap((continent) => [
-      { ...continent, type: "continent" },
-      ...continent.countries.map((country) => ({
+    .flatMap((continent) =>
+      continent.countries.map((country) => ({
         ...country,
         type: "country",
-        continentName: continent.keyword,
-      })),
-    ])
+        continentName: continent.name,
+      }))
+    )
     .filter((location) =>
       location.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -132,11 +131,7 @@ function LocationSelect() {
                   <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">
                     <BGCard
                       heading={location.name}
-                      desc={
-                        location.type === "country"
-                          ? `Country in ${location.name}`
-                          : location.desc
-                      }
+                      desc={`Country in ${location.continentName}`}
                       staticImg={
                         location.staticImg ||
                         "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b"
