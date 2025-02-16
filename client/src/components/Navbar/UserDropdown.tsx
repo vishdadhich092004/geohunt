@@ -16,7 +16,7 @@ function UserDropdown() {
       <DropdownMenuTrigger>
         <span className="flex items-center gap-2">
           <User className="w-4 h-4" />
-          User
+          Team
         </span>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -27,7 +27,7 @@ function UserDropdown() {
         )}
         {isAuthenticated && (
           <DropdownMenuItem onClick={() => navigate("/new-user")}>
-            Change User
+            Change Team
           </DropdownMenuItem>
         )}
         {!isAuthenticated && (

@@ -31,10 +31,10 @@ export function UserForm({ onSubmit, isLoading }: UserFormProps) {
       <CardHeader>
         <div className="flex items-center space-x-2">
           <UserCircle className="h-6 w-6 text-primary" />
-          <CardTitle className="text-2xl">Which Username?</CardTitle>
+          <CardTitle className="text-2xl">Which Team Name?</CardTitle>
         </div>
         <CardDescription>
-          Choose a username that will represent you in the community
+          Choose a team name that will represent you in the community
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
