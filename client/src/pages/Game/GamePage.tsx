@@ -10,6 +10,7 @@ import ResultScreen from "../../components/Map/ResultScreen";
 import { APIProvider } from "@vis.gl/react-google-maps";
 import { HashLoader } from "react-spinners";
 import GameHeader from "@/components/Game/GameHeader";
+
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
 
@@ -88,33 +89,41 @@ function GamePage() {
 
   if (loadError || error) {
     return (
-      <Alert variant="destructive" className="m-4">
-        <AlertTitle>Error</AlertTitle>
-        <AlertDescription>
-          {loadError ? "Failed to load Google Maps" : error}
-        </AlertDescription>
-      </Alert>
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center p-4">
+        <Alert variant="destructive" className="max-w-md w-full">
+          <AlertTitle>Error</AlertTitle>
+          <AlertDescription>
+            {loadError ? "Failed to load Google Maps" : error}
+          </AlertDescription>
+        </Alert>
+      </div>
     );
   }
 
   if (!isLoaded || !game) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <HashLoader color="#228B22" />
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+        <HashLoader color="#10b981" />
       </div>
     );
   }
 
   return (
     <APIProvider apiKey={GOOGLE_API_KEY}>
-      <div className="relative h-screen w-screen overflow-hidden">
-        <GameHeader
-          score={game.score}
-          currentRoundLocation={currentRoundLocation!}
-        />
+      <div className="relative h-screen w-screen overflow-hidden bg-zinc-950">
+        {/* Game Header */}
+        {game && currentRoundLocation && (
+          <GameHeader
+            score={game.score}
+            lives={game.lives}
+            currentRoundLocation={currentRoundLocation}
+          />
+        )}
 
+        {/* Results Screen */}
         {showingResults && lastGuess && currentRoundLocation && (
           <ResultScreen
+            lives={game.lives}
             actualLocation={currentRoundLocation}
             guessedLocation={lastGuess}
             onNextRound={handleNextRound}
@@ -122,14 +131,18 @@ function GamePage() {
           />
         )}
 
+        {/* Street View */}
         {currentRoundLocation && (
-          <StreetView
-            lat={currentRoundLocation.latitude}
-            lng={currentRoundLocation.longitude}
-          />
+          <div className="absolute inset-0 z-0">
+            <StreetView
+              lat={currentRoundLocation.latitude}
+              lng={currentRoundLocation.longitude}
+            />
+          </div>
         )}
 
-        <div className="absolute bottom-4 right-4 z-10">
+        {/* Guess Map */}
+        <div className="absolute bottom-4 right-4 z-10 transition-transform duration-300 hover:scale-105">
           <GuessMap
             selectedLocation={selectedLocation!}
             setSelectedLocation={setSelectedLocation}
