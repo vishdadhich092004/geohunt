@@ -21,6 +21,7 @@ export type GameType = {
   guesses: GuessType[];
   score: number;
   currentRoundScore: number;
+  lives: number;
   startedAt: Date;
   currentLocation: LocationType;
   finishedAt?: Date | null;

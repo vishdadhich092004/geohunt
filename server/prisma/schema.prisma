@@ -33,6 +33,7 @@ model Game {
   currentRoundScore Int       @default(0)
   startedAt         DateTime
   finishedAt        DateTime?
+  lives             Int       @default(5)
   currentLocationId String    @db.Uuid
   currentLocation   Location  @relation(fields: [currentLocationId], references: [id])
   user              User      @relation(fields: [userId], references: [id])

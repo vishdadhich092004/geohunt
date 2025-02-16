@@ -16,7 +16,7 @@ interface StreetViewResponse {
   };
 }
 
-const MAX_RETRIES = 50;
+const MAX_RETRIES = 100;
 const RATE_LIMIT_DELAY = 5000; // 5 seconds in milliseconds
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

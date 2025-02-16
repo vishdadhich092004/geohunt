@@ -40,7 +40,14 @@ export const createGuess = async (
     game.currentLocation?.longitude!
   );
   const currentRoundScore = calculateScore(distance);
-  const newTotalScore = game.score + currentRoundScore;
+
+  // Update lives based on score
+  let updatedLives = game.lives;
+  if (currentRoundScore <= 3000) {
+    updatedLives -= 1;
+  } else if (currentRoundScore >= 4750) {
+    updatedLives = Math.min(updatedLives + 1, 5); // Assuming max lives is 5
+  }
 
   // Create the guess record
   const guess = await prisma.guess.create({
@@ -57,6 +64,18 @@ export const createGuess = async (
       },
     },
   });
+  // Check for game over before proceeding with other operations
+  if (updatedLives <= 0) {
+    await prisma.game.update({
+      where: { id: gameId },
+      data: {
+        lives: updatedLives,
+        score: game.score + currentRoundScore,
+        currentRoundScore: currentRoundScore,
+      },
+    });
+    return res.status(400).json({ error: "Game over" });
+  }
 
   const nextLocation = await generateRandomPopularLocation(
     game.continent as keyof PopularAreasMap,
@@ -80,10 +99,10 @@ export const createGuess = async (
       currentLocation: {
         connect: { id: newLocation.id },
       },
-      score: newTotalScore,
+      score: game.score + currentRoundScore,
       currentRoundScore: currentRoundScore,
+      lives: updatedLives,
     },
-
     include: {
       currentLocation: true,
       guesses: true,
