@@ -84,6 +84,20 @@ export function LeaderboardTable({
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
+                    {entry.username === "vish" && (
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <div className="flex items-center gap-1 bg-blue-500/10 text-blue-500 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-blue-500/20 transition-colors cursor-help">
+                              👨‍💻
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Dev's Team</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    )}
                     <Link
                       to={`/analytics/${entry.id}`}
                       className="font-semibold group-hover:text-primary transition-colors"

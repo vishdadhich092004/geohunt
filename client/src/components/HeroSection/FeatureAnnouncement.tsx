@@ -1,4 +1,4 @@
-import { Sparkles, Users, Target, ArrowRight } from "lucide-react";
+import { Sparkles, Users, Target, ArrowRight, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "@/contexts/AuthContext";
@@ -41,21 +41,19 @@ export function FeatureAnnouncement() {
           {/* Header Section */}
           <div className="text-center mb-6 space-y-2 animate-fade-in">
             <div className="inline-flex items-center bg-white/10 px-3 py-1.5 rounded-full mb-2 backdrop-blur-md hover:bg-white/15 transition-colors duration-300">
-              <Sparkles className="w-3.5 h-3.5 text-primary mr-2 animate-pulse" />
-              <span className="text-white/90 text-sm font-semibold">
+              <Sparkles className="w-6 h-6 text-primary mr-2 animate-pulse" />
+              <h1 className="text-white/90 text-xl font-semibold">
                 New Features
-              </span>
+              </h1>
             </div>
-            <h1 className="text-2xl font-bold text-white hover:scale-[1.01] transition-transform duration-300">
-              Elevate Your GeoHunt Experience
-            </h1>
+
             <p className="text-sm text-white/80 max-w-xl mx-auto">
               Two game-changing features to transform your gameplay
             </p>
           </div>
 
           {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Team Play Card */}
             <div className="group relative animate-slide-up">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-zinc-900/50 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
@@ -124,6 +122,44 @@ export function FeatureAnnouncement() {
                     >
                       <span className="flex items-center justify-center">
                         View Stats
+                        <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Lives System Card */}
+            <div className="group relative animate-slide-up delay-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-zinc-900/50 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
+              <div className="relative p-4 rounded-lg border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 group-hover:translate-y-[-2px]">
+                <div className="flex flex-col h-full">
+                  <div className="mb-4">
+                    <div className="inline-flex items-center bg-white/5 px-2 py-1 rounded-full mb-2 group-hover:bg-white/10 transition-colors duration-300">
+                      <Heart className="w-3.5 h-3.5 text-primary mr-1.5 group-hover:scale-110 transition-transform duration-300" />
+                      <span className="text-white/90 text-xs font-medium">
+                        Lives System
+                      </span>
+                    </div>
+                    <h2 className="text-xl font-bold text-white mb-2">
+                      Strategic{" "}
+                      <span className="text-primary group-hover:text-white transition-colors duration-300">
+                        Gameplay
+                      </span>
+                    </h2>
+                    <p className="text-sm text-gray-300 leading-relaxed mb-4">
+                      Play with up to 5 lives. Each incorrect guess costs a life
+                      - make them count and plan your moves carefully!
+                    </p>
+                  </div>
+                  <div className="mt-auto">
+                    <Button
+                      onClick={handleLearnMore}
+                      className="group w-full bg-white/5 hover:bg-primary/90 text-white font-medium px-4 py-2 rounded-md transition-all duration-300 text-sm"
+                    >
+                      <span className="flex items-center justify-center">
+                        Learn More
                         <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
                       </span>
                     </Button>

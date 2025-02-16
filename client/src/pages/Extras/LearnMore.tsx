@@ -1,4 +1,12 @@
-import { Users, MapPin, Globe, Trophy, ArrowLeft, Compass } from "lucide-react";
+import {
+  Users,
+  MapPin,
+  Globe,
+  Trophy,
+  ArrowLeft,
+  Compass,
+  Heart,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
@@ -29,6 +37,12 @@ export default function LearnMore() {
       title: "Collaborative Learning",
       description:
         "Share knowledge and strategies to improve team performance.",
+    },
+    {
+      icon: <Heart className="w-5 h-5" />,
+      title: "Lives System",
+      description:
+        "Start with 5 lives and play strategically - each incorrect guess costs one life.",
     },
   ];
 
@@ -81,7 +95,7 @@ export default function LearnMore() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 items-start mb-10">
           {/* Features Grid */}
           <div className="grid sm:grid-cols-2 gap-4">
             {features.map((feature, index) => (

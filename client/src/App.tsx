@@ -76,10 +76,38 @@ function App() {
                 </Layout>
               }
             />
-            <Route path="/premium" element={<Premium />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/analytics/:userId" element={<AnalyticsPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route
+              path="/premium"
+              element={
+                <Layout>
+                  <Premium />
+                </Layout>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <Layout>
+                  <Contact />
+                </Layout>
+              }
+            />
+            <Route
+              path="/analytics/:userId"
+              element={
+                <Layout>
+                  <AnalyticsPage />
+                </Layout>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <Layout>
+                  <NotFoundPage />
+                </Layout>
+              }
+            />
           </>
         )}
       </Routes>

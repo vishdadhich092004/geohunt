@@ -2,7 +2,7 @@ import { Mail } from "lucide-react";
 
 export function Contact() {
   return (
-    <div className="container mx-auto px-4 py-16 min-h-[calc(100vh-300px)]">
+    <div className="container mx-auto px-4 py-16 min-h-[calc(100vh-300px)] mt-10">
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold mb-8">Contact the Developer</h1>
 
