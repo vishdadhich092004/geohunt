@@ -84,6 +84,12 @@ export function LeaderboardTable({
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-2">
+                    <Link
+                      to={`/analytics/${entry.id}`}
+                      className="font-semibold group-hover:text-primary transition-colors"
+                    >
+                      {entry.username}
+                    </Link>
                     {entry.username === "vish" && (
                       <TooltipProvider>
                         <Tooltip>
@@ -98,12 +104,6 @@ export function LeaderboardTable({
                         </Tooltip>
                       </TooltipProvider>
                     )}
-                    <Link
-                      to={`/analytics/${entry.id}`}
-                      className="font-semibold group-hover:text-primary transition-colors"
-                    >
-                      {entry.username}
-                    </Link>
                     {entry.isTeam && (
                       <TooltipProvider>
                         <Tooltip>
