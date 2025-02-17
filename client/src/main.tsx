@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { AuthContextProvider } from "./contexts/AuthContext.tsx";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")!).render(
       <AuthContextProvider>
         <App />
         <Analytics />
+        <SpeedInsights />
       </AuthContextProvider>
     </QueryClientProvider>
   </StrictMode>
