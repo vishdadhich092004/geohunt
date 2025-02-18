@@ -3,7 +3,7 @@ import prisma from "../db/db.config";
 import generateRandomPopularLocation from "../utils/generate-random-location";
 import haversineDistance from "../utils/calculate-distance";
 import calculateScore from "../utils/calculate-score";
-import { PopularAreasMap } from "../locations/random/random";
+import { PopularAreasMap } from "../locations/locations";
 
 export const createGuess = async (
   req: Request,
@@ -64,9 +64,10 @@ export const createGuess = async (
       },
     },
   });
+
   // Check for game over before proceeding with other operations
   if (updatedLives <= 0) {
-    await prisma.game.update({
+    const finalGame = await prisma.game.update({
       where: { id: gameId },
       data: {
         lives: updatedLives,
@@ -74,16 +75,26 @@ export const createGuess = async (
         currentRoundScore: currentRoundScore,
         finishedAt: new Date(),
       },
+      include: {
+        currentLocation: true,
+        guesses: true,
+      },
     });
+    return res.status(200).json(finalGame);
   }
-
-  const nextLocation = await generateRandomPopularLocation(
+  let nextLocation;
+  if (game.continent === undefined && game.country === undefined) {
+    nextLocation = await generateRandomPopularLocation();
+    console.log("Next location:", nextLocation);
+  }
+  // Only generate next location if game is not over
+  nextLocation = await generateRandomPopularLocation(
     game.continent as keyof PopularAreasMap,
-    game.country!
+    game.country || undefined
   );
   if (!nextLocation) {
     return res
-      .status(404)
+      .status(500)
       .json({ error: "Issue with random location generation" });
   }
   const newLocation = await prisma.location.create({

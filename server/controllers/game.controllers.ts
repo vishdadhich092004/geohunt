@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import prisma from "../db/db.config";
 import { GameType } from "../shared/types";
 import generateRandomPopularLocation from "../utils/generate-random-location";
-import { PopularAreasMap } from "../locations/random/random";
+import { PopularAreasMap } from "../locations/locations";
 
 interface ContinentAndCountry {
   continent?: string;
@@ -19,13 +19,24 @@ export const createGame = async (
     if (!userId) {
       return res.status(400).json({ message: "No User Found" });
     }
-    const randomLocation = await generateRandomPopularLocation(
-      continent as keyof PopularAreasMap,
-      country!
-    );
+
+    let randomLocation;
+    if (continent === "undefined" || country === "undefined") {
+      randomLocation = await generateRandomPopularLocation();
+      console.log("Random location:", randomLocation);
+    } else {
+      randomLocation = await generateRandomPopularLocation(
+        continent as keyof PopularAreasMap,
+        country || undefined
+      );
+    }
 
     if (!randomLocation || !randomLocation.lat || !randomLocation.lng) {
-      console.error("Failed to generate a valid location");
+      console.error("Failed to generate a valid location", {
+        continent: continent,
+        country: country,
+        randomLocation,
+      });
       return res
         .status(500)
         .json({ error: "Failed to generate a valid location" });
@@ -46,19 +57,21 @@ export const createGame = async (
         currentLocationId: firstLocation.id,
         continent: continent,
         country: country,
+        lives: 5, // Make sure to set initial lives
       },
       include: {
         currentLocation: true,
         guesses: true,
       },
     });
+
     if (!game) {
       return res.status(404).json({ message: "Failed to create a game" });
     }
 
     return res.status(200).json(game);
   } catch (e) {
-    console.error(e);
+    console.error("Error creating game:", e);
     res.status(500).json({ error: "Failed to create a game" });
   }
 };
