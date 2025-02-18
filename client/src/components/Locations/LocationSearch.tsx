@@ -23,7 +23,7 @@ function LocationSearch({ searchTerm, setSearchTerm }: LocationSearchProps) {
             onClick={() => setSearchTerm("")}
             className="text-white/70 hover:text-white"
           >
-            <X size={20} />
+            <X size={20} className="ml-2" />
           </button>
         )}
       </div>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Globe2, Search, ArrowLeft } from "lucide-react";
+import { Globe2, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
-import { Input } from "@/components/ui/input";
 import { BGCard } from "@/components/ui/background-card";
 import { continents } from "@/utils/countries-data";
 import { Link } from "react-router-dom";
+import LocationSearch from "@/components/Locations/LocationSearch";
 
 function LocationSelect() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -20,13 +20,15 @@ function LocationSelect() {
   }, []);
 
   const filteredLocations = continents
-    .flatMap((continent) =>
-      continent.countries.map((country) => ({
+    .flatMap((continent) => [
+      { ...continent, type: "continent" },
+      ...continent.countries.map((country) => ({
         ...country,
         type: "country",
-        continentName: continent.name,
-      }))
-    )
+        continentName: continent.keyword,
+        country: country.keyword,
+      })),
+    ])
     .filter((location) =>
       location.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -96,18 +98,10 @@ function LocationSelect() {
           className="bg-background/80 backdrop-blur-sm border-b border-border"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="w-full max-w-2xl mx-auto">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder="Search for a location..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 h-10 text-base bg-background/80 backdrop-blur-sm border-2 focus:border-primary"
-                />
-              </div>
-            </div>
+            <LocationSearch
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
           </div>
         </motion.div>
 
@@ -131,7 +125,13 @@ function LocationSelect() {
                   <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">
                     <BGCard
                       heading={location.name}
-                      desc={`Country in ${location.continentName}`}
+                      continent={location.keyword}
+                      country={location.country}
+                      desc={
+                        location.type === "country"
+                          ? `Country in ${location.name}`
+                          : location.desc
+                      }
                       staticImg={
                         location.staticImg ||
                         "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b"
@@ -166,6 +166,27 @@ function LocationSelect() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+                    {/* Render continent card first */}
+                    <motion.div
+                      key={continent.keyword}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="group"
+                    >
+                      <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">
+                        <BGCard
+                          heading={continent.name}
+                          country={continent.country}
+                          continent={continent.keyword}
+                          desc={continent.desc}
+                          staticImg={continent.staticImg}
+                          dynamicImg={continent.dynamicImg}
+                        />
+                      </div>
+                    </motion.div>
+
+                    {/* Then render country cards */}
                     {continent.countries.map((country, index) => (
                       <motion.div
                         key={country.keyword}

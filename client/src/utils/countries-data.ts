@@ -1,36 +1,19 @@
 export const continents = [
   {
-    name: "Africa",
-    keyword: "africa",
-    desc: "A continent of diverse landscapes, from deserts to rainforests, rich in natural and cultural treasures.",
+    name: "Random",
+    keyword: "random",
+    country: "random",
+    desc: "Explore random destinations across the globe, from bustling cities to serene landscapes.",
     staticImg:
-      "https://img.freepik.com/free-photo/group-elephants-walking-dry-grass-wilderness_181624-18109.jpg",
-    dynamicImg:
-      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHd0OTJyNGJpMm4wOXVxaHI2N2QydzRwMmk5bnN0NXIwajMxemY3OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VYopUOf4Wjd28/giphy.gif",
-    countries: [
-      {
-        name: "Egypt",
-        keyword: "egypt",
-        staticImg:
-          "https://cdn.pixabay.com/photo/2017/08/24/05/21/pyramid-2675466_640.jpg",
-        dynamicImg:
-          "https://media.giphy.com/media/1dPTVv6FaQmZ2/giphy.gif?cid=790b7611zyemtnfxbq19r16snksnkzzpf1jaqenrydakyzir&ep=v1_gifs_search&rid=giphy.gif&ct=g",
-        desc: "Land of the pyramids, Nile River, and ancient history.",
-      },
-      {
-        name: "South Africa",
-        keyword: "south_africa",
-        staticImg:
-          "https://images.unsplash.com/photo-1529528070131-eda9f3e90919?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c291dGglMjBhZnJpY2F8ZW58MHx8MHx8fDA%3D",
-        dynamicImg:
-          "https://media.giphy.com/media/xUOwG9bltDA8e2oysg/giphy.gif?cid=790b7611kci0rzp63xhq4ue8rbghc5pax9xif7v4s0dbxk3j&ep=v1_gifs_search&rid=giphy.gif&ct=g",
-        desc: "Known for wildlife, diverse culture, and Nelson Mandela.",
-      },
-    ],
+      "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg",
+    dynamicImg: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif",
+    countries: [],
   },
+
   {
     name: "Asia",
     keyword: "asia",
+    country: "random",
     desc: "A continent of diverse landscapes, from deserts to rainforests, rich in natural and cultural treasures.",
     staticImg:
       "https://www.shutterstock.com/image-photo/aerial-view-skyscrapers-dusk-over-600nw-2507434095.jpg",
@@ -125,6 +108,7 @@ export const continents = [
   },
   {
     name: "Europe",
+    country: "random",
     desc: "A continent of diverse landscapes, from deserts to rainforests, rich in natural and cultural treasures.",
     keyword: "europe",
     staticImg:
@@ -229,6 +213,7 @@ export const continents = [
   },
   {
     name: "North America",
+    country: "random",
     desc: "A continent of diverse landscapes, from deserts to rainforests, rich in natural and cultural treasures.",
     keyword: "north_america",
     staticImg:
@@ -267,6 +252,7 @@ export const continents = [
   },
   {
     name: "South America",
+    country: "random",
     desc: "A continent of diverse landscapes, from deserts to rainforests, rich in natural and cultural treasures.",
     keyword: "south_america",
 
@@ -306,6 +292,7 @@ export const continents = [
   },
   {
     name: "Oceania",
+    country: "random",
     desc: "A continent of diverse landscapes, from deserts to rainforests, rich in natural and cultural treasures.",
     keyword: "oceania",
     staticImg:
@@ -330,6 +317,36 @@ export const continents = [
           "https://images.pexels.com/photos/37650/new-zealand-lake-mountain-landscape-37650.jpeg?cs=srgb&dl=pexels-pixabay-37650.jpg&fm=jpg",
         dynamicImg:
           "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGRsdHRhejRxdThzenR3NGN2OTl4c3hpcGVlcHUydnp0MjVyYWd2diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l41YnKSInZIQxa2ly/giphy.gif",
+      },
+    ],
+  },
+  {
+    name: "Africa",
+    keyword: "africa",
+    country: "random",
+    desc: "A continent of diverse landscapes, from deserts to rainforests, rich in natural and cultural treasures.",
+    staticImg:
+      "https://img.freepik.com/free-photo/group-elephants-walking-dry-grass-wilderness_181624-18109.jpg",
+    dynamicImg:
+      "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHd0OTJyNGJpMm4wOXVxaHI2N2QydzRwMmk5bnN0NXIwajMxemY3OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VYopUOf4Wjd28/giphy.gif",
+    countries: [
+      {
+        name: "Egypt",
+        keyword: "egypt",
+        staticImg:
+          "https://cdn.pixabay.com/photo/2017/08/24/05/21/pyramid-2675466_640.jpg",
+        dynamicImg:
+          "https://media.giphy.com/media/1dPTVv6FaQmZ2/giphy.gif?cid=790b7611zyemtnfxbq19r16snksnkzzpf1jaqenrydakyzir&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+        desc: "Land of the pyramids, Nile River, and ancient history.",
+      },
+      {
+        name: "South Africa",
+        keyword: "south_africa",
+        staticImg:
+          "https://images.unsplash.com/photo-1529528070131-eda9f3e90919?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c291dGglMjBhZnJpY2F8ZW58MHx8MHx8fDA%3D",
+        dynamicImg:
+          "https://media.giphy.com/media/xUOwG9bltDA8e2oysg/giphy.gif?cid=790b7611kci0rzp63xhq4ue8rbghc5pax9xif7v4s0dbxk3j&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+        desc: "Known for wildlife, diverse culture, and Nelson Mandela.",
       },
     ],
   },
