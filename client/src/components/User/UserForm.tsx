@@ -40,25 +40,25 @@ export function UserForm({ onSubmit, isLoading }: UserFormProps) {
       <CardContent className="space-y-6">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="username">Username</Label>
+            <Label htmlFor="username">Team Name</Label>
             <Input
               id="username"
               type="text"
-              placeholder="Enter your username"
+              placeholder="Enter your team name"
               {...register("username", {
-                required: "Username is required",
+                required: "Team name is required",
                 minLength: {
                   value: 3,
-                  message: "Username must be at least 3 characters",
+                  message: "Team name must be at least 3 characters",
                 },
                 maxLength: {
                   value: 20,
-                  message: "Username must be less than 20 characters",
+                  message: "Team name must be less than 20 characters",
                 },
                 pattern: {
                   value: /^[a-zA-Z0-9_-]+$/,
                   message:
-                    "Username can only contain letters, numbers, underscores, and dashes",
+                    "Team name can only contain letters, numbers, underscores, and dashes",
                 },
               })}
               className={errors.username ? "border-destructive" : ""}

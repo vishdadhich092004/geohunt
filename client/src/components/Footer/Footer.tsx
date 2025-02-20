@@ -61,7 +61,7 @@ export function Footer() {
 
           {/* Connect Section */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">Find Me :)</h3>
+            <h3 className="font-semibold text-lg mb-4">Find Me </h3>
             <div className="space-y-4">
               {/* Contact Card */}
               <div className="bg-card/30 p-4 rounded-lg border border-primary/20 hover:border-primary/40 transition-all duration-300 backdrop-blur-sm">

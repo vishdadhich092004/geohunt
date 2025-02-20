@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { newUser, fetchLeaderboard } from "@/api-clients";
-import { useToast } from "@/hooks/use-toast";
 import { ErrorAlert } from "@/components/ErrorAlert";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy, Loader2 } from "lucide-react";
@@ -12,15 +11,10 @@ import { UserForm, UserFormData } from "@/components/User/UserForm";
 
 export default function NewUser() {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const [error, setError] = useState<string | null>(null);
 
   const mutation = useMutation(newUser, {
     onSuccess: () => {
-      toast({
-        title: "Welcome to GeoHunt!",
-        description: "Welcome da 🎉",
-      });
       navigate("/locations");
     },
     onError: (err) => {

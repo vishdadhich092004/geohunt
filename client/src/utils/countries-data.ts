@@ -5,8 +5,9 @@ export const continents = [
     country: "random",
     desc: "Explore random destinations across the globe, from bustling cities to serene landscapes.",
     staticImg:
-      "https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg",
-    dynamicImg: "https://media.giphy.com/media/3o7TKMt1VVNkHV2PaE/giphy.gif",
+      "https://images.unsplash.com/photo-1537429149818-2d0e3e20857b?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    dynamicImg:
+      "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDR0NW9qdXBoYmlic2R5c2w2dmNqdWFydjk0NnhtdWN5MjY3a3RubyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9JgeSP0jlRAVBOG9FD/giphy.gif",
     countries: [],
   },
 
