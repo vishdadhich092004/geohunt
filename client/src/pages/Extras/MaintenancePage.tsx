@@ -2,8 +2,8 @@ import { WrenchIcon, ClockIcon } from "lucide-react";
 
 const MaintenancePage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center p-4">
-      <div className="max-w-2xl w-full space-y-8 text-center">
+    <div className="min-h-screen bg-[url(https://images.unsplash.com/photo-1595814433015-e6f5ce69614e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center bg-no-repeat bg-fixed flex items-center justify-center p-4 relative before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-b before:from-background/90 before:to-muted/80">
+      <div className="max-w-2xl w-full space-y-8 text-center relative z-10">
         <div className="space-y-6">
           <div className="flex justify-center space-x-4">
             <WrenchIcon className="h-16 w-16 text-primary animate-bounce" />
