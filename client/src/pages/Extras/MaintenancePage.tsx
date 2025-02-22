@@ -44,10 +44,11 @@ const MaintenancePage = () => {
           </p>
 
           <div className="bg-card rounded-lg p-6 shadow-lg border border-border">
-            <h2 className="text-lg font-semibold mb-3">Expected Duration</h2>
+            <h2 className="text-lg font-semibold mb-3">What's new?</h2>
             <p className="text-muted-foreground">
-              We are adding a total of 7 new game modes to the game. <br /> Stay
-              Hunting!
+              We are adding a total of 7 new game modes to the game. Yes, 7!{" "}
+              <br />
+              Stay tuned!
             </p>
           </div>
 
