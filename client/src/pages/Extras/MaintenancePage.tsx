@@ -22,7 +22,7 @@ const MaintenancePage = () => {
           <div className="bg-card rounded-lg p-6 shadow-lg border border-border">
             <h2 className="text-lg font-semibold mb-3">Expected Duration</h2>
             <p className="text-muted-foreground">
-              We will be back online by 2 AM IST on February 22nd, 2025. Thank
+              We will be back online by 2 AM IST on February 23rd, 2025. Thank
               you for your patience!
             </p>
           </div>
