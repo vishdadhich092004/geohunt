@@ -72,12 +72,20 @@ export const GameModeCard: React.FC<GameModeCardProps> = ({ mode, index }) => {
           <div className="flex items-center gap-1 text-amber-400">
             <Clock className="w-4 h-4" />
             <span>
-              {Math.floor(mode.timeLimit / 60)}m {mode.timeLimit % 60}s
+              {mode.timeLimit
+                ? Math.floor(mode.timeLimit / 60) +
+                  "m " +
+                  (mode.timeLimit % 60) +
+                  "s"
+                : "No time limit"}
             </span>
           </div>
         )}
         <div className="flex items-center gap-1 text-gray-400 text-xs ml-auto">
-          Added {new Date(mode.createdAt).toLocaleDateString()}
+          Added{" "}
+          {mode.createdAt
+            ? new Date(mode.createdAt).toLocaleDateString()
+            : "No date available"}
         </div>
       </div>
     </motion.div>
