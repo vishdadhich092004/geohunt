@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
-import { Globe2, ArrowLeft } from "lucide-react";
+import { Globe2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { BGCard } from "@/components/ui/background-card";
 import { continents } from "@/utils/countries-data";
-import { Link } from "react-router-dom";
 import LocationSearch from "@/components/Locations/LocationSearch";
+import BackButton from "@/components/BackButton";
 
-function LocationSelect() {
+interface LocationSelectProps {
+  setContinent: (continent: string) => void;
+  setCountry: (country: string) => void;
+  handleBack: () => void;
+}
+
+function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -48,14 +54,8 @@ function LocationSelect() {
       />
       <div className="relative z-10">
         {/* Back Button - Always visible */}
-        <div className="absolute top-4 left-4 z-50">
-          <Link
-            to="/"
-            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors px-4 py-2 rounded-lg hover:bg-primary/10"
-          >
-            <ArrowLeft className="h-5 w-5" />
-            <span>Back</span>
-          </Link>
+        <div className="absolute top-8 left-4 z-50">
+          <BackButton />
         </div>
 
         {/* Fixed Search Section */}
@@ -97,7 +97,7 @@ function LocationSelect() {
           }}
           className="bg-background/80 backdrop-blur-sm border-b border-border"
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <LocationSearch
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
@@ -124,9 +124,11 @@ function LocationSelect() {
                 >
                   <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">
                     <BGCard
+                      onClick={() => {
+                        setContinent(location.keyword);
+                        setCountry(location.country);
+                      }}
                       heading={location.name}
-                      continent={location.keyword}
-                      country={location.country}
                       desc={
                         location.type === "country"
                           ? `Country in ${location.name}`
@@ -176,9 +178,11 @@ function LocationSelect() {
                     >
                       <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">
                         <BGCard
+                          onClick={() => {
+                            setContinent(continent.keyword);
+                            setCountry("random");
+                          }}
                           heading={continent.name}
-                          country={continent.country}
-                          continent={continent.keyword}
                           desc={continent.desc}
                           staticImg={continent.staticImg}
                           dynamicImg={continent.dynamicImg}
@@ -197,9 +201,11 @@ function LocationSelect() {
                       >
                         <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">
                           <BGCard
+                            onClick={() => {
+                              setContinent(continent.keyword);
+                              setCountry(country.keyword);
+                            }}
                             heading={country.name}
-                            continent={continent.keyword}
-                            country={country.keyword}
                             desc={country.desc}
                             staticImg={country.staticImg}
                             dynamicImg={country.dynamicImg}

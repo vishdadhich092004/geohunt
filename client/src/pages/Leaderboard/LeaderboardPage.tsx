@@ -6,7 +6,7 @@ import { LeaderboardLoading } from "@/components/Leaderboard/LeaderboardLoading"
 import { LeaderboardTable } from "@/components/Leaderboard/LeaderboardTable";
 import { useState } from "react";
 import { LeaderboardFooter } from "@/components/Leaderboard/LeaderboardFooter";
-
+import BackButton from "@/components/BackButton";
 export default function LeaderboardPage() {
   const [page, setPage] = useState(1);
   const {
@@ -18,6 +18,7 @@ export default function LeaderboardPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-16 mt-12">
+        <BackButton />
         <LeaderboardHeader />
         <div className="max-w-4xl mx-auto">
           {error ? (

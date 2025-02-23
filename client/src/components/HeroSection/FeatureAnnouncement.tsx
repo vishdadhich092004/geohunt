@@ -1,175 +1,138 @@
-import { Sparkles, Users, Target, ArrowRight, Heart } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, TowerControl as GameController } from "lucide-react";
+import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "@/contexts/AuthContext";
-
-export function FeatureAnnouncement() {
-  const { user, isAuthenticated } = useAuthContext();
+function FeaturesAnnouncement() {
+  const gameModes = [
+    {
+      id: "1",
+      name: "Classic",
+      description:
+        "Traditional mode with 5 lives. Take your time and aim for accuracy!",
+      maxLives: 5,
+      timeLimit: 120,
+      icon: "🎯",
+    },
+    {
+      id: "2",
+      name: "Blitz",
+      description:
+        "120 seconds to score as many points as possible! Quick thinking required!",
+      maxLives: 3,
+      icon: "⚡",
+    },
+    {
+      id: "3",
+      name: "Time Attack",
+      description:
+        "3 minutes to achieve your highest score. Balance speed and accuracy!",
+      maxLives: 3,
+      icon: "⏱️",
+    },
+    {
+      id: "4",
+      name: "Hardcore",
+      description: "One life, no time limit. One mistake and game over!",
+      maxLives: 1,
+      icon: "💀",
+    },
+    {
+      id: "5",
+      name: "Speed Run",
+      description:
+        "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
+      maxLives: 3,
+      icon: "🏃",
+    },
+    {
+      id: "6",
+      name: "Precision Master",
+      description: "3 lives but need higher accuracy for points. For experts!",
+      maxLives: 3,
+      icon: "🎯",
+    },
+    {
+      id: "7",
+      name: "Practice",
+      description:
+        "Unlimited lives, hints enabled, and detailed feedback after each guess.",
+      maxLives: null,
+      icon: "🎮",
+    },
+  ];
   const navigate = useNavigate();
-  const handleLearnMore = () => {
-    navigate("/learn-more");
-  };
-  const handleViewStats = () => {
+  const { isAuthenticated } = useAuthContext();
+  const handleClick = () => {
     if (isAuthenticated) {
-      navigate(`/analytics/${user?.id}`);
+      navigate("/user-choice");
     } else {
       navigate("/new-user");
     }
   };
 
   return (
-    <div className="relative mx-4 mb-3 ">
-      {/* Background Image with Overlay */}
-      <div
-        className="absolute inset-0 rounded-lg bg-cover bg-center"
-        style={{
-          backgroundImage: `
-            linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
-            url("https://plus.unsplash.com/premium_photo-1661311943117-c515634ea81d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-          `,
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/95 via-black/80 to-primary/20 rounded-lg animate-gradient" />
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-zinc-900 via-black to-zinc-900 p-4 md:p-8">
+      <div className="relative max-w-7xl mx-auto">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[100px] animate-pulse-slow" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse-slow delay-300" />
 
-      <div className="relative border border-white/10 rounded-lg overflow-hidden backdrop-blur-sm hover:border-white/20 transition-colors duration-500">
-        <div className="container mx-auto px-4 py-6">
-          {/* Animated Decorative Elements */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl animate-pulse-slow delay-300" />
-
-          {/* Header Section */}
-          <div className="text-center mb-6 space-y-2 animate-fade-in">
-            <div className="inline-flex items-center bg-white/10 px-3 py-1.5 rounded-full mb-2 backdrop-blur-md hover:bg-white/15 transition-colors duration-300">
-              <Sparkles className="w-6 h-6 text-primary mr-2 animate-pulse" />
-              <h1 className="text-white/90 text-xl font-semibold">
-                New Features
-              </h1>
-            </div>
-
-            <p className="text-sm text-white/80 max-w-xl mx-auto">
-              Two game-changing features to transform your gameplay
-            </p>
+        {/* Header Section */}
+        <div className="relative text-center mb-12 space-y-4">
+          <div className="inline-flex items-center justify-center space-x-2 bg-white/5 px-6 py-2 rounded-2xl backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-500 group">
+            <GameController className="w-5 h-5 text-primary group-hover:rotate-12 transition-transform duration-300" />
+            <span className="text-white/80 font-medium">New Features</span>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Team Play Card */}
-            <div className="group relative animate-slide-up">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-zinc-900/50 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
-              <div className="relative p-4 rounded-lg border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 group-hover:translate-y-[-2px]">
-                <div className="flex flex-col h-full">
-                  <div className="mb-4">
-                    <div className="inline-flex items-center bg-white/5 px-2 py-1 rounded-full mb-2 group-hover:bg-white/10 transition-colors duration-300">
-                      <Users className="w-3.5 h-3.5 text-primary mr-1.5 group-hover:scale-110 transition-transform duration-300" />
-                      <span className="text-white/90 text-xs font-medium">
-                        Team Play
-                      </span>
-                    </div>
-                    <h2 className="text-xl font-bold text-white mb-2">
-                      Unite &{" "}
-                      <span className="text-primary group-hover:text-white transition-colors duration-300">
-                        Conquer
-                      </span>
-                    </h2>
-                    <p className="text-sm text-gray-300 leading-relaxed mb-4">
-                      Team up with friends under a shared username and climb the
-                      leaderboard together.
-                    </p>
-                  </div>
-                  <div className="mt-auto">
-                    <Button
-                      onClick={handleLearnMore}
-                      className="group w-full bg-white/5 hover:bg-primary/90 text-white font-medium px-4 py-2 rounded-md transition-all duration-300 text-sm"
-                    >
-                      <span className="flex items-center justify-center">
-                        Learn More
-                        <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </span>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Accuracy Tracking Card */}
-            <div className="group relative animate-slide-up delay-150">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-zinc-900/50 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
-              <div className="relative p-4 rounded-lg border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 group-hover:translate-y-[-2px]">
-                <div className="flex flex-col h-full">
-                  <div className="mb-4">
-                    <div className="inline-flex items-center bg-white/5 px-2 py-1 rounded-full mb-2 group-hover:bg-white/10 transition-colors duration-300">
-                      <Target className="w-3.5 h-3.5 text-primary mr-1.5 group-hover:scale-110 transition-transform duration-300" />
-                      <span className="text-white/90 text-xs font-medium">
-                        Accuracy Tracking
-                      </span>
-                    </div>
-                    <h2 className="text-xl font-bold text-white mb-2">
-                      Master Your{" "}
-                      <span className="text-primary group-hover:text-white transition-colors duration-300">
-                        Precision
-                      </span>
-                    </h2>
-                    <p className="text-sm text-gray-300 leading-relaxed mb-4">
-                      Track your performance metrics and watch your guessing
-                      precision improve over time.
-                    </p>
-                  </div>
-                  <div className="mt-auto">
-                    <Button
-                      onClick={handleViewStats}
-                      className="group w-full bg-white/5 hover:bg-primary/90 text-white font-medium px-4 py-2 rounded-md transition-all duration-300 text-sm"
-                    >
-                      <span className="flex items-center justify-center">
-                        View Stats
-                        <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </span>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Lives System Card */}
-            <div className="group relative animate-slide-up delay-300">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-zinc-900/50 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
-              <div className="relative p-4 rounded-lg border border-white/10 backdrop-blur-sm hover:border-primary/30 transition-all duration-500 group-hover:translate-y-[-2px]">
-                <div className="flex flex-col h-full">
-                  <div className="mb-4">
-                    <div className="inline-flex items-center bg-white/5 px-2 py-1 rounded-full mb-2 group-hover:bg-white/10 transition-colors duration-300">
-                      <Heart className="w-3.5 h-3.5 text-primary mr-1.5 group-hover:scale-110 transition-transform duration-300" />
-                      <span className="text-white/90 text-xs font-medium">
-                        Lives System
-                      </span>
-                    </div>
-                    <h2 className="text-xl font-bold text-white mb-2">
-                      Strategic{" "}
-                      <span className="text-primary group-hover:text-white transition-colors duration-300">
-                        Gameplay
-                      </span>
-                    </h2>
-                    <p className="text-sm text-gray-300 leading-relaxed mb-4">
-                      Play with up to 5 lives. Each incorrect guess costs a life
-                      - make them count and plan your moves carefully!
-                    </p>
-                  </div>
-                  <div className="mt-auto">
-                    <Button
-                      onClick={handleLearnMore}
-                      className="group w-full bg-white/5 hover:bg-primary/90 text-white font-medium px-4 py-2 rounded-md transition-all duration-300 text-sm"
-                    >
-                      <span className="flex items-center justify-center">
-                        Learn More
-                        <ArrowRight className="w-3.5 h-3.5 ml-1.5 group-hover:translate-x-1 transition-transform duration-300" />
-                      </span>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+            Discover New Ways to Play
+          </h1>
+          <p className="text-lg text-white/60 max-w-2xl mx-auto">
+            Choose from seven unique game modes, each offering a different
+            challenge to test your skills
+          </p>
         </div>
+
+        {/* Game Modes Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {gameModes.map((mode, index) => (
+            <div
+              key={mode.id}
+              className="group relative animate-fade-in"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl" />
+              <div className="relative h-full p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-lg hover:border-primary/30 transition-all duration-500 group-hover:transform group-hover:-translate-y-1">
+                <div className="flex flex-col h-full">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-2xl">{mode.icon}</span>
+                    <h2 className="text-xl font-bold text-white">
+                      {mode.name}
+                    </h2>
+                  </div>
+
+                  <p className="text-white/70 text-sm leading-relaxed mb-6">
+                    {mode.description}
+                  </p>
+
+                  <Button
+                    onClick={handleClick}
+                    className="mt-auto group/btn flex items-center justify-center gap-2 w-full bg-white/5 hover:bg-primary text-white font-medium px-4 py-3 rounded-xl transition-all duration-300"
+                  >
+                    <span>Start Playing</span>
+                    <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Decorative Element */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-1/2 bg-primary/5 rounded-full blur-[120px] -z-10" />
       </div>
     </div>
   );
 }
+
+export default FeaturesAnnouncement;

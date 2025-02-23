@@ -4,7 +4,8 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon index.ts",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "seed:game_modes": "ts-node seeds/game_modes_seed.ts"
   },
   "author": "",
   "license": "ISC",
@@ -17,12 +18,12 @@
     "@types/node": "^22.10.2",
     "@types/node-cron": "^3.0.11",
     "nodemon": "^3.1.9",
-    "prisma": "^6.3.1",
+    "prisma": "^6.4.1",
     "typescript": "^5.7.2"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
-    "@prisma/client": "^6.3.1",
+    "@prisma/client": "^6.4.1",
     "@types/cookie-parser": "^1.4.8",
     "@vercel/node": "^4.0.0",
     "body-parser": "^1.20.3",

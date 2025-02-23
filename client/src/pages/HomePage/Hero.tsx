@@ -3,7 +3,7 @@ import { MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthContext } from "@/contexts/AuthContext";
-export function Hero() {
+const Hero = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
   const [showNewFeature, setShowNewFeature] = useState(false);
@@ -98,4 +98,6 @@ export function Hero() {
       </div>
     </div>
   );
-}
+};
+
+export default Hero;

@@ -15,7 +15,7 @@ export default function NewUser() {
 
   const mutation = useMutation(newUser, {
     onSuccess: () => {
-      navigate("/locations");
+      navigate("/game-select");
     },
     onError: (err) => {
       setError(

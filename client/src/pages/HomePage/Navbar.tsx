@@ -10,7 +10,11 @@ export function Navbar() {
   const navigate = useNavigate();
 
   const handlePlayNow = () => {
-    navigate("/new-user");
+    if (isAuthenticated) {
+      navigate("/user-choice");
+    } else {
+      navigate("/new-user");
+    }
   };
 
   const NavLinks = () => (

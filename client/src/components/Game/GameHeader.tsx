@@ -3,6 +3,7 @@ import LocationNotLoadedButton from "@/components/Locations/LocationNotLoadedBut
 import ExitGame from "@/components/Game/ExitGame";
 import GameScore from "@/components/Game/GameScore";
 import GameLives from "@/components/Game/GameLives";
+import GameTimer from "@/components/Game/GameTimer";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,18 +20,40 @@ interface GameHeaderProps {
     latitude: number;
     longitude: number;
   };
+  startedAt: string;
+  timeLimit: number;
+  timeRemaining: number;
+  setTimeRemaining: (timeRemaining: number) => void;
 }
 
-function GameHeader({ score, lives, currentRoundLocation }: GameHeaderProps) {
+function GameHeader({
+  score,
+  lives,
+  currentRoundLocation,
+  startedAt,
+  timeLimit,
+  timeRemaining,
+  setTimeRemaining,
+}: GameHeaderProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <div className="absolute top-0 left-0 right-0 z-10 p-1.5 sm:p-2 md:p-4">
       <div className="mx-auto max-w-4xl bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-zinc-800/50 transition-all duration-300 hover:border-zinc-700/50">
         <div className="flex items-center justify-between p-1.5 sm:p-2 md:p-3">
-          <div className="flex items-center gap-1 sm:gap-2 md:gap-4">
+          <div className="flex items-center gap-3 sm:gap-2 md:gap-4">
             <GameLives lives={lives} />
             <GameScore score={score} />
+            {timeLimit !== null && (
+              <div className="hidden md:flex">
+                <GameTimer
+                  timeLimit={timeLimit}
+                  startedAt={startedAt}
+                  timeRemaining={timeRemaining}
+                  setTimeRemaining={setTimeRemaining}
+                />
+              </div>
+            )}
             <HintButton
               lat={currentRoundLocation.latitude}
               lng={currentRoundLocation.longitude}
@@ -72,6 +95,18 @@ function GameHeader({ score, lives, currentRoundLocation }: GameHeaderProps) {
           </div>
         </div>
       </div>
+
+      {/* Timer for smaller screens */}
+      {timeLimit !== null && (
+        <div className="md:hidden mt-2">
+          <GameTimer
+            timeLimit={timeLimit}
+            startedAt={startedAt}
+            timeRemaining={timeRemaining}
+            setTimeRemaining={setTimeRemaining}
+          />
+        </div>
+      )}
     </div>
   );
 }

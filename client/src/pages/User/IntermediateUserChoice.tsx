@@ -1,7 +1,6 @@
 import { Button } from "../../components/ui/button";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-
 function IntermediateUserChoice() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -17,23 +16,23 @@ function IntermediateUserChoice() {
               </span>
             </h1>
             <h3 className="text-lg text-gray-300/90">
-              Would you like to continue with this account?
+              Would you like to continue with this team?
             </h3>
           </div>
 
           <div className="flex flex-col gap-4 mt-2">
             <Button
               className="w-full py-6 text-lg font-medium transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/20"
-              onClick={() => navigate("/locations")}
+              onClick={() => navigate("/game-select")}
             >
-              Continue Session
+              Hunt with this team
             </Button>
             <Button
               variant="outline"
               className="w-full py-6 text-lg font-medium transition-all hover:bg-primary/10 hover:border-primary/50"
               onClick={() => navigate("/new-user")}
             >
-              Switch Account
+              Switch Team
             </Button>
           </div>
         </div>

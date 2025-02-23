@@ -3,7 +3,7 @@ import { useLoadScript } from "@react-google-maps/api";
 import StreetView from "../../components/Map/StreetView";
 import { useParams } from "react-router-dom";
 import { fetchGameByGameId, newGuess } from "../../api-clients";
-import { GameType } from "../../../../server/shared/types";
+import { GameType, GameModeType } from "../../../../server/shared/types";
 import GuessMap from "../../components/Map/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import ResultScreen from "../../components/Map/ResultScreen";
@@ -12,7 +12,8 @@ import { HashLoader } from "react-spinners";
 import GameHeader from "@/components/Game/GameHeader";
 import GameOver from "@/components/Game/GameOver";
 import LifeChangeAlert from "@/components/Game/LifeChangeAlert";
-import LivesExplanationAlert from "@/components/Game/LivesExplanationAlert";
+import GameModeExplanationAlert from "@/components/Game/GameModeExplanationAlert";
+import TimeOver from "@/components/Game/TimeOver";
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
 
@@ -39,12 +40,13 @@ function GamePage() {
   const [lifeChangeType, setLifeChangeType] = useState<
     "increase" | "decrease" | null
   >(null);
-  const [showLivesExplanation, setShowLivesExplanation] = useState(true);
-
+  const [showGameModeExplanation, setShowGameModeExplanation] = useState(true);
+  const [gameMode, setGameMode] = useState<GameModeType | null>(null);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: GOOGLE_API_KEY,
     libraries,
   });
+  const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchGameById = async () => {
@@ -52,6 +54,8 @@ function GamePage() {
       try {
         const gameData = await fetchGameByGameId(gameId);
         setGame(gameData);
+        setGameMode(gameData.gameMode);
+        setTimeRemaining(gameData.timeRemaining);
         setCurrentRoundLocation(gameData.currentLocation);
         setError(null);
       } catch (error) {
@@ -136,14 +140,18 @@ function GamePage() {
   if (game.lives <= 0) {
     return <GameOver score={game?.score || 0} />;
   }
+  if (timeRemaining && timeRemaining <= 0) {
+    return <TimeOver score={game?.score || 0} />;
+  }
 
   return (
     <APIProvider apiKey={GOOGLE_API_KEY}>
       <div className="relative h-screen w-screen overflow-hidden bg-zinc-950">
         {/* Lives Explanation Alert */}
-        {showLivesExplanation && (
-          <LivesExplanationAlert
-            setShowLivesExplanation={setShowLivesExplanation}
+        {showGameModeExplanation && (
+          <GameModeExplanationAlert
+            gameMode={gameMode!}
+            setShowGameModeExplanation={setShowGameModeExplanation}
           />
         )}
 
@@ -155,6 +163,10 @@ function GamePage() {
         {/* Game Header */}
         {game && currentRoundLocation && (
           <GameHeader
+            timeRemaining={timeRemaining!}
+            setTimeRemaining={setTimeRemaining}
+            timeLimit={game.timeLimit}
+            startedAt={game.startedAt}
             score={game.score}
             lives={game.lives}
             currentRoundLocation={currentRoundLocation}

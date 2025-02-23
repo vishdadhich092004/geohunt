@@ -25,14 +25,15 @@ model Location {
 }
 
 model GameMode {
-  id          String   @id @default(uuid()) @db.Uuid
-  name        String   @unique
-  description String
-  timeLimit   Int? // in seconds, null means no time limit
-  maxLives    Int? // null means infinite lives
-  games       Game[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id           String   @id @default(uuid()) @db.Uuid
+  name         String   @unique
+  description  String
+  timeLimit    Int? // in seconds, null means no time limit
+  maxLives     Int? // null means infinite lives
+  maxLocations Int?
+  games        Game[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model Game {
@@ -46,7 +47,9 @@ model Game {
   startedAt         DateTime
   finishedAt        DateTime?
   lives             Int       @default(5)
-  timeRemaining     Int? // in seconds, for time-based modes
+  maxLocations      Int?
+  timeRemaining     Int?
+  timeLimit         Int?
   currentLocationId String    @db.Uuid
   currentLocation   Location  @relation(fields: [currentLocationId], references: [id])
   user              User      @relation(fields: [userId], references: [id])

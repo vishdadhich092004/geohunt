@@ -26,6 +26,7 @@ export const createGuess = async (
     include: {
       guesses: true,
       currentLocation: true,
+      gameMode: true,
     },
   });
 
@@ -41,14 +42,29 @@ export const createGuess = async (
   );
   const currentRoundScore = calculateScore(distance);
 
-  // Update lives based on score
+  const gameMode = game.gameMode;
+
+  // Check if the number of guesses exceeds maxLocations
+  if (
+    gameMode.maxLocations !== null &&
+    game.guesses.length >= gameMode.maxLocations
+  ) {
+    return res
+      .status(400)
+      .json({ error: "Maximum number of locations reached" });
+  }
+
   let updatedLives = game.lives;
   if (currentRoundScore <= 3000) {
     updatedLives -= 1;
   } else if (currentRoundScore >= 4750) {
-    updatedLives = Math.min(updatedLives + 1, 5); // Assuming max lives is 5
+    updatedLives = Math.min(updatedLives + 1, gameMode.maxLives!);
   }
-
+  if (game.maxLocations !== null && game.guesses.length >= game.maxLocations) {
+    return res
+      .status(400)
+      .json({ error: "Maximum number of locations reached" });
+  }
   // Create the guess record
   const guess = await prisma.guess.create({
     data: {
@@ -64,8 +80,8 @@ export const createGuess = async (
       },
     },
   });
+  game.guesses.push(guess);
 
-  // Check for game over before proceeding with other operations
   if (updatedLives <= 0) {
     const finalGame = await prisma.game.update({
       where: { id: gameId },
@@ -78,20 +94,21 @@ export const createGuess = async (
       include: {
         currentLocation: true,
         guesses: true,
+        gameMode: true,
       },
     });
     return res.status(200).json(finalGame);
   }
+
   let nextLocation;
   if (game.continent === undefined && game.country === undefined) {
     nextLocation = await generateRandomPopularLocation();
-    console.log("Next location:", nextLocation);
+  } else {
+    nextLocation = await generateRandomPopularLocation(
+      game.continent as keyof PopularAreasMap,
+      game.country || undefined
+    );
   }
-  // Only generate next location if game is not over
-  nextLocation = await generateRandomPopularLocation(
-    game.continent as keyof PopularAreasMap,
-    game.country || undefined
-  );
   if (!nextLocation) {
     return res
       .status(500)

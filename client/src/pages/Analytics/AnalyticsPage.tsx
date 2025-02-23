@@ -19,6 +19,7 @@ import { UserType } from "../../../../server/shared/types";
 import { getAnalytics } from "@/api-clients";
 import AnalyticsMap from "./AnalyticsMap";
 import StatCard from "@/components/ui/stat-card";
+import BackButton from "@/components/BackButton";
 interface AnalyticsData {
   totalGames: number;
   firstGame: GameType;
@@ -103,14 +104,7 @@ function AnalyticsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80 py-8 px-4">
       <div className="container mx-auto max-w-7xl">
-        <button
-          onClick={() => navigate(-1)}
-          className="mb-6 flex items-center text-sm text-muted-foreground hover:text-primary transition-colors group"
-        >
-          <ChevronLeft className="mr-1 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-          Back
-        </button>
-
+        <BackButton />
         <div className="mb-8 text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
             <User className="w-8 h-8 text-primary" />

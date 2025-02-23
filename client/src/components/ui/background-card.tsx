@@ -1,33 +1,23 @@
 import { cn } from "@/lib/utils";
-import { useNavigate } from "react-router-dom";
 
 interface BGCardProps {
   heading: string;
   desc: string;
   staticImg: string;
   dynamicImg: string;
-  continent?: string;
-  country?: string;
   children?: React.ReactNode;
+  onClick?: () => void;
 }
 export function BGCard({
   heading,
   desc,
   staticImg,
   dynamicImg,
-  continent,
-  country,
   children,
+  onClick,
 }: BGCardProps) {
-  const navigate = useNavigate();
-  const handleLocationSelection = (continent?: string, country?: string) => {
-    navigate(`/games?continent=${continent}&country=${country}`);
-  };
   return (
-    <div
-      className="max-w-xs w-full"
-      onClick={() => handleLocationSelection(continent, country)}
-    >
+    <div className="max-w-xs w-full" onClick={onClick}>
       <div
         style={{
           backgroundImage: `url(${staticImg})`,

@@ -7,17 +7,30 @@ import { PopularAreasMap } from "../locations/locations";
 interface ContinentAndCountry {
   continent?: string;
   country?: string;
+  gameModeId?: string;
 }
 export const createGame = async (
   req: Request,
   res: Response
 ): Promise<GameType | any> => {
   try {
-    const { continent, country } = req.query as ContinentAndCountry;
+    const { continent, country, gameModeId } = req.query as ContinentAndCountry;
 
     const userId = req.user?.userId;
     if (!userId) {
       return res.status(400).json({ message: "No User Found" });
+    }
+
+    if (!gameModeId) {
+      return res.status(400).json({ message: "Game Mode Id is missing" });
+    }
+    const gameMode = await prisma.gameMode.findUnique({
+      where: {
+        id: gameModeId,
+      },
+    });
+    if (!gameMode) {
+      return res.status(404).json({ message: "Game Mode Not Found" });
     }
 
     let randomLocation;
@@ -57,19 +70,26 @@ export const createGame = async (
         currentLocationId: firstLocation.id,
         continent: continent,
         country: country,
-        lives: 5, // Make sure to set initial lives
+        gameModeId: gameModeId,
+        lives: gameMode.maxLives!,
+        timeLimit: gameMode.timeLimit!,
+        maxLocations: gameMode.maxLocations,
       },
       include: {
         currentLocation: true,
         guesses: true,
+        gameMode: true,
       },
     });
 
     if (!game) {
       return res.status(404).json({ message: "Failed to create a game" });
     }
-
-    return res.status(200).json(game);
+    const timeRemaining = gameMode.timeLimit
+      ? gameMode.timeLimit -
+        Math.floor((new Date().getTime() - game.startedAt.getTime()) / 1000)
+      : null;
+    return res.status(200).json({ ...game, timeRemaining });
   } catch (e) {
     console.error("Error creating game:", e);
     res.status(500).json({ error: "Failed to create a game" });
@@ -90,6 +110,8 @@ export const fetchGame = async (
     },
     include: {
       currentLocation: true,
+      gameMode: true,
+      guesses: true,
     },
   });
   if (!game) {

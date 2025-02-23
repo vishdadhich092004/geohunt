@@ -6,6 +6,7 @@ import leaderboardRoutes from "./leaderboard.routes";
 import userRoutes from "./user.routes";
 import hintRoutes from "./hint.routes";
 import analyticsRoutes from "./analytics.routes";
+import gameModeRoutes from "./game.modes.routes";
 const router = express.Router();
 
 router.use("/locations", locationRoutes);
@@ -15,5 +16,6 @@ router.use("/users", userRoutes);
 router.use("/leaderboard", leaderboardRoutes);
 router.use("/hints", hintRoutes);
 router.use("/analytics", analyticsRoutes);
+router.use("/game-modes", gameModeRoutes);
 
 export default router;

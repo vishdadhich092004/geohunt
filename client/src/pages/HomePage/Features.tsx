@@ -28,7 +28,7 @@ const features = [
   },
 ];
 
-export function Features() {
+const Features = () => {
   return (
     <div className="py-24 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-white/10" />
@@ -61,4 +61,6 @@ export function Features() {
       </div>
     </div>
   );
-}
+};
+
+export default Features;

@@ -19,9 +19,13 @@ export const newUser = async (formData: UserFormData) => {
   return responseBody;
 };
 
-export const newGame = async (continent?: string, country?: string) => {
+export const newGame = async (
+  continent?: string,
+  country?: string,
+  gameModeId?: string
+) => {
   const response = await fetch(
-    `${API_BASE_URL}/api/games?continent=${continent}&country=${country}`,
+    `${API_BASE_URL}/api/games?continent=${continent}&country=${country}&gameModeId=${gameModeId}`,
     {
       method: "POST",
       credentials: "include",
@@ -119,6 +123,30 @@ export const getAnalytics = async (userId: string) => {
   const body = await response.json();
   if (!response.ok) {
     throw new Error("Error Fetching analytics");
+  }
+  return body;
+};
+
+export const fetchGameModes = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/game-modes`, {
+    credentials: "include",
+    method: "GET",
+  });
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error(body.error);
+  }
+  return body;
+};
+
+export const fetchGameModeById = async (gameModeId: string) => {
+  const response = await fetch(`${API_BASE_URL}/api/game-modes/${gameModeId}`, {
+    credentials: "include",
+    method: "GET",
+  });
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error(body.error);
   }
   return body;
 };

@@ -22,11 +22,15 @@ export type GameType = {
   score: number;
   currentRoundScore: number;
   lives: number;
-  startedAt: Date;
+  maxLocations: number;
+  timeLimit: number;
+  timeRemaining: number;
+  startedAt: string;
   currentLocation: LocationType;
   finishedAt?: Date | null;
   continent?: string;
   country?: string;
+  gameMode: GameModeType;
 };
 
 export type GuessType = {
@@ -38,6 +42,16 @@ export type GuessType = {
   score: number;
   distance: number;
   createdAt: Date;
+};
+export type GameModeType = {
+  id: string;
+  name: string;
+  description: string;
+  maxLives: number | null;
+  timeLimit?: number | null;
+  maxLocations?: number | null;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export interface APIResponse<T> {

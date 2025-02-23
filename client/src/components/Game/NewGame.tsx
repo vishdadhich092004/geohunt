@@ -9,18 +9,21 @@ export default function NewGame() {
   const location = useLocation();
   const [continent, setContinent] = useState("");
   const [country, setCountry] = useState("");
+  const [gameModeId, setGameModeId] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const continent = searchParams.get("continent");
+    const gameModeId = searchParams.get("gameModeId");
     setContinent(continent!);
     const country = searchParams.get("country");
     setCountry(country!);
+    setGameModeId(gameModeId!);
   }, [location.search]);
 
-  const mutation = useMutation(() => newGame(continent, country), {
+  const mutation = useMutation(() => newGame(continent, country, gameModeId), {
     onSuccess: (data) => {
       navigate(`/guesses/${data.id}`);
     },

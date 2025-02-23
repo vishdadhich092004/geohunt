@@ -1,11 +1,37 @@
 import { Alert, AlertTitle, AlertDescription } from "../ui/alert";
 import { Compass } from "lucide-react";
-
-function LivesExplanationAlert({
-  setShowLivesExplanation,
+import { GameModeType } from "../../../../server/shared/types";
+function GameModeExplanationAlert({
+  setShowGameModeExplanation,
+  gameMode,
 }: {
-  setShowLivesExplanation: (show: boolean) => void;
+  setShowGameModeExplanation: (show: boolean) => void;
+  gameMode: GameModeType;
 }) {
+  const getGameModeDetails = () => {
+    const livesText = gameMode.maxLives
+      ? `You start with ${gameMode.maxLives} ${
+          gameMode.maxLives === 1 ? "life" : "lives"
+        }`
+      : "You have unlimited lives";
+
+    const locationsText = gameMode.maxLocations
+      ? `Complete ${gameMode.maxLocations} locations`
+      : "Keep playing until you run out of lives";
+
+    const timeText = gameMode.timeLimit
+      ? `You have ${gameMode.timeLimit} seconds`
+      : "No time limit";
+
+    return {
+      livesText,
+      locationsText,
+      timeText,
+    };
+  };
+
+  const { livesText, locationsText, timeText } = getGameModeDetails();
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
@@ -14,41 +40,35 @@ function LivesExplanationAlert({
           <div className="bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30">
             <Compass className="h-6 w-6 fill-emerald-500/20" />
           </div>
-          Welcome to GeoGuessr!
+          Welcome to {gameMode.name}!
         </AlertTitle>
         <AlertDescription className="space-y-4">
           <div className="text-zinc-200 leading-relaxed">
-            You start with 5 lives. Master the scoring system:
+            {gameMode.description}
           </div>
           <div className="space-y-3 text-sm">
             <div className="flex items-center gap-3 bg-zinc-800/30 p-2.5 rounded-xl border border-emerald-500/20">
               <div className="h-8 w-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
                 <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
               </div>
-              <span className="text-emerald-400">
-                Score above 4750 points: Gain a life!
-              </span>
+              <span className="text-emerald-400">{livesText}</span>
             </div>
             <div className="flex items-center gap-3 bg-zinc-800/30 p-2.5 rounded-xl border border-amber-500/20">
               <div className="h-8 w-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
                 <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
               </div>
-              <span className="text-amber-400">
-                Score between 3000-4750: Keep your lives
-              </span>
+              <span className="text-amber-400">{timeText}</span>
             </div>
             <div className="flex items-center gap-3 bg-zinc-800/30 p-2.5 rounded-xl border border-red-500/20">
               <div className="h-8 w-8 rounded-lg bg-red-500/10 flex items-center justify-center">
                 <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
               </div>
-              <span className="text-red-400">
-                Score below 3000: Lose a life
-              </span>
+              <span className="text-red-400">{locationsText}</span>
             </div>
           </div>
         </AlertDescription>
         <button
-          onClick={() => setShowLivesExplanation(false)}
+          onClick={() => setShowGameModeExplanation(false)}
           className="mt-5 w-full px-4 py-2.5 bg-zinc-800/50 text-amber-400 
                      rounded-xl border border-zinc-700/30 transition-all duration-300 
                      hover:border-zinc-700/50 hover:bg-zinc-800/80 font-medium"
@@ -60,4 +80,4 @@ function LivesExplanationAlert({
   );
 }
 
-export default LivesExplanationAlert;
+export default GameModeExplanationAlert;

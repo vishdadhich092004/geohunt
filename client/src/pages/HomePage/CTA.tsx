@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-export function CTA() {
+const CTA = () => {
   const { isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
   const handlePlayNow = () => {
@@ -30,7 +30,7 @@ export function CTA() {
           <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
             {" "}
             Ready to Start Your{" "}
-            <span className="block bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent py-0.5">
               {" "}
               Geographic Adventure?{" "}
             </span>{" "}
@@ -50,7 +50,9 @@ export function CTA() {
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />{" "}
           </Button>{" "}
         </div>{" "}
-      </div>{" "}
+      </div>
     </div>
   );
-}
+};
+
+export default CTA;
