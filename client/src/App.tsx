@@ -14,6 +14,7 @@ import IntermediateUserChoice from "./pages/User/IntermediateUserChoice";
 import MaintenancePage from "./pages/Extras/MaintenancePage";
 import HomePage from "./pages/HomePage";
 import GameSelect from "./pages/Game/GameSelect";
+import Demo from "./pages/DemoPage/Demo";
 function App() {
   const isMaintenanceMode = false;
 
@@ -24,6 +25,14 @@ function App() {
           <Route path="*" element={<MaintenancePage />} />
         ) : (
           <>
+            <Route
+              path="/demo"
+              element={
+                <Layout>
+                  <Demo />
+                </Layout>
+              }
+            />
             <Route
               path="/"
               element={
