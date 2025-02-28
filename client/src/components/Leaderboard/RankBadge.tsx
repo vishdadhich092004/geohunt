@@ -1,27 +1,32 @@
 import { cn } from "@/lib/utils";
-import { Medal } from "lucide-react";
 
 interface RankBadgeProps {
   rank: number;
-  className?: string;
 }
 
-export function RankBadge({ rank, className }: RankBadgeProps) {
-  if (rank > 3)
-    return (
-      <span className={cn("text-muted-foreground", className)}>{rank}</span>
-    );
+export function RankBadge({ rank }: RankBadgeProps) {
+  let badgeClass = "bg-muted text-muted-foreground";
+  let icon = null;
+
+  if (rank === 1) {
+    badgeClass = "bg-yellow-500 text-yellow-950";
+    icon = "🥇";
+  } else if (rank === 2) {
+    badgeClass = "bg-gray-300 text-gray-800";
+    icon = "🥈";
+  } else if (rank === 3) {
+    badgeClass = "bg-amber-600 text-amber-950";
+    icon = "🥉";
+  }
 
   return (
-    <div className="flex items-center gap-2">
-      <Medal
-        className={cn("h-5 w-5", {
-          "text-yellow-500": rank === 1,
-          "text-gray-400": rank === 2,
-          "text-amber-600": rank === 3,
-        })}
-      />
-      <span className="font-semibold">{rank}</span>
+    <div
+      className={cn(
+        "inline-flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm",
+        badgeClass
+      )}
+    >
+      {icon || rank}
     </div>
   );
 }

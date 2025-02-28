@@ -41,7 +41,6 @@ export function LeaderboardTable({
 }: LeaderboardTableProps) {
   const [showScrollButton, setShowScrollButton] = useState(false);
 
-  // Show button when scrolled down 200px
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollButton(window.scrollY > 200);
@@ -54,20 +53,25 @@ export function LeaderboardTable({
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Calculate the starting rank for the current page
   const getEntryRank = (index: number) => {
     return (currentPage - 1) * limit + index + 1;
   };
 
   return (
     <>
-      <Card className="overflow-hidden border">
+      <Card className="overflow-hidden border shadow-lg transition-all duration-300 hover:shadow-primary/10">
         <Table>
           <TableHeader>
             <TableRow className="bg-muted/50">
-              <TableHead className="w-24">Rank</TableHead>
-              <TableHead>Player/Team</TableHead>
-              <TableHead className="text-right">Score</TableHead>
+              <TableHead className="w-24 font-bold text-primary/80">
+                Rank
+              </TableHead>
+              <TableHead className="font-bold text-primary/80">
+                Player/Team
+              </TableHead>
+              <TableHead className="text-right font-bold text-primary/80">
+                Score
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -75,8 +79,8 @@ export function LeaderboardTable({
               <TableRow
                 key={entry.id}
                 className={cn(
-                  "group transition-colors hover:bg-muted/50",
-                  getEntryRank(index) <= 3 && "bg-muted/20"
+                  "group transition-all duration-300 hover:bg-muted/50",
+                  getEntryRank(index) <= 3 && "bg-primary/5"
                 )}
               >
                 <TableCell className="font-medium">
@@ -161,12 +165,11 @@ export function LeaderboardTable({
         </Table>
       </Card>
 
-      {/* Scroll to top button */}
       {showScrollButton && (
         <Button
           variant="outline"
           size="icon"
-          className="fixed bottom-4 right-4 rounded-full shadow-lg bg-background/80 backdrop-blur-sm"
+          className="fixed bottom-4 right-4 rounded-full shadow-lg bg-background/80 backdrop-blur-sm border border-primary/20 hover:border-primary/50 transition-all duration-300 animate-fade-in"
           onClick={scrollToTop}
         >
           <ArrowUp className="h-4 w-4" />

@@ -1,14 +1,19 @@
-import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-function BackButton() {
+export default function BackButton() {
   const navigate = useNavigate();
+
   return (
-    <Button variant="ghost" onClick={() => navigate(-1)}>
-      <ArrowLeft className="h-6 w-6 text-amber-400" />
+    <Button
+      variant="ghost"
+      size="sm"
+      className="mb-4 hover:bg-amber-400 transition-colors"
+      onClick={() => navigate(-1)}
+    >
+      <ChevronLeft className="mr-2 h-4 w-4" />
+      Back
     </Button>
   );
 }
-
-export default BackButton;

@@ -19,7 +19,7 @@ export function LeaderboardFooter({
 }: LeaderboardFooterProps) {
   const generatePageNumbers = () => {
     const pages = [];
-    const showPages = 5; // Number of page buttons to show
+    const showPages = 5;
 
     let start = Math.max(1, currentPage - Math.floor(showPages / 2));
     const end = Math.min(totalPages, start + showPages - 1);
@@ -36,14 +36,17 @@ export function LeaderboardFooter({
   };
 
   return (
-    <div className="mt-6 flex items-center justify-center gap-2">
-      <div className="flex items-center gap-2 rounded-lg border bg-card p-1 shadow-sm">
+    <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p className="text-sm text-muted-foreground">
+        Page {currentPage} of {totalPages}
+      </p>
+      <div className="flex items-center gap-2 rounded-lg border bg-card/50 backdrop-blur-sm p-1 shadow-lg">
         <Button
           variant="ghost"
           size="icon"
           onClick={() => onPageChange(1)}
           disabled={currentPage === 1}
-          className="h-8 w-8"
+          className="h-8 w-8 rounded-md transition-all duration-200 hover:bg-primary/20"
         >
           <ChevronsLeft className="h-4 w-4" />
         </Button>
@@ -52,19 +55,23 @@ export function LeaderboardFooter({
           size="icon"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="h-8 w-8"
+          className="h-8 w-8 rounded-md transition-all duration-200 hover:bg-primary/20"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
 
-        <div className="flex items-center gap-1 px-1">
+        <div className="hidden sm:flex items-center gap-1 px-1">
           {generatePageNumbers().map((pageNum) => (
             <Button
               key={pageNum}
               variant={pageNum === currentPage ? "default" : "ghost"}
               size="icon"
               onClick={() => onPageChange(pageNum)}
-              className="h-8 w-8"
+              className={`h-8 w-8 rounded-md transition-all duration-200 ${
+                pageNum === currentPage
+                  ? "bg-primary text-primary-foreground"
+                  : "hover:bg-primary/20"
+              }`}
             >
               {pageNum}
             </Button>
@@ -76,7 +83,7 @@ export function LeaderboardFooter({
           size="icon"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="h-8 w-8"
+          className="h-8 w-8 rounded-md transition-all duration-200 hover:bg-primary/20"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>
@@ -85,7 +92,7 @@ export function LeaderboardFooter({
           size="icon"
           onClick={() => onPageChange(totalPages)}
           disabled={currentPage === totalPages}
-          className="h-8 w-8"
+          className="h-8 w-8 rounded-md transition-all duration-200 hover:bg-primary/20"
         >
           <ChevronsRight className="h-4 w-4" />
         </Button>

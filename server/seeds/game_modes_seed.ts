@@ -79,24 +79,24 @@ async function main() {
         maxLocations: null,
       },
     }),
-    prisma.gameMode.upsert({
-      where: { name: "Speed Run" },
-      update: {
-        description:
-          "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
-        timeLimit: 120,
-        maxLives: 3,
-        maxLocations: 5,
-      },
-      create: {
-        name: "Speed Run",
-        description:
-          "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
-        timeLimit: 120,
-        maxLives: 3,
-        maxLocations: 5,
-      },
-    }),
+    // prisma.gameMode.upsert({
+    //   where: { name: "Speed Run" },
+    //   update: {
+    //     description:
+    //       "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
+    //     timeLimit: 120,
+    //     maxLives: 3,
+    //     maxLocations: 5,
+    //   },
+    //   create: {
+    //     name: "Speed Run",
+    //     description:
+    //       "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
+    //     timeLimit: 120,
+    //     maxLives: 3,
+    //     maxLocations: 5,
+    //   },
+    // }),
     prisma.gameMode.upsert({
       where: { name: "Precision Master" },
       update: {
@@ -117,24 +117,24 @@ async function main() {
     }),
 
     // Learning Modes
-    prisma.gameMode.upsert({
-      where: { name: "Practice" },
-      update: {
-        description:
-          "Unlimited lives, hints enabled, and detailed feedback after each guess",
-        timeLimit: null,
-        maxLives: null,
-        maxLocations: null,
-      },
-      create: {
-        name: "Practice",
-        description:
-          "Unlimited lives, hints enabled, and detailed feedback after each guess",
-        timeLimit: null,
-        maxLives: null,
-        maxLocations: null,
-      },
-    }),
+    // prisma.gameMode.upsert({
+    //   where: { name: "Practice" },
+    //   update: {
+    //     description:
+    //       "Unlimited lives, hints enabled, and detailed feedback after each guess",
+    //     timeLimit: null,
+    //     maxLives: null,
+    //     maxLocations: null,
+    //   },
+    //   create: {
+    //     name: "Practice",
+    //     description:
+    //       "Unlimited lives, hints enabled, and detailed feedback after each guess",
+    //     timeLimit: null,
+    //     maxLives: null,
+    //     maxLocations: null,
+    //   },
+    // }),
   ]);
 
   console.log("Created/Updated game modes:", gameModes);
