@@ -158,7 +158,7 @@ export function Navbar() {
             <UserDropdown />
             <Button
               onClick={handlePlayNow}
-              className="bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all group"
+              className="hidden md:flex bg-primary hover:bg-primary/90 text-white shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all group"
             >
               Play Now
               <ChevronRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
