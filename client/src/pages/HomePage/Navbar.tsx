@@ -143,7 +143,7 @@ export function Navbar() {
               <Compass className="h-8 w-8 text-primary transition-transform group-hover:rotate-45 duration-500" />
               <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent relative">
+            <span className="text-2xl font-extrabold bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent relative ">
               GeoHunt
               <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full animate-ping opacity-75" />
             </span>

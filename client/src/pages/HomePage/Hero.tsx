@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MapPin, Info, Play } from "lucide-react";
+import { MapPin, Play } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAuthContext } from "@/contexts/AuthContext";
@@ -7,7 +7,6 @@ import { useAuthContext } from "@/contexts/AuthContext";
 const Hero = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
-  const [showNewFeature, setShowNewFeature] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -42,38 +41,12 @@ const Hero = () => {
           </span>
         </div>
 
-        {/* New Feature Card */}
-        <div
-          className="hidden md:flex md:z-10 md:absolute md:top-4 md:right-4 md:bg-primary/20 md:backdrop-blur-sm md:rounded-lg md:p-3 md:cursor-pointer md:hover:bg-primary/30 md:transition-colors md:items-center md:gap-2 md:border md:border-primary/20 group"
-          onClick={() => setShowNewFeature(!showNewFeature)}
-        >
-          <span className="text-white font-semibold flex items-center">
-            <span className="inline-block w-3 h-3 bg-primary rounded-full mr-2 animate-ping-slow"></span>
-            What's New?
-          </span>
-          <Info className="w-4 h-4 text-primary group-hover:rotate-12 transition-transform" />
-
-          {showNewFeature && (
-            <div className="absolute right-0 bottom-full mb-2 w-72 p-4 bg-black/90 backdrop-blur-md rounded-lg text-left border border-primary/30 shadow-xl shadow-primary/20 animate-fade-in">
-              <h3 className="text-primary font-bold mb-2 flex items-center">
-                <span className="text-lg mr-2">🎮</span> Team Play Feature!
-              </h3>
-              <p className="text-gray-200 text-sm">
-                Multiple players can now use the same username to contribute to
-                a shared score on the leaderboard. Team up with friends for
-                higher rankings!
-              </p>
-              <div className="absolute w-3 h-3 bg-black/90 rotate-45 right-4 -bottom-1.5 border-r border-b border-primary/30"></div>
-            </div>
-          )}
-        </div>
-
         <h1
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 opacity-0 animate-fade-in-up"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 opacity-0 animate-fade-in-up "
           style={{ animationDelay: "200ms", animationFillMode: "forwards" }}
         >
           Explore the World with{" "}
-          <span className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent relative">
+          <span className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent relative font-grapenuts ">
             GeoHunt
             <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full animate-ping"></span>
           </span>

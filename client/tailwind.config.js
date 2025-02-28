@@ -16,6 +16,13 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      roboto: ["Roboto", "sans-serif"],
+      marker: ["Permanent Marker", "sans-serif"],
+      schoolbell: ["Schoolbell", "sans-serif"],
+      gaegu: ["Gaegu", "sans-serif"],
+      grapenuts: ["Grape Nuts", "sans-serif"],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",

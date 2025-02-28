@@ -22,9 +22,11 @@ import { useEffect, useState } from "react";
 import { fetchGameModes } from "@/api-clients";
 import { GameModeType } from "../../../../server/shared/types";
 import BackButton from "@/components/BackButton";
+
 interface GameModesProps {
   setGameModeId: (id: string) => void;
 }
+
 export const GameModes = ({ setGameModeId }: GameModesProps) => {
   const [gameModes, setGameModes] = useState<GameModeType[]>([]);
 
@@ -79,8 +81,9 @@ export const GameModes = ({ setGameModeId }: GameModesProps) => {
         return <Gamepad2 className="h-5 w-5" />;
     }
   };
+
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black/70 via-black/50 to-background text-white">
+    <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <BackButton />
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -88,8 +91,10 @@ export const GameModes = ({ setGameModeId }: GameModesProps) => {
         transition={{ duration: 0.5 }}
         className="max-w-7xl mx-auto text-center mb-12"
       >
-        <h1 className="text-4xl font-bold mb-4">Choose Your Game Mode</h1>
-        <p className="text-lg max-w-2xl mx-auto">
+        <h1 className="text-4xl font-bold mb-4 text-amber-400 drop-shadow-lg">
+          Choose Your Game Mode
+        </h1>
+        <p className="text-lg max-w-2xl mx-auto text-gray-300">
           Select from our variety of challenging game modes, each offering a
           unique way to test your skills and improve your gameplay.
         </p>
