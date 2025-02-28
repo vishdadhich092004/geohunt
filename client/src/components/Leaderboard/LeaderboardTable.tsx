@@ -15,17 +15,16 @@ import {
 import { RankBadge } from "./RankBadge";
 import { cn } from "@/lib/utils";
 import { Card } from "../ui/card";
-import { Trophy, Users, ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-interface LeaderboardEntry {
+import { getUserBadges } from "./GetUserBadges";
+export interface LeaderboardEntry {
   id: string;
   username: string;
   totalScore: number;
-  isTeam?: boolean;
-  memberCount?: number;
+  createdAt: Date;
 }
 
 interface LeaderboardTableProps {
@@ -94,66 +93,27 @@ export function LeaderboardTable({
                     >
                       {entry.username}
                     </Link>
-                    {entry.username === "vish" && (
-                      <TooltipProvider>
+                    {getUserBadges(entry).map((badge, index) => (
+                      <TooltipProvider key={index}>
                         <Tooltip>
                           <TooltipTrigger>
-                            <div className="flex items-center gap-1 bg-blue-500/10 text-blue-500 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-blue-500/20 transition-colors cursor-help">
-                              👨‍💻
+                            <div
+                              className={cn(
+                                "flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium transition-colors cursor-help",
+                                badge.bgColor,
+                                badge.textColor
+                              )}
+                            >
+                              {badge.icon}
+                              {badge.label}
                             </div>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Dev's Team</p>
+                            <p>{badge.tooltip}</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
-                    )}
-                    {entry.isTeam && (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <div className="flex items-center gap-1 bg-primary/10 text-primary px-2 py-0.5 rounded-full text-xs font-medium hover:bg-primary/20 transition-colors cursor-help">
-                              <Users className="h-3 w-3" />
-                              {entry.memberCount || 2}
-                            </div>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Team with {entry.memberCount} members</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    )}
-                    {entry.totalScore >= 100000 &&
-                      entry.totalScore < 200000 && (
-                        <TooltipProvider>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <div className="flex items-center gap-1 bg-yellow-500/10 text-yellow-500 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-yellow-500/20 transition-colors cursor-help">
-                                <Trophy className="h-3 w-3" />
-                                Master
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>Crossed 100,000 points</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      )}
-                    {entry.totalScore >= 200000 && (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger>
-                            <div className="flex items-center gap-1 bg-purple-500/10 text-purple-500 px-2 py-0.5 rounded-full text-xs font-medium hover:bg-purple-500/20 transition-colors cursor-help">
-                              <Trophy className="h-3 w-3" />
-                              Grandmaster
-                            </div>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Crossed 200,000 points</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    )}
+                    ))}
                   </div>
                 </TableCell>
                 <TableCell className="text-right font-mono text-muted-foreground">

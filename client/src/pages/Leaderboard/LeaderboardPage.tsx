@@ -7,6 +7,8 @@ import { LeaderboardTable } from "@/components/Leaderboard/LeaderboardTable";
 import { useState } from "react";
 import { LeaderboardFooter } from "@/components/Leaderboard/LeaderboardFooter";
 import BackButton from "@/components/BackButton";
+import { BadgeGuide } from "@/components/Leaderboard/BadgeGuide";
+
 export default function LeaderboardPage() {
   const [page, setPage] = useState(1);
   const {
@@ -14,34 +16,38 @@ export default function LeaderboardPage() {
     isLoading,
     error,
   } = useQuery(["leaderboard", page], () => fetchLeaderboard(page, 15));
-
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-16 mt-12">
         <BackButton />
-        <LeaderboardHeader />
-        <div className="max-w-4xl mx-auto">
-          {error ? (
-            <ErrorAlert
-              title="Failed to load leaderboard"
-              message="Please try again later."
-            />
-          ) : isLoading ? (
-            <LeaderboardLoading />
-          ) : (
-            <>
-              <LeaderboardTable
-                entries={response.data}
-                currentPage={page}
-                limit={15}
-              />
-              <LeaderboardFooter
-                currentPage={page}
-                totalPages={response.meta.totalPages}
-                onPageChange={setPage}
-              />
-            </>
-          )}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <BadgeGuide />
+          <div className="lg:col-span-3">
+            <LeaderboardHeader />
+            <div className="max-w-4xl mx-auto">
+              {error ? (
+                <ErrorAlert
+                  title="Failed to load leaderboard"
+                  message="Please try again later."
+                />
+              ) : isLoading ? (
+                <LeaderboardLoading />
+              ) : (
+                <>
+                  <LeaderboardTable
+                    entries={response.data}
+                    currentPage={page}
+                    limit={15}
+                  />
+                  <LeaderboardFooter
+                    currentPage={page}
+                    totalPages={response.meta.totalPages}
+                    onPageChange={setPage}
+                  />
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

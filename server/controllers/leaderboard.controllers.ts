@@ -20,6 +20,7 @@ export const fetchLeaderboard = async (
       select: {
         id: true,
         username: true,
+        createdAt: true,
         games: {
           select: {
             score: true,
@@ -30,6 +31,7 @@ export const fetchLeaderboard = async (
 
     const rankedUsers = users.map((user) => ({
       id: user.id,
+      createdAt: user.createdAt,
       username: user.username,
       totalScore: user.games.reduce((sum, game) => sum + game.score, 0),
     }));
