@@ -40,7 +40,18 @@ const features = [
   },
 ];
 
-const FeatureCard = ({ icon, title, description, index, inView }) => {
+const FeatureCard = ({
+  icon,
+  title,
+  description,
+  index,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  index: number;
+  inView: boolean;
+}) => {
   return (
     <div
       className={`relative group p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:border-primary/30 hover:bg-white/10 transition-all duration-500 hover:-translate-y-1 opacity-0 animate-fade-in`}

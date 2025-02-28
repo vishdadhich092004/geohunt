@@ -15,7 +15,7 @@ import { useState } from "react";
 function NewFeatures() {
   const { isAuthenticated } = useAuthContext();
   const navigate = useNavigate();
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
   const gameModes = [
     {

@@ -34,11 +34,11 @@ export function Navbar() {
     }
   };
 
-  const isActive = (path) => {
+  const isActive = (path: string) => {
     return location.pathname === path;
   };
 
-  const NavLinks = ({ mobile = false }) => (
+  const NavLinks = ({ mobile = false }: { mobile?: boolean }) => (
     <>
       <Link
         to="/"
