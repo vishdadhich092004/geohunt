@@ -6,6 +6,7 @@ interface GameTimerProps {
   startedAt: string;
   timeRemaining: number;
   setTimeRemaining: (timeRemaining: number) => void;
+  isGuessing: boolean;
 }
 
 function GameTimer({
@@ -13,18 +14,20 @@ function GameTimer({
   startedAt,
   timeRemaining,
   setTimeRemaining,
+  isGuessing,
 }: GameTimerProps) {
   const parsedStartedAt = new Date(startedAt.replace(" ", "T"));
   const [showFullscreenCount, setShowFullscreenCount] = useState(false);
-
   useEffect(() => {
+    if (isGuessing) return;
+
     const interval = setInterval(() => {
       setTimeRemaining(
         timeLimit - (Date.now() - parsedStartedAt.getTime()) / 1000
       );
     }, 100);
     return () => clearInterval(interval);
-  }, [timeLimit]);
+  }, [timeLimit, isGuessing]);
 
   useEffect(() => {
     setShowFullscreenCount(timeRemaining <= 5 && timeRemaining > 0);

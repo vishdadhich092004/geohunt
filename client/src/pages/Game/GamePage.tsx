@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLoadScript } from "@react-google-maps/api";
 import StreetView from "../../components/Map/StreetView";
 import { useParams } from "react-router-dom";
-import { fetchGameByGameId, newGuess } from "../../api-clients";
+import { fetchGameByGameId, newGuess, newGame } from "../../api-clients";
 import { GameType, GameModeType } from "../../../../server/shared/types";
 import GuessMap from "../../components/Map/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
@@ -59,9 +59,28 @@ function GamePage() {
         setCurrentRoundLocation(gameData.currentLocation);
         setError(null);
       } catch (error) {
-        setError(
-          error instanceof Error ? error.message : "Failed to fetch game"
-        );
+        // Handle 429 error specifically
+        if (error instanceof Error && error.message.includes("429")) {
+          try {
+            // Create a new game when rate limit is exceeded
+            const newGameData = await newGame();
+            setGame(newGameData);
+            setGameMode(newGameData.gameMode);
+            setTimeRemaining(newGameData.timeRemaining);
+            setCurrentRoundLocation(newGameData.currentLocation);
+            setError(null);
+          } catch (createError) {
+            setError(
+              createError instanceof Error
+                ? createError.message
+                : "Failed to create new game"
+            );
+          }
+        } else {
+          setError(
+            error instanceof Error ? error.message : "Failed to fetch game"
+          );
+        }
       }
     };
 
@@ -163,6 +182,7 @@ function GamePage() {
         {/* Game Header */}
         {game && currentRoundLocation && (
           <GameHeader
+            isGuessing={isGuessing}
             timeRemaining={timeRemaining!}
             setTimeRemaining={setTimeRemaining}
             timeLimit={game.timeLimit}

@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import geohuntdemo from "@/media/geohuntdemo.mp4";
-
+import BackButton from "@/components/BackButton";
 const Demo = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -20,6 +20,11 @@ const Demo = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      {/* Back button */}
+      <div className="absolute top-4 left-4 mt-20">
+        <BackButton />
+      </div>
+
       <div className="w-full max-w-4xl">
         <div className="relative rounded-2xl overflow-hidden border-2 border-gray-800 shadow-2xl shadow-black/50 group">
           <video

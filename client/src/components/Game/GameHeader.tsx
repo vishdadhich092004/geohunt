@@ -24,6 +24,7 @@ interface GameHeaderProps {
   timeLimit: number;
   timeRemaining: number;
   setTimeRemaining: (timeRemaining: number) => void;
+  isGuessing: boolean;
 }
 
 function GameHeader({
@@ -34,9 +35,9 @@ function GameHeader({
   timeLimit,
   timeRemaining,
   setTimeRemaining,
+  isGuessing,
 }: GameHeaderProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
   return (
     <div className="absolute top-0 left-0 right-0 z-10 p-1.5 sm:p-2 md:p-4">
       <div className="mx-auto max-w-4xl bg-zinc-900/95 backdrop-blur-md rounded-2xl shadow-2xl border border-zinc-800/50 transition-all duration-300 hover:border-zinc-700/50">
@@ -47,6 +48,7 @@ function GameHeader({
             {timeLimit !== null && (
               <div className="hidden md:flex">
                 <GameTimer
+                  isGuessing={isGuessing}
                   timeLimit={timeLimit}
                   startedAt={startedAt}
                   timeRemaining={timeRemaining}
@@ -100,6 +102,7 @@ function GameHeader({
       {timeLimit !== null && (
         <div className="md:hidden mt-2">
           <GameTimer
+            isGuessing={isGuessing}
             timeLimit={timeLimit}
             startedAt={startedAt}
             timeRemaining={timeRemaining}
