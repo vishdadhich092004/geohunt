@@ -40,7 +40,7 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
     );
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background relative max-w-screen mx-auto">
       <div
         className="fixed inset-0 z-0"
         style={{
@@ -66,7 +66,7 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
             <div className="absolute inset-0 overflow-hidden">
               <div className="absolute inset-0 bg-grid-white/10" />
             </div>
-            <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
+            <div className="relative h-full max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 flex flex-col items-center justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

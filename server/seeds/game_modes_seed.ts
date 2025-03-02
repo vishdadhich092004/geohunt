@@ -117,24 +117,24 @@ async function main() {
     }),
 
     // Learning Modes
-    // prisma.gameMode.upsert({
-    //   where: { name: "Practice" },
-    //   update: {
-    //     description:
-    //       "Unlimited lives, hints enabled, and detailed feedback after each guess",
-    //     timeLimit: null,
-    //     maxLives: null,
-    //     maxLocations: null,
-    //   },
-    //   create: {
-    //     name: "Practice",
-    //     description:
-    //       "Unlimited lives, hints enabled, and detailed feedback after each guess",
-    //     timeLimit: null,
-    //     maxLives: null,
-    //     maxLocations: null,
-    //   },
-    // }),
+    prisma.gameMode.upsert({
+      where: { name: "Practice" },
+      update: {
+        description:
+          "Unlimited lives, hints enabled, and detailed feedback after each guess",
+        timeLimit: null,
+        maxLives: null,
+        maxLocations: null,
+      },
+      create: {
+        name: "Practice",
+        description:
+          "Unlimited lives, hints enabled, and detailed feedback after each guess",
+        timeLimit: null,
+        maxLives: null,
+        maxLocations: null,
+      },
+    }),
   ]);
 
   console.log("Created/Updated game modes:", gameModes);

@@ -8,6 +8,7 @@ import {
   Target,
   Skull,
   Timer,
+  Brain,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -72,6 +73,17 @@ function NewFeatures() {
       emoji: "🏃",
       image:
         "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1170&auto=format&fit=crop",
+    },
+    {
+      id: "6",
+      name: "Practice",
+      description:
+        "Unlimited lives, hints enabled, and detailed feedback after each guess",
+      maxLives: null,
+      icon: <Brain className="w-6 h-6 text-purple-400" />,
+      emoji: "🧠",
+      image:
+        "https://images.unsplash.com/photo-1617791160536-598cf32026fb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 

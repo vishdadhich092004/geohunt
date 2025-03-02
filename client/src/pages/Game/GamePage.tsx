@@ -132,7 +132,7 @@ function GamePage() {
   if (!isLoaded || !game) {
     return (
       <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
-        <HashLoader color="#10b981" />
+        <HashLoader color="hsl(38, 92%, 56%)" />
       </div>
     );
   }

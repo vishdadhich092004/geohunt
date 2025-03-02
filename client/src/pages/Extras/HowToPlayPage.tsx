@@ -5,11 +5,13 @@ import { MessageCircleQuestion } from "lucide-react";
 export default function HowToPlayPage() {
   return (
     <div className="min-h-screen bg-background py-16 relative">
-      <BackButton />
+      <div className="absolute top-4 left-4 mt-20">
+        <BackButton />
+      </div>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center p-2 bg-primary/10 rounded-full mb-4">
-            <MessageCircleQuestion className="w-5 h-5 text-primary mr-2" />
+          <div className="inline-flex items-center justify-center p-2 bg-primary/10 rounded-full my-4">
+            <MessageCircleQuestion className="w-5 h-5 text-primary mr-2 " />
             <span className="text-sm font-medium text-primary">Game Guide</span>
           </div>
 

@@ -20,7 +20,7 @@ export default function LeaderboardPage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-16 mt-12">
         <BackButton />
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 mt-4">
           <BadgeGuide />
           <div className="lg:col-span-3">
             <LeaderboardHeader />

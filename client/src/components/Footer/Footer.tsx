@@ -1,4 +1,4 @@
-import { Heart, Mail, ExternalLink, Globe, MapPin } from "lucide-react";
+import { Heart, Mail, ExternalLink, MapPin, Compass } from "lucide-react";
 import { SlSocialGithub } from "react-icons/sl";
 import { RiTwitterXLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -23,7 +23,9 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-2 mb-4 group">
               <div className="relative">
-                <Globe className="h-8 w-8 text-primary transition-transform group-hover:rotate-45 duration-500" />
+                {/* <Globe className="h-8 w-8 text-primary transition-transform group-hover:rotate-45 duration-500" /> */}
+                <Compass className="h-8 w-8 text-primary transition-transform group-hover:rotate-45 duration-500" />
+
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
@@ -208,6 +210,7 @@ export function Footer() {
               >
                 Vishesh
               </a>
+              r
             </p>
 
             {/* Copyright */}

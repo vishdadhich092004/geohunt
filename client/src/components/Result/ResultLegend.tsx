@@ -5,7 +5,7 @@ interface ResultLegendProps {
 
 export function ResultLegend({ distance, score }: ResultLegendProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-secondary/50 rounded-lg">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4  rounded-lg">
       <div className="flex items-center justify-center space-x-8">
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 rounded-full bg-primary"></div>

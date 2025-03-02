@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy, Loader2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserForm, UserFormData } from "@/components/User/UserForm";
-
+import BackButton from "@/components/BackButton";
 export default function NewUser() {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
@@ -37,6 +37,9 @@ export default function NewUser() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4 mt-10">
       <div className="container max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="absolute top-4 left-4 mt-20">
+          <BackButton />
+        </div>
         <div className="w-full max-w-md space-y-4 mx-auto">
           {error && <ErrorAlert message={error} />}
           <UserForm onSubmit={handleSubmit} isLoading={mutation.isLoading} />
