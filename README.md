@@ -7,7 +7,6 @@
 - [Game Flow](#-game-flow)
 - [Team System](#-team-system)
 - [Technical Stack](#️-technical-stack)
-- [Demo Video](#-demo-video)
 - [Getting Started](#-getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -17,7 +16,6 @@
   - [User Experience](#user-experience)
 - [Mobile Support](#-mobile-support)
 - [Contributing](#-contributing)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 GeoHunt is an interactive geography game that combines exploration, learning, and team collaboration. Players can explore global landmarks and landscapes while competing individually or as part of a team.
@@ -78,14 +76,7 @@ graph LR
 - Nodejs and Express for backend sever
 - Used Cursor and Claude in the later stages of development
 
-## 🎥 Demo Video
 
-Experience GeoHunt in action:
-
-<video width="100%" controls>
-  <source src="https://drive.google.com/file/d/1-6FUfKtCGcpt550qD3TlOxR0fErqs-co/view?usp=drive_link" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 
 ## 🚀 Getting Started
 
