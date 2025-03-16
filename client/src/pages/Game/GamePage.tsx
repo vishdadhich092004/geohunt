@@ -157,10 +157,7 @@ function GamePage() {
     );
   }
 
-  if (
-    game.gameMode.maxLocations !== null &&
-    game.guesses.length >= game.maxLocations
-  ) {
+  if (game.maxLocations !== null && game.guesses.length >= game.maxLocations) {
     return <LocationsOver score={game?.score || 0} />;
   }
   if (game.lives <= 0) {
@@ -222,7 +219,7 @@ function GamePage() {
         )}
 
         {/* Guess Map */}
-        <div className="absolute bottom-4 right-4 z-10 transition-transform duration-300 hover:scale-105">
+        <div className="absolute bottom-8 right-4 z-10 transition-transform duration-300 hover:scale-105">
           <GuessMap
             selectedLocation={selectedLocation!}
             setSelectedLocation={setSelectedLocation}

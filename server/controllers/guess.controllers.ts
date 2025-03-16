@@ -50,10 +50,7 @@ export const createGuess = async (
   } else if (currentRoundScore >= 4750) {
     updatedLives = Math.min(updatedLives + 1, gameMode.maxLives!);
   }
-  if (
-    gameMode.maxLocations !== null &&
-    game.guesses.length >= gameMode.maxLocations
-  ) {
+  if (game.maxLocations !== null && game.guesses.length >= game.maxLocations) {
     return res
       .status(400)
       .json({ error: "Maximum number of locations reached" });
