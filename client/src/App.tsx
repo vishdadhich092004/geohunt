@@ -9,12 +9,16 @@ import Layout from "./layouts/Layout";
 import NotFoundPage from "./pages/Extras/NotFoundPage";
 import Premium from "./pages/Extras/Premium";
 import Contact from "./pages/Extras/Contact";
-import AnalyticsPage from "./pages/Analytics/AnalyticsPage";
-import IntermediateUserChoice from "./pages/User/IntermediateUserChoice";
 import MaintenancePage from "./pages/Extras/MaintenancePage";
-import HomePage from "./pages/HomePage";
-import GameSelect from "./pages/Game/GameSelect";
 import Demo from "./pages/DemoPage/Demo";
+import { lazy, Suspense } from "react";
+const HomePage = lazy(() => import("./pages/HomePage"));
+const IntermediateUserChoice = lazy(
+  () => import("./pages/User/IntermediateUserChoice")
+);
+const GameSelect = lazy(() => import("./pages/Game/GameSelect"));
+const AnalyticsPage = lazy(() => import("./pages/Analytics/AnalyticsPage"));
+
 function App() {
   const isMaintenanceMode = false;
 
@@ -53,11 +57,20 @@ function App() {
               path="/user-choice"
               element={
                 <Layout>
-                  <IntermediateUserChoice />
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <IntermediateUserChoice />
+                  </Suspense>
                 </Layout>
               }
             />
-            <Route path="/game-select" element={<GameSelect />} />
+            <Route
+              path="/game-select"
+              element={
+                <Suspense fallback={<div>Loading...</div>}>
+                  <GameSelect />
+                </Suspense>
+              }
+            />
             <Route path="/games" element={<NewGame />} />
             <Route path="/guesses/:gameId" element={<GamePage />} />
             <Route
@@ -104,7 +117,9 @@ function App() {
               path="/analytics/:userId"
               element={
                 <Layout>
-                  <AnalyticsPage />
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <AnalyticsPage />
+                  </Suspense>
                 </Layout>
               }
             />

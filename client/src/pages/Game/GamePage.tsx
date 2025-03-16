@@ -14,6 +14,7 @@ import GameOver from "@/components/Game/GameOver";
 import LifeChangeAlert from "@/components/Game/LifeChangeAlert";
 import GameModeExplanationAlert from "@/components/Game/GameModeExplanationAlert";
 import TimeOver from "@/components/Game/TimeOver";
+import LocationsOver from "@/components/Game/LocationsOver";
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
 const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
 
@@ -156,6 +157,12 @@ function GamePage() {
     );
   }
 
+  if (
+    game.gameMode.maxLocations !== null &&
+    game.guesses.length >= game.maxLocations
+  ) {
+    return <LocationsOver score={game?.score || 0} />;
+  }
   if (game.lives <= 0) {
     return <GameOver score={game?.score || 0} />;
   }

@@ -12,7 +12,7 @@ async function main() {
           "Traditional mode with 5 lives. Take your time and aim for accuracy!",
         timeLimit: null,
         maxLives: 5,
-        maxLocations: 5,
+        maxLocations: null,
       },
       create: {
         name: "Classic",
@@ -20,7 +20,7 @@ async function main() {
           "Traditional mode with 5 lives. Take your time and aim for accuracy!",
         timeLimit: null,
         maxLives: 5,
-        maxLocations: 5,
+        maxLocations: null,
       },
     }),
     // Time-based Modes
@@ -79,24 +79,24 @@ async function main() {
         maxLocations: null,
       },
     }),
-    // prisma.gameMode.upsert({
-    //   where: { name: "Speed Run" },
-    //   update: {
-    //     description:
-    //       "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
-    //     timeLimit: 120,
-    //     maxLives: 3,
-    //     maxLocations: 5,
-    //   },
-    //   create: {
-    //     name: "Speed Run",
-    //     description:
-    //       "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
-    //     timeLimit: 120,
-    //     maxLives: 3,
-    //     maxLocations: 5,
-    //   },
-    // }),
+    prisma.gameMode.upsert({
+      where: { name: "Speed Run" },
+      update: {
+        description:
+          "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
+        timeLimit: 120,
+        maxLives: 3,
+        maxLocations: 5,
+      },
+      create: {
+        name: "Speed Run",
+        description:
+          "5 locations, 2 minutes, 3 lives. How fast can you complete it?",
+        timeLimit: 120,
+        maxLives: 3,
+        maxLocations: 5,
+      },
+    }),
     prisma.gameMode.upsert({
       where: { name: "Precision Master" },
       update: {

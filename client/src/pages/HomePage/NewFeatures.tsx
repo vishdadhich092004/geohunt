@@ -76,9 +76,8 @@ function NewFeatures() {
     },
     {
       id: "6",
-      name: "Practice",
-      description:
-        "Unlimited lives, hints enabled, and detailed feedback after each guess",
+      name: "Precision Master",
+      description: "3 lives but need higher accuracy for points. For experts!",
       maxLives: null,
       icon: <Brain className="w-6 h-6 text-purple-400" />,
       emoji: "🧠",

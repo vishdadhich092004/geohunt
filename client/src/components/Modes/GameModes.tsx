@@ -33,6 +33,7 @@ export const GameModes = ({ setGameModeId }: GameModesProps) => {
   useEffect(() => {
     const loadGameModes = async () => {
       const modes = await fetchGameModes();
+      console.log(modes);
       setGameModes(modes);
     };
     loadGameModes();

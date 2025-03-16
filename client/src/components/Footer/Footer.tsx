@@ -210,7 +210,6 @@ export function Footer() {
               >
                 Vishesh
               </a>
-              r
             </p>
 
             {/* Copyright */}

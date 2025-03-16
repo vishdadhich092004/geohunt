@@ -11,8 +11,9 @@ export const fetchGameModes = async (
       return res.status(404).json({ message: "No game modes found" });
     }
     const filteredGameModes = gameModes.filter(
-      (mode) => mode.id !== "b3798b0c-0d00-4882-9820-36dd6c5354d5"
+      (mode) => mode.id !== "896f42c8-1445-4c2a-9fe5-30995c7c4ce3"
     );
+
     return res.status(200).json(filteredGameModes);
   } catch (error) {
     return res.status(500).json({ message: "Error fetching game modes" });

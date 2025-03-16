@@ -8,10 +8,38 @@ const Hero = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
   const [isVisible, setIsVisible] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     setIsVisible(true);
+
+    const loadVideo = async () => {
+      try {
+        // Only load the video if it's in the viewport
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && videoRef.current) {
+                // Set the source only when the video is visible
+                videoRef.current.src = geohuntdemo;
+                setIsVideoLoaded(true);
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+
+        if (videoRef.current) {
+          observer.observe(videoRef.current);
+        }
+      } catch (error) {
+        console.error("Error loading video:", error);
+      }
+    };
+
+    loadVideo();
 
     // Add video event listeners for debugging
     if (videoRef.current) {
@@ -135,11 +163,12 @@ const Hero = () => {
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover rounded-2xl"
-                preload="auto"
+                className={`w-full h-full object-cover rounded-2xl ${
+                  isVideoLoaded ? "opacity-100" : "opacity-0"
+                }`}
+                preload="none"
                 onError={(e) => console.error("Video error:", e)}
               >
-                <source src={geohuntdemo} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 

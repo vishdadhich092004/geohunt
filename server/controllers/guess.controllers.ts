@@ -44,23 +44,16 @@ export const createGuess = async (
 
   const gameMode = game.gameMode;
 
-  // Check if the number of guesses exceeds maxLocations
-  if (
-    gameMode.maxLocations !== null &&
-    game.guesses.length >= gameMode.maxLocations
-  ) {
-    return res
-      .status(400)
-      .json({ error: "Maximum number of locations reached" });
-  }
-
   let updatedLives = game.lives;
   if (currentRoundScore <= 3000) {
     updatedLives -= 1;
   } else if (currentRoundScore >= 4750) {
     updatedLives = Math.min(updatedLives + 1, gameMode.maxLives!);
   }
-  if (game.maxLocations !== null && game.guesses.length >= game.maxLocations) {
+  if (
+    gameMode.maxLocations !== null &&
+    game.guesses.length >= gameMode.maxLocations
+  ) {
     return res
       .status(400)
       .json({ error: "Maximum number of locations reached" });
