@@ -82,7 +82,6 @@ export const createGame = async (
         gameMode: true,
       },
     });
-    console.log("Game created:", game);
     if (!game) {
       return res.status(404).json({ message: "Failed to create a game" });
     }
