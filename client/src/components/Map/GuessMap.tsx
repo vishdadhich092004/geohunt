@@ -88,7 +88,10 @@ const GuessMap = ({
           onMouseover={handleMapMouseOver}
           onMouseout={handleMapMouseOut}
           onClick={handleMapClick}
-          fullscreenControl={false}
+          fullscreenControl={true}
+          fullscreenControlOptions={{
+            position: 1,
+          }}
           streetViewControl={false}
         >
           {selectedLocation && (
