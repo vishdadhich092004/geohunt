@@ -30,15 +30,15 @@ const GuessMap = ({
 
   const mapContainerStyle = {
     width: isFullyExpanded
-      ? "80vw" // Full width on mobile when expanded
+      ? "min(80vw, 800px)" // Limit maximum width when fully expanded
       : isExpanded
-      ? "min(90vw, 500px)" // Responsive width when hover-expanded
-      : "min(85vw, 240px)", // Base width
+      ? "min(90vw, 400px)" // Limit width when hover-expanded
+      : "min(85vw, 200px)", // Smaller base width
     height: isFullyExpanded
-      ? "50vh" // Taller on mobile when expanded
+      ? "min(50vh, 400px)" // Limit height when fully expanded
       : isExpanded
-      ? "min(60vh, 400px)" // Responsive height when hover-expanded
-      : "min(40vh, 160px)", // Base height
+      ? "min(40vh, 300px)" // Limit height when hover-expanded
+      : "min(30vh, 150px)", // Smaller base height
     transition: "all 0.3s ease-in-out",
   };
 
@@ -76,7 +76,7 @@ const GuessMap = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 p-2 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-lg shadow-xl">
+    <div className="flex flex-col gap-2 p-2 bg-zinc-900/90 backdrop-blur-md border border-zinc-800 rounded-lg shadow-xl max-w-[90vw]">
       <div className="rounded-lg overflow-hidden shadow-lg relative">
         <Map
           key={`map-${currentRoundLocation.latitude}-${currentRoundLocation.longitude}`}

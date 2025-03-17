@@ -35,7 +35,7 @@ function GameTimer({
 
   return (
     <>
-      <div className="flex items-center gap-1.5 rounded-lg p-2 shadow-md w-fit bg-zinc-800">
+      <div className="flex items-center gap-1.5 rounded-lg p-2 shadow-md w-fit bg-zinc-800 ">
         <svg
           className="w-5 h-5 text-zinc-400"
           fill="none"
@@ -50,7 +50,7 @@ function GameTimer({
             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <span className="text-lg font-medium text-zinc-200">
+        <span className="text-lg font-medium text-zinc-200 ">
           {Math.ceil(timeRemaining)}s
         </span>
       </div>

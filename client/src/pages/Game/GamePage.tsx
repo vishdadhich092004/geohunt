@@ -169,57 +169,62 @@ function GamePage() {
 
   return (
     <APIProvider apiKey={GOOGLE_API_KEY}>
-      <div className="relative h-screen w-screen overflow-hidden bg-zinc-950">
-        {/* Lives Explanation Alert */}
+      <div className="fixed inset-0 overflow-hidden bg-zinc-950">
+        {/* Game Mode Explanation Alert */}
         {showGameModeExplanation && (
-          <GameModeExplanationAlert
-            gameMode={gameMode!}
-            setShowGameModeExplanation={setShowGameModeExplanation}
-          />
-        )}
-
-        {/* Life Change Alert */}
-        {showLifeAlert && lifeChangeType && (
-          <LifeChangeAlert lifeChangeType={lifeChangeType} />
-        )}
-
-        {/* Game Header */}
-        {game && currentRoundLocation && (
-          <GameHeader
-            isGuessing={isGuessing}
-            timeRemaining={timeRemaining!}
-            setTimeRemaining={setTimeRemaining}
-            timeLimit={game.timeLimit}
-            startedAt={game.startedAt}
-            score={game.score}
-            lives={game.lives}
-            currentRoundLocation={currentRoundLocation}
-          />
-        )}
-
-        {/* Results Screen */}
-        {showingResults && lastGuess && currentRoundLocation && (
-          <ResultScreen
-            lives={game.lives}
-            actualLocation={currentRoundLocation}
-            guessedLocation={lastGuess}
-            onNextRound={handleNextRound}
-            currentRoundScore={game.currentRoundScore}
-          />
-        )}
-
-        {/* Street View */}
-        {currentRoundLocation && (
-          <div className="absolute inset-0 z-0">
-            <StreetView
-              lat={currentRoundLocation.latitude}
-              lng={currentRoundLocation.longitude}
+          <div className="absolute top-0 left-0 right-0 z-50">
+            <GameModeExplanationAlert
+              gameMode={gameMode!}
+              setShowGameModeExplanation={setShowGameModeExplanation}
             />
           </div>
         )}
 
+        {/* Life Change Alert */}
+        {showLifeAlert && lifeChangeType && (
+          <div className="absolute top-0 left-0 right-0 z-50">
+            <LifeChangeAlert lifeChangeType={lifeChangeType} />
+          </div>
+        )}
+
+        {/* Game Header */}
+        <div className="absolute top-0 left-0 right-0 z-40">
+          {game && currentRoundLocation && (
+            <GameHeader
+              isGuessing={isGuessing}
+              timeRemaining={timeRemaining!}
+              setTimeRemaining={setTimeRemaining}
+              timeLimit={game.timeLimit}
+              startedAt={game.startedAt}
+              score={game.score}
+              lives={game.lives}
+              currentRoundLocation={currentRoundLocation}
+            />
+          )}
+          {/* Results Screen */}
+          {showingResults && lastGuess && currentRoundLocation && (
+            <ResultScreen
+              lives={game.lives}
+              actualLocation={currentRoundLocation}
+              guessedLocation={lastGuess}
+              onNextRound={handleNextRound}
+              currentRoundScore={game.currentRoundScore}
+            />
+          )}
+        </div>
+
+        {/* Street View */}
+        <div className="absolute inset-0 z-0">
+          {currentRoundLocation && (
+            <StreetView
+              lat={currentRoundLocation.latitude}
+              lng={currentRoundLocation.longitude}
+            />
+          )}
+        </div>
+
         {/* Guess Map */}
-        <div className="absolute bottom-8 right-4 z-10 transition-transform duration-300 hover:scale-105">
+        <div className="absolute bottom-4 right-4 z-10">
           <GuessMap
             selectedLocation={selectedLocation!}
             setSelectedLocation={setSelectedLocation}
