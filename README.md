@@ -73,7 +73,7 @@ graph LR
 
 - React.js for frontend
 - Tailwind CSS for styling
-- Nodejs and Express for backend sever
+- Nodejs and Express for backend server
 - Used Cursor and Claude in the later stages of development
 
 
