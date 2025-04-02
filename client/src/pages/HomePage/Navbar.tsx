@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Compass, Menu, Sparkles, ChevronRight, Youtube } from "lucide-react";
+import {
+  Compass,
+  Menu,
+  Sparkles,
+  ChevronRight,
+  //  Youtube
+} from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAuthContext } from "@/contexts/AuthContext";
 import UserDropdown from "@/components/Navbar/UserDropdown";
@@ -128,11 +134,11 @@ export function Navbar() {
     </>
   );
 
-  const handleYoutubeAuth = () => {
-    window.location.href = `${
-      import.meta.env.VITE_API_BASE_URL
-    }/api/youtube/auth`;
-  };
+  // const handleYoutubeAuth = () => {
+  //   window.location.href = `${
+  //     import.meta.env.VITE_API_BASE_URL
+  //   }/api/youtube/auth`;
+  // };
 
   return (
     <nav
@@ -161,7 +167,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center space-x-3">
-            <Button
+            {/* <Button
               variant="outline"
               size="sm"
               className="hidden md:flex items-center space-x-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-colors"
@@ -169,7 +175,7 @@ export function Navbar() {
             >
               <Youtube className="h-4 w-4" />
               <span>Connect YouTube</span>
-            </Button>
+            </Button> */}
             <UserDropdown />
             <Button
               onClick={handlePlayNow}
