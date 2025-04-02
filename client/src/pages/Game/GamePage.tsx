@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
-import { useLoadScript } from "@react-google-maps/api";
+import { useEffect } from "react";
 import StreetView from "../../components/Map/StreetView";
 import { useParams } from "react-router-dom";
 import { fetchGameByGameId, newGuess, newGame } from "../../api-clients";
-import { GameType, GameModeType } from "../../../../server/shared/types";
 import GuessMap from "../../components/Map/GuessMap";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import ResultScreen from "../../components/Map/ResultScreen";
@@ -15,39 +13,41 @@ import LifeChangeAlert from "@/components/Game/LifeChangeAlert";
 import GameModeExplanationAlert from "@/components/Game/GameModeExplanationAlert";
 import TimeOver from "@/components/Game/TimeOver";
 import LocationsOver from "@/components/Game/LocationsOver";
+import { useGamePage } from "@/hooks/use.game.page";
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string;
-const libraries: ("places" | "drawing" | "geometry")[] = ["places"];
 
 function GamePage() {
   const { gameId } = useParams();
-  const [selectedLocation, setSelectedLocation] = useState<{
-    lat: number;
-    lng: number;
-  } | null>(null);
-  const [game, setGame] = useState<GameType | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isGuessing, setIsGuessing] = useState(false);
-  const [currentRoundLocation, setCurrentRoundLocation] = useState<{
-    latitude: number;
-    longitude: number;
-  } | null>(null);
-  const [showingResults, setShowingResults] = useState(false);
-  const [lastGuess, setLastGuess] = useState<{
-    latitude: number;
-    longitude: number;
-  } | null>(null);
-  const [previousLives, setPreviousLives] = useState<number | null>(null);
-  const [showLifeAlert, setShowLifeAlert] = useState(false);
-  const [lifeChangeType, setLifeChangeType] = useState<
-    "increase" | "decrease" | null
-  >(null);
-  const [showGameModeExplanation, setShowGameModeExplanation] = useState(true);
-  const [gameMode, setGameMode] = useState<GameModeType | null>(null);
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: GOOGLE_API_KEY,
-    libraries,
-  });
-  const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
+  const {
+    game,
+    setGame,
+    gameMode,
+    setGameMode,
+    timeRemaining,
+    setTimeRemaining,
+    currentRoundLocation,
+    setCurrentRoundLocation,
+    selectedLocation,
+    setSelectedLocation,
+    isGuessing,
+    setIsGuessing,
+    previousLives,
+    setPreviousLives,
+    showLifeAlert,
+    setShowLifeAlert,
+    lifeChangeType,
+    setLifeChangeType,
+    showGameModeExplanation,
+    setShowGameModeExplanation,
+    error,
+    setError,
+    loadError,
+    isLoaded,
+    showingResults,
+    setShowingResults,
+    lastGuess,
+    setLastGuess,
+  } = useGamePage();
 
   useEffect(() => {
     const fetchGameById = async () => {
