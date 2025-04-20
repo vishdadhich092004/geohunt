@@ -32,14 +32,16 @@ export const getUserBadges = (entry: LeaderboardEntry): Badge[] => {
   // Score-based badges
   if (entry.totalScore >= 1000000) {
     badges.push({
-      label: "🏆",
+      icon: <Trophy className="h-3 w-3" />,
+      label: "On Drugs",
       tooltip: "On Drugs",
       bgColor: "bg-cyan-500/10 hover:bg-cyan-500/20",
       textColor: "text-cyan-500",
     });
   } else if (entry.totalScore >= 800000) {
     badges.push({
-      label: "🏆",
+      icon: <Trophy className="h-3 w-3" />,
+      label: "Badass",
       tooltip: "Badass",
       bgColor: "bg-orange-500/10 hover:bg-orange-500/20",
       textColor: "text-orange-500",
