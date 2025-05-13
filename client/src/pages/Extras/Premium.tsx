@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import BackButton from "@/components/BackButton";
-import { Coffee } from "lucide-react";
-
+import wiseqr from "@/media/wiseqr.png";
 function Premium() {
   return (
     <div className="min-h-screen flex flex-col bg-background p-4">
@@ -17,21 +16,16 @@ function Premium() {
           Thanks to Google Maps , this is free!
         </p>
 
-        <Link
-          className="text-lg text-center bg-primary hover:bg-primary/80 text-primary-foreground px-6 py-2 rounded-lg shadow-lg transition-colors"
-          to="/"
-        >
-          Home Page
-        </Link>
-
-        <a
-          className="text-lg text-center bg-secondary hover:bg-secondary/80 text-secondary-foreground px-6 py-2 rounded-lg shadow-lg transition-colors flex items-center justify-center gap-2"
-          href="https://buymeacoffee.com/vishdadhich"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Buy me a coffee <Coffee className="w-4 h-4 " />
-        </a>
+        <span className="flex items-center gap-2">
+          <img src={wiseqr} alt="Wise QR" className="w-60 h-60" />
+          <Link
+            className="text-lg text-center bg-primary hover:bg-primary/80 text-primary-foreground px-6 py-2 rounded-lg shadow-lg transition-colors"
+            to="https://wise.com/pay/business/visheshdadhich"
+            target="_blank"
+          >
+            Pay Me via Wise
+          </Link>
+        </span>
       </div>
     </div>
   );
