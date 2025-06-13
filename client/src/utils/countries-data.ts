@@ -24,7 +24,7 @@ export const continents = [
       {
         name: "India",
         keyword: "india",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://images.pexels.com/photos/1007427/pexels-photo-1007427.jpeg?cs=srgb&dl=pexels-jeswinthomas-1007427.jpg&fm=jpg",
         dynamicImg:
@@ -35,7 +35,7 @@ export const continents = [
       {
         name: "Japan",
         keyword: "japan",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg?cs=srgb&dl=pexels-tomas-malik-793526-3408353.jpg&fm=jpg",
         dynamicImg:
@@ -45,7 +45,7 @@ export const continents = [
       {
         name: "South Korea",
         keyword: "south_korea",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://plus.unsplash.com/premium_photo-1661948404806-391a240d6d40?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2VvdWx8ZW58MHx8MHx8fDA%3D",
         desc: "Known for K-pop, technology, and kimchi.",
@@ -56,7 +56,7 @@ export const continents = [
       {
         name: "Indonesia",
         keyword: "indonesia",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://images.pexels.com/photos/1694621/pexels-photo-1694621.jpeg?cs=srgb&dl=pexels-aronvisuals-1694621.jpg&fm=jpg",
         desc: "Archipelago of islands, beaches, and volcanoes.",
@@ -66,7 +66,7 @@ export const continents = [
       {
         name: "Bangladesh",
         keyword: "bangladesh",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvay0yMi1zLTUtY29weV8xLmpwZw.jpg",
         desc: "Land of rivers, greenery, and vibrant culture.",
@@ -76,7 +76,7 @@ export const continents = [
       {
         name: "Malaysia",
         keyword: "malaysia",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://images.unsplash.com/photo-1508062878650-88b52897f298?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsYXlzaWF8ZW58MHx8MHx8fDA%3D",
         dynamicImg:
@@ -86,7 +86,7 @@ export const continents = [
       {
         name: "Pakistan",
         keyword: "pakistan",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Minar-e-Pakistan-lhr.jpg/1280px-Minar-e-Pakistan-lhr.jpg",
         dynamicImg:
@@ -96,7 +96,7 @@ export const continents = [
       {
         name: "Russia",
         keyword: "russia",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://static.vecteezy.com/system/resources/thumbnails/033/341/096/small_2x/background-on-russian-tourism-photo.jpg",
         dynamicImg:
@@ -106,7 +106,7 @@ export const continents = [
       {
         name: "Sri Lanka",
         keyword: "sri_lanka",
-        continentName: "Asia",
+        continentName: "asia",
         staticImg:
           "https://images.unsplash.com/photo-1651264042769-ef84e30f4ac8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHNyaWxhbmthfGVufDB8fDB8fHww",
         desc: "Island nation known for tea, beaches, and ancient temples.",
