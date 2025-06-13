@@ -24,6 +24,7 @@ export const continents = [
       {
         name: "India",
         keyword: "india",
+        continentName: "Asia",
         staticImg:
           "https://images.pexels.com/photos/1007427/pexels-photo-1007427.jpeg?cs=srgb&dl=pexels-jeswinthomas-1007427.jpg&fm=jpg",
         dynamicImg:
@@ -34,6 +35,7 @@ export const continents = [
       {
         name: "Japan",
         keyword: "japan",
+        continentName: "Asia",
         staticImg:
           "https://images.pexels.com/photos/3408353/pexels-photo-3408353.jpeg?cs=srgb&dl=pexels-tomas-malik-793526-3408353.jpg&fm=jpg",
         dynamicImg:
@@ -43,6 +45,7 @@ export const continents = [
       {
         name: "South Korea",
         keyword: "south_korea",
+        continentName: "Asia",
         staticImg:
           "https://plus.unsplash.com/premium_photo-1661948404806-391a240d6d40?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8c2VvdWx8ZW58MHx8MHx8fDA%3D",
         desc: "Known for K-pop, technology, and kimchi.",
@@ -53,6 +56,7 @@ export const continents = [
       {
         name: "Indonesia",
         keyword: "indonesia",
+        continentName: "Asia",
         staticImg:
           "https://images.pexels.com/photos/1694621/pexels-photo-1694621.jpeg?cs=srgb&dl=pexels-aronvisuals-1694621.jpg&fm=jpg",
         desc: "Archipelago of islands, beaches, and volcanoes.",
@@ -62,6 +66,7 @@ export const continents = [
       {
         name: "Bangladesh",
         keyword: "bangladesh",
+        continentName: "Asia",
         staticImg:
           "https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvay0yMi1zLTUtY29weV8xLmpwZw.jpg",
         desc: "Land of rivers, greenery, and vibrant culture.",
@@ -71,6 +76,7 @@ export const continents = [
       {
         name: "Malaysia",
         keyword: "malaysia",
+        continentName: "Asia",
         staticImg:
           "https://images.unsplash.com/photo-1508062878650-88b52897f298?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsYXlzaWF8ZW58MHx8MHx8fDA%3D",
         dynamicImg:
@@ -80,6 +86,7 @@ export const continents = [
       {
         name: "Pakistan",
         keyword: "pakistan",
+        continentName: "Asia",
         staticImg:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Minar-e-Pakistan-lhr.jpg/1280px-Minar-e-Pakistan-lhr.jpg",
         dynamicImg:
@@ -89,6 +96,7 @@ export const continents = [
       {
         name: "Russia",
         keyword: "russia",
+        continentName: "Asia",
         staticImg:
           "https://static.vecteezy.com/system/resources/thumbnails/033/341/096/small_2x/background-on-russian-tourism-photo.jpg",
         dynamicImg:
@@ -98,6 +106,7 @@ export const continents = [
       {
         name: "Sri Lanka",
         keyword: "sri_lanka",
+        continentName: "Asia",
         staticImg:
           "https://images.unsplash.com/photo-1651264042769-ef84e30f4ac8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHNyaWxhbmthfGVufDB8fDB8fHww",
         desc: "Island nation known for tea, beaches, and ancient temples.",
@@ -120,6 +129,7 @@ export const continents = [
       {
         name: "France",
         keyword: "france",
+        continentName: "europe",
         staticImg:
           "https://images.pexels.com/photos/161853/eiffel-tower-paris-france-tower-161853.jpeg?cs=srgb&dl=pexels-pixabay-161853.jpg&fm=jpg",
         dynamicImg:
@@ -130,6 +140,7 @@ export const continents = [
       {
         name: "Germany",
         keyword: "germany",
+        continentName: "europe",
         staticImg:
           "https://wallpapercat.com/w/full/9/a/b/34331-1920x1080-desktop-full-hd-germany-wallpaper.jpg",
         dynamicImg:
@@ -139,6 +150,7 @@ export const continents = [
       {
         name: "United Kingdom",
         keyword: "uk",
+        continentName: "europe",
         staticImg:
           "https://plus.unsplash.com/premium_photo-1661962726504-fa8f464a1bb8?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dW5pdGVkJTIwa2luZ2RvbXxlbnwwfHwwfHx8MA%3D%3D",
         desc: "Known for its monarchy, historic landmarks, and culture.",
@@ -149,6 +161,7 @@ export const continents = [
       {
         name: "Italy",
         keyword: "italy",
+        continentName: "europe",
         staticImg:
           "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXRhbHl8ZW58MHx8MHx8fDA%3D",
         dynamicImg:
@@ -158,6 +171,7 @@ export const continents = [
       {
         name: "Spain",
         keyword: "spain",
+        continentName: "europe",
         staticImg:
           "https://c4.wallpaperflare.com/wallpaper/244/842/561/city-night-sevilla-spain-wallpaper-preview.jpg",
         dynamicImg:
@@ -167,6 +181,7 @@ export const continents = [
       {
         name: "Netherlands",
         keyword: "netherlands",
+        continentName: "europe",
         staticImg:
           "https://media.istockphoto.com/id/497143276/photo/amsterdam-netherlands.jpg?s=612x612&w=0&k=20&c=MD-5U2TkyV9_eXiPqFB8EEsj9gKCLfODuyWBFSecDwM=",
         dynamicImg:
@@ -176,6 +191,7 @@ export const continents = [
       {
         name: "Norway",
         keyword: "norway",
+        continentName: "europe",
         staticImg:
           "https://c4.wallpaperflare.com/wallpaper/623/100/853/landscape-stars-europe-norway-wallpaper-preview.jpg",
         dynamicImg:
@@ -185,6 +201,7 @@ export const continents = [
       {
         name: "Sweden",
         keyword: "sweden",
+        continentName: "europe",
         staticImg:
           "https://cdn.pixabay.com/photo/2019/05/04/17/39/stockholm-4178587_1280.jpg",
         dynamicImg:
@@ -194,6 +211,7 @@ export const continents = [
       {
         name: "Turkey",
         keyword: "turkey",
+        continentName: "europe",
         staticImg:
           "https://images.pexels.com/photos/30250818/pexels-photo-30250818.jpeg?cs=srgb&dl=pexels-sami-aksu-48867324-30250818.jpg&fm=jpg",
         dynamicImg:
@@ -203,6 +221,7 @@ export const continents = [
       {
         name: "Switzerland",
         keyword: "switzerland",
+        continentName: "europe",
         staticImg:
           "https://c4.wallpaperflare.com/wallpaper/599/705/136/switzerland-zermatt-night-streets-and-lights-wallpaper-preview.jpg",
         desc: "Famous for its Alps, chocolate, and precision watches.",
@@ -225,6 +244,7 @@ export const continents = [
       {
         name: "United States",
         keyword: "usa",
+        continentName: "north_america",
         staticImg:
           "https://wallpapercat.com/w/full/4/6/6/642954-3840x2160-desktop-4k-usa-background-photo.jpg",
         dynamicImg:
@@ -234,6 +254,7 @@ export const continents = [
       {
         name: "Canada",
         keyword: "canada",
+        continentName: "north_america",
         staticImg:
           "https://img.freepik.com/premium-photo/canadian-flag-nature-maple-background-canada-day_542566-6927.jpg?semt=ais_incoming",
         dynamicImg:
@@ -243,6 +264,7 @@ export const continents = [
       {
         name: "Mexico",
         keyword: "mexico",
+        continentName: "north_america",
         staticImg:
           "https://images.pexels.com/photos/3551805/pexels-photo-3551805.jpeg?cs=srgb&dl=pexels-bhargava-marripati-674798-3551805.jpg&fm=jpg",
         dynamicImg:
@@ -265,6 +287,7 @@ export const continents = [
       {
         name: "Brazil",
         keyword: "brazil",
+        continentName: "south_america",
         staticImg:
           "https://wallpapers.com/images/featured/brazil-pictures-b4dydodrhw6tw1ya.jpg",
         dynamicImg:
@@ -274,6 +297,7 @@ export const continents = [
       {
         name: "Argentina",
         keyword: "argentina",
+        continentName: "south_america",
         staticImg:
           "https://c4.wallpaperflare.com/wallpaper/662/782/517/obelisco-de-buenos-aires-argentina-buenos-aires-city-wallpaper-preview.jpg",
         dynamicImg:
@@ -283,6 +307,7 @@ export const continents = [
       {
         name: "Chile",
         keyword: "chile",
+        continentName: "south_america",
         staticImg:
           "https://images.unsplash.com/photo-1566079463188-97d2f1352582?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNoaWxlfGVufDB8fDB8fHww",
         dynamicImg:
@@ -304,6 +329,7 @@ export const continents = [
       {
         name: "Australia",
         keyword: "australia",
+        continentName: "oceania",
         desc: "Famous for its beaches, wildlife, and the Great Barrier Reef.",
         staticImg:
           "https://images.pexels.com/photos/1878293/pexels-photo-1878293.jpeg?cs=srgb&dl=pexels-pixelcop-1878293.jpg&fm=jpg",
@@ -313,6 +339,7 @@ export const continents = [
       {
         name: "New Zealand",
         keyword: "new_zealand",
+        continentName: "oceania",
         desc: "Known for stunning landscapes, Māori culture, and adventure sports.",
         staticImg:
           "https://images.pexels.com/photos/37650/new-zealand-lake-mountain-landscape-37650.jpeg?cs=srgb&dl=pexels-pixabay-37650.jpg&fm=jpg",
@@ -334,6 +361,7 @@ export const continents = [
       {
         name: "Egypt",
         keyword: "egypt",
+        continentName: "africa",
         staticImg:
           "https://cdn.pixabay.com/photo/2017/08/24/05/21/pyramid-2675466_640.jpg",
         dynamicImg:
@@ -343,6 +371,7 @@ export const continents = [
       {
         name: "South Africa",
         keyword: "south_africa",
+        continentName: "africa",
         staticImg:
           "https://images.unsplash.com/photo-1529528070131-eda9f3e90919?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c291dGglMjBhZnJpY2F8ZW58MHx8MHx8fDA%3D",
         dynamicImg:
