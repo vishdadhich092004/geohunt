@@ -31,7 +31,6 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
       ...continent.countries.map((country) => ({
         ...country,
         type: "country",
-        continentName: continent.keyword,
         country: country.keyword,
       })),
     ])
@@ -125,7 +124,13 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
                   <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">
                     <BGCard
                       onClick={() => {
-                        setContinent(location.keyword);
+                        setContinent(
+                          location.type === "continent"
+                            ? location.keyword
+                            : "continentName" in location
+                            ? location.continentName
+                            : location.keyword
+                        );
                         setCountry(location.country);
                       }}
                       heading={location.name}
