@@ -18,6 +18,14 @@ export function BGCard({
 }: BGCardProps) {
   return (
     <div className="max-w-xs w-full" onClick={onClick}>
+      {/* Hidden preload: fetches the GIF lazily so it's cached before first hover */}
+      <img
+        src={dynamicImg}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        className="hidden"
+      />
       <div
         style={{
           backgroundImage: `url(${staticImg})`,

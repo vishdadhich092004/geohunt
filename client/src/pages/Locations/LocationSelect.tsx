@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { Globe2 } from "lucide-react";
+import { Globe2, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { BGCard } from "@/components/ui/background-card";
 import { continents } from "@/utils/countries-data";
 import LocationSearch from "@/components/Locations/LocationSearch";
-import BackButton from "@/components/BackButton";
 
 interface LocationSelectProps {
   setContinent: (continent: string) => void;
@@ -12,7 +11,11 @@ interface LocationSelectProps {
   handleBack: () => void;
 }
 
-function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
+function LocationSelect({
+  setContinent,
+  setCountry,
+  handleBack,
+}: LocationSelectProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -44,7 +47,7 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
         className="fixed inset-0 z-0"
         style={{
           background:
-            'linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', // Gradient overlay with the background image
+            'linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=75&w=1920&auto=format&fit=crop")',
           backgroundSize: "cover",
           backgroundPosition: "center",
           pointerEvents: "none",
@@ -52,12 +55,16 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
         }}
       />
       <div className="relative z-10">
-        {/* Back Button - Always visible */}
+        {/* Back Button — calls handleBack to return to game mode selection */}
         <div className="absolute top-8 left-4 z-50">
-          <BackButton />
+          <button
+            onClick={handleBack}
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm transition-all duration-200 border border-white/10 hover:border-white/30"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span className="text-sm font-medium">Back</span>
+          </button>
         </div>
-
-        {/* Fixed Search Section */}
 
         {/* Hero Section - Only visible when not scrolled */}
         {!isScrolled && (
@@ -86,15 +93,12 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
             </div>
           </div>
         )}
-        <motion.div
-          initial={{ y: 0 }}
-          animate={{
-            y: isScrolled ? 0 : 0,
-            position: isScrolled ? "fixed" : "relative",
-            width: "100%",
-            zIndex: 50,
-          }}
-          className="bg-background/80 backdrop-blur-sm border-b border-border"
+
+        {/* Search bar — uses CSS class toggle instead of animating `position` */}
+        <div
+          className={`${
+            isScrolled ? "fixed top-0 left-0 right-0" : "relative"
+          } w-full z-50 bg-background/80 backdrop-blur-sm border-b border-border`}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <LocationSearch
@@ -102,7 +106,7 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
               setSearchTerm={setSearchTerm}
             />
           </div>
-        </motion.div>
+        </div>
 
         {/* Results Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -118,30 +122,38 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
                   key={location.keyword}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="group"
                 >
                   <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">
                     <BGCard
                       onClick={() => {
-                        setContinent(
-                          location.type === "continent"
-                            ? location.keyword
-                            : "continentName" in location
-                            ? location.continentName
-                            : location.keyword
-                        );
-                        setCountry(location.country);
+                        if (location.type === "continent") {
+                          // Continent entries don't have a specific country — use "random"
+                          setContinent(location.keyword);
+                          setCountry("random");
+                        } else {
+                          setContinent(
+                            "continentName" in location
+                              ? (location.continentName as string)
+                              : location.keyword
+                          );
+                          setCountry(location.country as string);
+                        }
                       }}
                       heading={location.name}
                       desc={
                         location.type === "country"
-                          ? `Country in ${location.name}`
+                          ? `Country in ${
+                              "continentName" in location
+                                ? location.continentName
+                                : location.name
+                            }`
                           : location.desc
                       }
                       staticImg={
                         location.staticImg ||
-                        "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b"
+                        "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=70&w=800&auto=format&fit=crop"
                       }
                       dynamicImg={location.dynamicImg}
                     />
@@ -156,7 +168,7 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
                   key={continent.keyword}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: continentIndex * 0.2 }}
+                  transition={{ duration: 0.5, delay: continentIndex * 0.1 }}
                 >
                   <div className="flex items-center gap-4 mb-6">
                     <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
@@ -201,7 +213,7 @@ function LocationSelect({ setContinent, setCountry }: LocationSelectProps) {
                         key={country.keyword}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
+                        transition={{ duration: 0.3, delay: index * 0.05 }}
                         className="group"
                       >
                         <div className="relative transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl rounded-xl overflow-hidden">

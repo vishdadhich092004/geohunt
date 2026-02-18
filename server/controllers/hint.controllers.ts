@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { generateHint } from "../utils/gemini-services";
-import { parseData } from "../utils/parse-data";
 
 interface LocationQuery {
   lat?: string;
   lng?: string;
 }
+
 export const generateHintsForLocation = async (
   req: Request,
   res: Response
@@ -17,34 +17,48 @@ export const generateHintsForLocation = async (
         success: false,
         error: "Valid Latitude and Longitude are required",
       });
+      return;
     }
 
-    const prompt = `Act as a expert geoguessing game hint creator. Generate an array of 3 creative but approachable hints for a location based on these coordinates: Latitude ${lat}, Longitude ${lng}. The hints must follow this exact order:
-    
-    1. Geography: Describe general physical features and surroundings. Example: "Coastal area with sandy beaches and clusters of palm trees"
-    2. Recent Events: Mention notable local happenings from last 2-3 years. Example: "Hosted a popular cultural festival featuring traditional music last spring"
-    3. History: Reference historical significance without exact dates. Example: "Known for 19th-century architecture styles seen in town centers"
-    
-    Requirements:
-    1. Hints should be distinct but slightly easier than professional-level clues
-    2. Focus on observable features rather than deep knowledge
-    3. Never reveal exact names or famous landmarks
-    4. Use simple, conversational language
-    5. Include subtle environmental clues
-    6. Strictly maintain the order: Geography, Recent Events, History
-    
-    Output: Return ONLY a valid JavaScript array with 3 strings in the specified order. Keep hints brief but helpful. Use modern references like transportation types, common architecture styles, or popular local foods. Avoid technical terms. Example elements: bicycle paths, traditional roof designs, street food smells, common tree types.`;
+    const prompt = `You are a hint generator for a competitive geography guessing game (similar to GeoGuessr).
+A player is trying to identify a location from a Street View image.
+The coordinates are: Latitude ${lat}, Longitude ${lng}.
+
+Generate exactly 3 hints in INCREASING order of specificity (hint 1 is vaguest, hint 3 is most specific):
+
+Hint 1 - VAGUE (Climate & Landscape): Describe only the broad physical environment — terrain type, vegetation, climate zone. Do NOT mention country, region, or any named place.
+Example: "A flat, arid landscape with sparse shrubby vegetation and a wide, straight road under a harsh sun."
+
+Hint 2 - MODERATE (Cultural & Architectural): Describe visible human elements — road signs style, architecture, vehicle types, infrastructure, language script on signs if any.
+Example: "Road markings and signage follow a European style. Buildings are low-rise with terracotta roofs."
+
+Hint 3 - SPECIFIC (Regional Identity): Give a strong regional clue — describe the broader geographic region, neighboring features, or well-known characteristics of the area WITHOUT naming the exact city or country.
+Example: "This area is in the southern part of a large South American country known for its wine regions and Andean backdrop."
+
+Rules:
+- NEVER reveal the exact city, country name, or famous landmark names
+- Each hint must be a single sentence, max 25 words
+- Hints must be factually grounded — do not invent events or landmarks
+- Focus on what a player could observe in a Street View image
+
+Return ONLY a valid JSON array of exactly 3 strings. No explanation, no markdown, just the raw JSON array.
+Example output: ["hint one here", "hint two here", "hint three here"]`;
+
     const result: string = await generateHint(prompt);
-    const parsedResult = parseData(result);
+
     if (!result) {
       res.status(500).json({
         success: false,
-        error: "No Hints can be found for this place",
+        error: "No hints could be generated for this location",
       });
+      return;
     }
+
+    const parsedResult: string[] = JSON.parse(result);
     res.status(200).json({ success: true, data: parsedResult });
   } catch (e) {
     console.error(e);
     res.status(500).json({ message: "Error Fetching Hints" });
   }
 };
+

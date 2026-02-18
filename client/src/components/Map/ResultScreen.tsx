@@ -20,6 +20,7 @@ interface ResultScreenProps {
   onNextRound: () => void;
   currentRoundScore: number;
   lives: number;
+  isGameOver?: boolean;
 }
 
 function ResultScreen({
@@ -28,6 +29,7 @@ function ResultScreen({
   onNextRound,
   currentRoundScore,
   lives,
+  isGameOver = false,
 }: ResultScreenProps) {
   const distance = useMemo(
     () => haversineDistance(actualLocation, guessedLocation),
@@ -64,7 +66,7 @@ function ResultScreen({
 
           <span className="flex gap-1">
             <Button onClick={onNextRound} className="w-full" size="default">
-              Next Round
+              {isGameOver ? "See Results" : "Next Round"}
             </Button>
             <ExitGame />
           </span>

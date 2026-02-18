@@ -10,7 +10,7 @@ export const ClassicSkeleton = ({ mode }: { mode: GameModeType }) => {
       className="flex flex-1 w-full h-full min-h-[6rem] rounded-t-lg p-4 flex-col space-y-4"
       style={{
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1577436705536-4f2b677b1639?q=80&w=2012&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          "url(https://images.unsplash.com/photo-1577436705536-4f2b677b1639?q=70&w=600&auto=format&fit=crop)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "transparent",
@@ -52,7 +52,7 @@ export const SpeedSkeleton = ({ mode }: { mode: GameModeType }) => {
       className="flex flex-1 w-full h-full min-h-[6rem] rounded-t-lg p-4 flex-col space-y-4"
       style={{
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1573068111653-f18bef611c8a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          "url(https://images.unsplash.com/photo-1573068111653-f18bef611c8a?q=70&w=600&auto=format&fit=crop)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "transparent",
@@ -94,7 +94,7 @@ export const BlitzSkeleton = ({ mode }: { mode: GameModeType }) => {
       className="flex flex-1 w-full h-full min-h-[6rem] rounded-t-lg p-4 flex-col space-y-4"
       style={{
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4)",
+          "url(https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4?q=70&w=600&auto=format&fit=crop)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "transparent",
@@ -138,7 +138,7 @@ export const InfiniteSkeleton = () => {
       className="flex flex-1 w-full h-full min-h-[6rem] rounded-t-lg flex-col space-y-2"
       style={{
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1504197832061-98356e3dcdcf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          "url(https://images.unsplash.com/photo-1504197832061-98356e3dcdcf?q=70&w=600&auto=format&fit=crop)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "transparent",
@@ -166,7 +166,7 @@ export const HardcoreSkeleton = () => {
       className="flex flex-1 w-full h-full min-h-[6rem] rounded-t-lg p-4"
       style={{
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1597952681778-21b365d312ca?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          "url(https://images.unsplash.com/photo-1597952681778-21b365d312ca?q=70&w=600&auto=format&fit=crop)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "transparent",

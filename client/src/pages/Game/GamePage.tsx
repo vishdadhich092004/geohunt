@@ -157,14 +157,19 @@ function GamePage() {
     );
   }
 
-  if (game.maxLocations !== null && game.guesses.length >= game.maxLocations) {
-    return <LocationsOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
-  }
-  if (game.lives <= 0) {
-    return <GameOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
-  }
-  if (timeRemaining && timeRemaining <= 0) {
-    return <TimeOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
+  // Only show end-game screens after the player has seen the last round's result.
+  // Without this guard, the ResultScreen is immediately replaced by GameOver on the
+  // fatal round because game state (lives, guesses) updates before showingResults clears.
+  if (!showingResults) {
+    if (game.maxLocations !== null && game.guesses.length >= game.maxLocations) {
+      return <LocationsOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
+    }
+    if (game.lives <= 0) {
+      return <GameOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
+    }
+    if (timeRemaining && timeRemaining <= 0) {
+      return <TimeOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
+    }
   }
 
   return (
@@ -209,6 +214,11 @@ function GamePage() {
               guessedLocation={lastGuess}
               onNextRound={handleNextRound}
               currentRoundScore={game.currentRoundScore}
+              isGameOver={
+                game.lives <= 0 ||
+                (game.maxLocations !== null &&
+                  game.guesses.length >= game.maxLocations)
+              }
             />
           )}
         </div>
