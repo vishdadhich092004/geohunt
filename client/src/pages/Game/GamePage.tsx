@@ -64,7 +64,11 @@ function GamePage() {
         if (error instanceof Error && error.message.includes("429")) {
           try {
             // Create a new game when rate limit is exceeded
-            const newGameData = await newGame();
+            const newGameData = await newGame(
+              game?.continent || undefined,
+              game?.country || undefined,
+              game?.gameModeId || undefined
+            );
             setGame(newGameData);
             setGameMode(newGameData.gameMode);
             setTimeRemaining(newGameData.timeRemaining);

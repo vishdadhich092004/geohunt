@@ -18,6 +18,7 @@ export type UserType = {
 export type GameType = {
   id: string;
   userId?: string;
+  gameModeId?: string;
   guesses: GuessType[];
   score: number;
   currentRoundScore: number;

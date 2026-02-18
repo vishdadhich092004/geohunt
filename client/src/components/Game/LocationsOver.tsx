@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 
 interface LocationsOverProps {
   score: number;
+  gameModeName?: string;
   onPlayAgain?: () => void;
 }
 
-function LocationsOver({ score, onPlayAgain }: LocationsOverProps) {
+function LocationsOver({ score, gameModeName, onPlayAgain }: LocationsOverProps) {
   const navigate = useNavigate();
 
   return (
@@ -34,6 +35,11 @@ function LocationsOver({ score, onPlayAgain }: LocationsOverProps) {
             <p className="text-zinc-400 text-sm">
               You've explored all locations
             </p>
+            {gameModeName && (
+              <p className="text-emerald-400 text-xs mt-2 font-medium bg-emerald-500/10 inline-block px-3 py-1 rounded-full border border-emerald-500/20">
+                {gameModeName}
+              </p>
+            )}
           </div>
         </div>
 

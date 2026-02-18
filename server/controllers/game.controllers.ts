@@ -123,6 +123,10 @@ export const fetchGame = async (
   if (!game) {
     return res.status(404).json({ message: "No Game Found" });
   }
+  // Security check: ensure the user owns this game
+  if (game.userId !== req.user.userId) {
+    return res.status(403).json({ error: "Unauthorized access to this game" });
+  }
   return res.status(200).json(game);
 };
 
@@ -133,6 +137,11 @@ export const fetchGameHistory = async (
   const { userId } = req.params;
   if (!userId) {
     return res.status(400).json({ error: "userId is required" });
+  }
+
+  // Security check: ensure requesting user matches the route param
+  if (req.user.userId !== userId) {
+    return res.status(403).json({ error: "Unauthorized to view this history" });
   }
 
   const page = Math.max(1, parseInt(req.query.page as string) || 1);

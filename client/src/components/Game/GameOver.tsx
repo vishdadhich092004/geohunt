@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 
 interface GameOverProps {
   score: number;
+  gameModeName?: string;
   onPlayAgain?: () => void;
 }
 
-function GameOver({ score, onPlayAgain }: GameOverProps) {
+function GameOver({ score, gameModeName, onPlayAgain }: GameOverProps) {
   const navigate = useNavigate();
 
   return (
@@ -30,6 +31,11 @@ function GameOver({ score, onPlayAgain }: GameOverProps) {
             </div>
             <h2 className="text-2xl font-bold text-white mb-1">Game Over</h2>
             <p className="text-zinc-400 text-sm">You've used all your lives</p>
+            {gameModeName && (
+              <p className="text-red-400 text-xs mt-2 font-medium bg-red-500/10 inline-block px-3 py-1 rounded-full border border-red-500/20">
+                {gameModeName}
+              </p>
+            )}
           </div>
         </div>
 

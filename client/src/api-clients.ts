@@ -105,7 +105,7 @@ export const fetchHints = async (lat?: number, lng?: number) => {
     `${API_BASE_URL}/api/hints?lat=${lat}&lng=${lng}`,
     {
       credentials: "include",
-      method: "POST",
+      method: "GET",
     }
   );
   const body = await response.json();

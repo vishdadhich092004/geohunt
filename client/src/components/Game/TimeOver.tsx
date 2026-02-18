@@ -7,6 +7,7 @@ import { useMemo } from "react";
 
 interface TimeOverProps {
   score: number;
+  gameModeName?: string;
   onPlayAgain?: () => void;
 }
 
@@ -20,7 +21,7 @@ const timeOverQuotes = [
   "The sands of time have run their course.",
 ];
 
-function TimeOver({ score, onPlayAgain }: TimeOverProps) {
+function TimeOver({ score, gameModeName, onPlayAgain }: TimeOverProps) {
   const navigate = useNavigate();
 
   const randomQuote = useMemo(() => {
@@ -69,8 +70,20 @@ function TimeOver({ score, onPlayAgain }: TimeOverProps) {
               transition={{ delay: 0.4 }}
               className="text-zinc-400 text-sm italic px-4"
             >
-              "{randomQuote}"
+              &ldquo;{randomQuote}&rdquo;
             </motion.p>
+            {gameModeName && (
+              <motion.div
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.45 }}
+                className="mt-4"
+              >
+                <span className="text-amber-400 text-xs font-medium bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">
+                  {gameModeName}
+                </span>
+              </motion.div>
+            )}
           </div>
         </div>
 

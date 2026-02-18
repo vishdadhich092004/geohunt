@@ -3,6 +3,6 @@ import { generateHintsForLocation } from "../controllers/hint.controllers";
 
 const router = express.Router();
 
-router.post("/", generateHintsForLocation);
+router.get("/", generateHintsForLocation);
 
 export default router;
