@@ -158,13 +158,13 @@ function GamePage() {
   }
 
   if (game.maxLocations !== null && game.guesses.length >= game.maxLocations) {
-    return <LocationsOver score={game?.score || 0} />;
+    return <LocationsOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
   }
   if (game.lives <= 0) {
-    return <GameOver score={game?.score || 0} />;
+    return <GameOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
   }
   if (timeRemaining && timeRemaining <= 0) {
-    return <TimeOver score={game?.score || 0} />;
+    return <TimeOver score={game?.score || 0} gameModeName={game.gameMode?.name} />;
   }
 
   return (

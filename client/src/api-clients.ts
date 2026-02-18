@@ -166,3 +166,31 @@ export const fetchPublicStats = async (): Promise<{
   return body;
 };
 
+export const fetchGameHistory = async (
+  userId: string,
+  page = 1,
+  limit = 10
+): Promise<{
+  games: {
+    id: string;
+    score: number;
+    continent: string | null;
+    country: string | null;
+    startedAt: string;
+    finishedAt: string;
+    lives: number;
+    gameMode: { name: string };
+    _count: { guesses: number };
+  }[];
+  meta: { page: number; limit: number; total: number; pages: number };
+}> => {
+  const response = await fetch(
+    `${API_BASE_URL}/api/games/history/${userId}?page=${page}&limit=${limit}`,
+    { method: "GET", credentials: "include" }
+  );
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error(body.error ?? "Failed to fetch game history");
+  }
+  return body;
+};

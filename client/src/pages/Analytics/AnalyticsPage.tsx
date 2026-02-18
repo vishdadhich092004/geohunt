@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Trophy,
   Calendar,
@@ -16,6 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { GameType } from "../../../../server/shared/types";
 import { UserType } from "../../../../server/shared/types";
 import { getAnalytics } from "@/api-clients";
+import { Button } from "@/components/ui/button";
 import AnalyticsMap from "./AnalyticsMap";
 import StatCard from "@/components/ui/stat-card";
 import BackButton from "@/components/BackButton";
@@ -43,6 +44,7 @@ interface AnalyticsData {
 
 function AnalyticsPage() {
   const { userId } = useParams();
+  const navigate = useNavigate();
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -112,8 +114,16 @@ function AnalyticsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-background/95 to-background/90 pb-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="pt-8 pb-6">
+        <div className="pt-8 pb-6 flex items-center justify-between">
           <BackButton />
+          <Button
+            variant="outline"
+            className="border-zinc-800 hover:bg-zinc-800/50 text-zinc-400 hover:text-white"
+            onClick={() => navigate(`/history/${userId}`)}
+          >
+            <History className="w-4 h-4 mr-2" />
+            View Game History
+          </Button>
         </div>
 
         {/* Top Section - Split Layout */}

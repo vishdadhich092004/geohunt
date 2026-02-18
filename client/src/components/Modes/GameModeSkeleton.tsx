@@ -94,7 +94,7 @@ export const BlitzSkeleton = ({ mode }: { mode: GameModeType }) => {
       className="flex flex-1 w-full h-full min-h-[6rem] rounded-t-lg p-4 flex-col space-y-4"
       style={{
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+          "url(https://images.unsplash.com/photo-1517026575980-3e1e2dedeab4)",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundColor: "transparent",

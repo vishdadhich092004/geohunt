@@ -18,6 +18,9 @@ const IntermediateUserChoice = lazy(
 );
 const GameSelect = lazy(() => import("./pages/Game/GameSelect"));
 const AnalyticsPage = lazy(() => import("./pages/Analytics/AnalyticsPage"));
+const GameHistoryPage = lazy(
+  () => import("./pages/Analytics/GameHistoryPage")
+);
 
 function App() {
   const isMaintenanceMode = false;
@@ -119,6 +122,16 @@ function App() {
                 <Layout>
                   <Suspense fallback={<div>Loading...</div>}>
                     <AnalyticsPage />
+                  </Suspense>
+                </Layout>
+              }
+            />
+            <Route
+              path="/history/:userId"
+              element={
+                <Layout>
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <GameHistoryPage />
                   </Suspense>
                 </Layout>
               }

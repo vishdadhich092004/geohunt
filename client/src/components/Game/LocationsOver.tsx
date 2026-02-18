@@ -7,9 +7,10 @@ import ShareScoreButton from "./ShareScoreButton";
 interface LocationsOverProps {
   score: number;
   onPlayAgain?: () => void;
+  gameModeName?: string;
 }
 
-function LocationsOver({ score, onPlayAgain }: LocationsOverProps) {
+function LocationsOver({ score, onPlayAgain, gameModeName }: LocationsOverProps) {
   const navigate = useNavigate();
 
   return (
@@ -55,7 +56,7 @@ function LocationsOver({ score, onPlayAgain }: LocationsOverProps) {
 
         {/* Action Buttons */}
         <div className="p-6 pt-4 space-y-3">
-          <ShareScoreButton score={score} />
+          <ShareScoreButton score={score} gameModeName={gameModeName} />
           {onPlayAgain && (
             <Button
               onClick={onPlayAgain}

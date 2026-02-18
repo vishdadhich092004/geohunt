@@ -9,6 +9,7 @@ import ShareScoreButton from "./ShareScoreButton";
 interface TimeOverProps {
   score: number;
   onPlayAgain?: () => void;
+  gameModeName?: string;
 }
 
 const timeOverQuotes = [
@@ -21,7 +22,7 @@ const timeOverQuotes = [
   "The sands of time have run their course.",
 ];
 
-function TimeOver({ score, onPlayAgain }: TimeOverProps) {
+function TimeOver({ score, onPlayAgain, gameModeName }: TimeOverProps) {
   const navigate = useNavigate();
 
   const randomQuote = useMemo(() => {
@@ -99,7 +100,7 @@ function TimeOver({ score, onPlayAgain }: TimeOverProps) {
           transition={{ delay: 0.6 }}
           className="p-6 pt-4 space-y-3"
         >
-          <ShareScoreButton score={score} />
+          <ShareScoreButton score={score} gameModeName={gameModeName} />
           {onPlayAgain && (
             <Button
               onClick={onPlayAgain}

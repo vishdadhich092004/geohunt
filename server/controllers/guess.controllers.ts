@@ -34,6 +34,16 @@ export const createGuess = async (
     return res.status(404).json({ error: "Game not found" });
   }
 
+  // Security: only the game owner can submit guesses
+  if (game.userId !== userId) {
+    return res.status(403).json({ error: "Not your game" });
+  }
+
+  // Reject guesses on already-finished games
+  if (game.finishedAt !== null) {
+    return res.status(400).json({ error: "Game is already finished" });
+  }
+
   const distance = haversineDistance(
     latitude,
     longitude,
@@ -48,7 +58,12 @@ export const createGuess = async (
   if (currentRoundScore <= 3000) {
     updatedLives -= 1;
   } else if (currentRoundScore >= 4750) {
-    updatedLives = Math.min(updatedLives + 1, gameMode.maxLives!);
+    // Guard against null maxLives (infinite-lives modes)
+    if (gameMode.maxLives !== null) {
+      updatedLives = Math.min(updatedLives + 1, gameMode.maxLives);
+    } else {
+      updatedLives += 1;
+    }
   }
   if (game.maxLocations !== null && game.guesses.length >= game.maxLocations) {
     return res

@@ -23,14 +23,14 @@ export const createUser = async (
       },
       process.env.JWT_SECRET_KEY as string,
       {
-        expiresIn: "1d",
+        expiresIn: "7d",
       }
     );
     res.cookie("auth_token", token, {
       httpOnly: true,
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       secure: process.env.NODE_ENV === "production",
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     return res.status(200).json(findUser);
   }
