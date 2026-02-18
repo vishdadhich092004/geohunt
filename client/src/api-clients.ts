@@ -150,3 +150,19 @@ export const fetchGameModeById = async (gameModeId: string) => {
   }
   return body;
 };
+
+export const fetchPublicStats = async (): Promise<{
+  totalUsers: number;
+  totalGames: number;
+  totalGuesses: number;
+}> => {
+  const response = await fetch(`${API_BASE_URL}/api/stats`, {
+    method: "GET",
+  });
+  const body = await response.json();
+  if (!response.ok) {
+    throw new Error(body.error ?? "Failed to fetch stats");
+  }
+  return body;
+};
+

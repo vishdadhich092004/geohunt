@@ -23,13 +23,22 @@ import { getUserBadges } from "@/components/Leaderboard/GetUserBadges";
 import BadgeGuide from "@/components/Leaderboard/BadgeGuide";
 
 interface AnalyticsData {
+  // Existing fields the page uses
   totalGames: number;
   firstGame: GameType;
   lastGame: GameType;
-
   playingSinceInDays: number;
   averageScore: number;
   user: UserType;
+  // New enriched fields
+  totalScore: number;
+  bestScore: number;
+  averageDistance: number | null;
+  bestDistance: number | null;
+  winRate: number;
+  currentStreak: number;
+  bestStreak: number;
+  mostPlayedContinent: string | null;
 }
 
 function AnalyticsPage() {
@@ -183,7 +192,7 @@ function AnalyticsPage() {
           />
           <StatCard
             icon={Target}
-            value={analytics?.averageScore.toFixed(1) || 0}
+            value={analytics?.averageScore.toFixed(0) || 0}
             label="Average Score"
             className="backdrop-blur-sm border-primary/10 hover:border-primary/20 transition-colors"
           />
@@ -195,8 +204,36 @@ function AnalyticsPage() {
           />
           <StatCard
             icon={Trophy}
-            value={analytics?.lastGame?.score || 0}
-            label="Latest Score"
+            value={analytics?.bestScore?.toLocaleString() || 0}
+            label="Best Score"
+            className="backdrop-blur-sm border-primary/10 hover:border-primary/20 transition-colors"
+          />
+          <StatCard
+            icon={Trophy}
+            value={`${analytics?.winRate ?? 0}%`}
+            label="Win Rate"
+            className="backdrop-blur-sm border-primary/10 hover:border-primary/20 transition-colors"
+          />
+          <StatCard
+            icon={History}
+            value={analytics?.currentStreak || 0}
+            label="Current Streak"
+            className="backdrop-blur-sm border-primary/10 hover:border-primary/20 transition-colors"
+          />
+          <StatCard
+            icon={History}
+            value={analytics?.bestStreak || 0}
+            label="Best Streak"
+            className="backdrop-blur-sm border-primary/10 hover:border-primary/20 transition-colors"
+          />
+          <StatCard
+            icon={MapPin}
+            value={
+              analytics?.bestDistance != null
+                ? `${analytics.bestDistance.toLocaleString()} km`
+                : "—"
+            }
+            label="Best Guess Distance"
             className="backdrop-blur-sm border-primary/10 hover:border-primary/20 transition-colors"
           />
         </div>

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Trophy, Home, RotateCcw, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import ShareScoreButton from "./ShareScoreButton";
 
 interface LocationsOverProps {
   score: number;
@@ -54,6 +55,7 @@ function LocationsOver({ score, onPlayAgain }: LocationsOverProps) {
 
         {/* Action Buttons */}
         <div className="p-6 pt-4 space-y-3">
+          <ShareScoreButton score={score} />
           {onPlayAgain && (
             <Button
               onClick={onPlayAgain}

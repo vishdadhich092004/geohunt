@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useAuthContext } from "@/contexts/AuthContext";
 import geohuntdemo from "@/media/geohuntdemo.mp4";
+import StatsBar from "@/components/HeroSection/StatsBar";
 const Hero = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthContext();
@@ -149,6 +150,15 @@ const Hero = () => {
                 Watch Demo
               </Button>
             </div>
+
+            {/* Live stats bar */}
+            <div
+              className="flex justify-center lg:justify-start lg:ml-20 opacity-0 animate-fade-in-up"
+              style={{ animationDelay: "1000ms", animationFillMode: "forwards" }}
+            >
+              <StatsBar />
+            </div>
+
           </div>
 
           {/* Video Demo Section */}

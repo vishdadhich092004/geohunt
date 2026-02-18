@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Timer, Home, RotateCcw } from "lucide-react";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
+import ShareScoreButton from "./ShareScoreButton";
+
 
 interface TimeOverProps {
   score: number;
@@ -97,6 +99,7 @@ function TimeOver({ score, onPlayAgain }: TimeOverProps) {
           transition={{ delay: 0.6 }}
           className="p-6 pt-4 space-y-3"
         >
+          <ShareScoreButton score={score} />
           {onPlayAgain && (
             <Button
               onClick={onPlayAgain}

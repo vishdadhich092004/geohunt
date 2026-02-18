@@ -8,6 +8,8 @@ import hintRoutes from "./hint.routes";
 import analyticsRoutes from "./analytics.routes";
 import gameModeRoutes from "./game.modes.routes";
 import youtubeRoutes from "./youtube.routes";
+import statsRoutes from "./stats.routes";
+
 const router = express.Router();
 
 router.use("/locations", locationRoutes);
@@ -19,4 +21,6 @@ router.use("/hints", hintRoutes);
 router.use("/analytics", analyticsRoutes);
 router.use("/game-modes", gameModeRoutes);
 router.use("/youtube", youtubeRoutes);
+router.use("/stats", statsRoutes);
+
 export default router;
