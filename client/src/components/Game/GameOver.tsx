@@ -2,15 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Trophy, Home, RotateCcw, HeartOff } from "lucide-react";
 import { motion } from "framer-motion";
-import ShareScoreButton from "./ShareScoreButton";
 
 interface GameOverProps {
   score: number;
-  gameModeName?: string;
   onPlayAgain?: () => void;
 }
 
-function GameOver({ score, gameModeName, onPlayAgain }: GameOverProps) {
+function GameOver({ score, onPlayAgain }: GameOverProps) {
   const navigate = useNavigate();
 
   return (
@@ -52,7 +50,6 @@ function GameOver({ score, gameModeName, onPlayAgain }: GameOverProps) {
 
         {/* Action Buttons */}
         <div className="p-6 pt-4 space-y-3">
-          <ShareScoreButton score={score} gameModeName={gameModeName} />
           {onPlayAgain && (
             <Button
               onClick={onPlayAgain}
